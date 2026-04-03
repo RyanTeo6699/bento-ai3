@@ -187,95 +187,101 @@ const capabilityDefinitions = [
 
 const projectDefinitions = [
   {
-    slug: "support-knowledge-console",
-    name: same("Support Knowledge Console"),
+    slug: "shiok",
+    name: same("Shiok (食咯)"),
     summary: {
-      en: "A retrieval-first workspace for support and operations lookup.",
-      "zh-Hant": "以檢索為核心的支援與營運知識工作區。",
-      ja: "サポートおよび運用検索のための、検索中心ワークスペース。"
+      en: "An AI dining copilot for better ordering decisions, automatic meal logging, and weekly review.",
+      "zh-Hant": "一個面向真實外食場景的 AI Copilot，幫使用者在點餐前做更好的選擇，並在餐後自動完成記錄與復盤。",
+      ja: "注文前の判断、食後の自動記録、週次レビューまでをつなぐ AI 外食 Copilot。"
     },
     description: {
       en:
-        "A current applied track for teams that need grounded answers against internal documentation, policy notes, and change logs.",
+        "Shiok is built around the full dining-out loop: constraint-aware ordering, post-meal capture, review, and weekly insight. It is shaped for delivery, dine-in, menu decisions, budget control, and dietary constraints rather than generic wellness tracking.",
       "zh-Hant":
-        "面向需要根據內部文件、政策備註與變更紀錄取得可追溯答案的團隊。",
+        "Shiok 圍繞完整的外食閉環設計：點餐前的約束判斷、點餐後的自動記錄、審核修正，以及每週復盤洞察。它聚焦外送、堂食、菜單決策、預算控制與飲食限制，而不是泛泛而談的健康管理。",
       ja:
-        "内部ドキュメント、ポリシーノート、変更履歴に根拠を持つ回答が必要なチーム向けの、現在進行中の実装トラックです。"
+        "Shiok は外食の一連の流れを前提に設計されています。注文前の条件判定、食後の自動記録、レビュー修正、週次インサイトまでを一つの閉ループとして扱い、汎用的な健康管理ではなく、配達、外食、メニュー選択、予算管理、食事制約に焦点を当てています。"
     },
     tags: {
-      en: ["Retrieval", "Next.js", "LLM"],
-      "zh-Hant": ["Retrieval", "Next.js", "LLM"],
-      ja: ["Retrieval", "Next.js", "LLM"]
+      en: ["AI Copilot", "Dining Workflow", "Reviewable AI", "Web Dashboard"],
+      "zh-Hant": ["AI Copilot", "Dining Workflow", "Reviewable AI", "Web Dashboard"],
+      ja: ["AI Copilot", "Dining Workflow", "Reviewable AI", "Web Dashboard"]
     },
     status: "Prototype" as const,
     track: {
-      en: "External Track",
-      "zh-Hant": "外部方向",
-      ja: "外部向けトラック"
+      en: "Consumer Product",
+      "zh-Hant": "消費產品",
+      ja: "コンシューマープロダクト"
     },
     featured: true,
     outcome: {
       en:
-        "Established a believable delivery shape for documentation-heavy teams without overstating deployment maturity.",
+        "Shiok already behaves like a feedback system rather than a one-off logging tool: it supports guided ordering, automated capture, weekly review, and a return path through pending review work.",
       "zh-Hant":
-        "在不誇大部署成熟度的前提下，為文件密集型團隊建立了可信的交付輪廓。",
+        "Shiok 已經具備「回饋型系統」的雛形，而不只是一次性的記錄工具：它把輔助點單、自動記錄、週度復盤與待處理審核串成可持續回來使用的閉環。",
       ja:
-        "導入成熟度を誇張せずに、ドキュメント負荷の高いチーム向けの現実的なデリバリー像を整理しました。"
+        "Shiok は単発の記録ツールではなく、フィードバック型システムとしての骨格をすでに備えています。注文支援、自動記録、週次レビュー、未処理レビューへの復帰導線が一つの流れにつながっています。"
     },
     disclosure: {
       en:
-        "Representative applied track. Public references are intentionally omitted while work is still early or private.",
+        "Current product track. Public descriptions focus on the real workflow and engineering direction; some quality, sync, and operational layers remain under active iteration.",
       "zh-Hant":
-        "此為代表性的應用方向。若工作仍屬早期或私人範圍，公開參考資訊會刻意省略。",
+        "目前為持續迭代中的產品方向。公開描述聚焦真實工作流與工程骨架；部分品質、同步與營運層能力仍在持續收斂中。",
       ja:
-        "代表的な実装方向です。仕事が初期段階または非公開の間は、公開参照情報を意図的に省いています。"
+        "現在も継続的に磨いているプロダクトトラックです。公開説明は実際のワークフローと実装方向に基づいており、品質管理、同期、運用レイヤーの一部は引き続き調整中です。"
     },
     detail: {
       problem: {
         en:
-          "Documentation-heavy teams lose time moving between wikis, PDFs, and ticket history when answers need source grounding.",
+          "Dining out creates repeated small failures: overspending, ignoring personal constraints, forgetting what was ordered, and having no useful review loop afterward. Most tools either log meals after the fact or show statistics without helping the decision itself.",
         "zh-Hant":
-          "當答案需要來源依據時，文件密集型團隊常在 wiki、PDF 與工單歷史之間來回切換而耗費時間。",
+          "外食場景裡最常見的問題，不是單一一餐吃得好不好，而是反覆出現的小失誤：超出預算、忽略個人限制、吃完就忘了記、記完也沒有後續可用的復盤。多數工具只做事後記錄或統計，卻沒有真正介入點餐決策。",
         ja:
-          "回答に根拠が必要な場面では、ドキュメント量の多いチームは wiki、PDF、チケット履歴を行き来することで時間を失います。"
+          "外食では、小さな失敗が何度も繰り返されます。予算超過、個人条件の見落とし、注文内容の記録漏れ、記録しても振り返りにつながらないことです。多くのツールは事後記録や集計に留まり、注文判断そのものは支援しません。"
       },
       system: {
         en:
-          "The system combines ingestion, retrieval, answer generation, and reviewer visibility inside a single operator surface.",
+          "The product links pre-order constraint checks, meal import and parsing, human review, weekly insights, and web-based reporting into one operating system for dining-out decisions.",
         "zh-Hant":
-          "系統把資料匯入、檢索、答案生成與審查可視性整合在同一個操作介面中。",
+          "產品把點餐前的約束判斷、餐食導入與解析、人工審核、週度洞察，以及 Web 報表串成一套面向外食決策的完整系統。",
         ja:
-          "このシステムは、取り込み、検索、回答生成、レビュー可視化を一つの運用画面に統合します。"
+          "このプロダクトは、注文前の条件判定、食事データの取り込みと解析、人によるレビュー、週次インサイト、Web レポートをつなぎ、外食判断のための一つのシステムとして構成されています。"
       },
       architecture: {
         en: [
-          "Ingestion and chunking flow for internal documentation and policy material",
-          "Retrieval-backed answer composer with visible source context",
-          "Operator interface for review, correction, and feedback capture"
+          "Constraint-aware ordering flow for budget, preferences, unsuitable items, and dining-out risk checks",
+          "Import, parse, warning, and review pipeline with low-confidence handling and feedback loops",
+          "Weekly insights, progress surfaces, and continue-review states that bring users back into unfinished work",
+          "Samples library, regression UI, golden tests, and quality gates for controlled iteration",
+          "Web dashboard, exports, and sync-readiness layers for reporting, debugging, and future multi-device growth"
         ],
         "zh-Hant": [
-          "面向內部文件與政策資料的匯入與切片流程",
-          "具來源可視上下文的檢索式回答組合器",
-          "供審查、修正與回饋紀錄的操作介面"
+          "面向預算、偏好、不適合項與外食風險的約束式點餐流程",
+          "帶有 warnings、低信心處理與 feedback 回流的導入、解析與審核管線",
+          "把週度洞察、進度卡與 Continue Reviewing 串起來的留存介面",
+          "樣本庫、回歸 UI、golden tests 與 quality gate 所構成的可控迭代基礎",
+          "用於報表、除錯與未來多裝置演進的 Web dashboard、匯出與同步前置層"
         ],
         ja: [
-          "内部ドキュメントやポリシー資料の取り込み・分割フロー",
-          "参照元を見える形で提示する検索ベースの回答生成",
-          "レビュー、修正、フィードバック記録のための運用画面"
+          "予算、好み、不適合項目、外食リスクを踏まえた制約付き注文フロー",
+          "warnings、低信頼度処理、フィードバック循環を含む取り込み・解析・レビューのパイプライン",
+          "週次インサイト、進捗カード、Continue Reviewing をつないで再訪を促す画面群",
+          "サンプルライブラリ、回帰 UI、golden tests、quality gate による制御可能な改善基盤",
+          "レポート、デバッグ、将来のマルチデバイス展開に向けた Web dashboard、エクスポート、同期準備レイヤー"
         ]
       },
       currentFocus: {
         en:
-          "Tighten source ranking, answer formatting, and citation visibility before broader rollout.",
+          "Refine the review loop, weekly feedback surfaces, sync-readiness, and quality validation so the product stays trustworthy as parsing and automation expand.",
         "zh-Hant":
-          "在擴大使用前，持續收斂來源排序、回答格式與引用可視性。",
+          "目前重點是持續收斂審核回路、週度回饋介面、同步前置能力與品質驗證，讓解析與自動化擴張時仍保持可控與可信。",
         ja:
-          "広い展開の前に、ソース順位付け、回答整形、引用の見え方を詰めています。"
+          "現在の重点は、レビュー循環、週次フィードバック画面、同期準備、品質検証を詰めることです。解析と自動化の範囲が広がっても、信頼性と制御性を保てるようにしています。"
       },
       stage: {
-        en: "Prototype scoped around limited-source collections and reviewer feedback.",
-        "zh-Hant": "目前仍是以有限資料集與審查回饋為核心的原型階段。",
-        ja: "限定されたソース群とレビュー担当者のフィードバックを軸にしたプロトタイプ段階です。"
+        en: "Prototype product with a working loop across assisted ordering, automated logging, review, weekly insights, dashboard export, and sync-readiness infrastructure.",
+        "zh-Hant": "目前為原型產品，已形成從輔助點單、自動記錄、審核修正、週度洞察到 Dashboard 匯出與同步前置的完整閉環。",
+        ja: "支援付き注文、自動記録、レビュー修正、週次インサイト、ダッシュボード出力、同期準備までをつなぐ動作ループを備えたプロトタイプ段階です。"
       }
     }
   },
@@ -283,89 +289,92 @@ const projectDefinitions = [
     slug: "internal-copilot-workflow",
     name: same("Internal Copilot Workflow"),
     summary: {
-      en: "An internal assistant pattern for request intake, drafting, and review queues.",
-      "zh-Hant": "用於需求接收、草稿生成與審查佇列的內部助手流程。",
-      ja: "依頼受付、下書き生成、レビューキューのための内部アシスタントパターン。"
+      en: "A structured internal copilot for request intake, draft preparation, and human review.",
+      "zh-Hant": "一套面向需求接收、草稿整理與人工審查的結構化內部 Copilot 工作流。",
+      ja: "受付、下書き準備、人によるレビューをつなぐ構造化された内部 Copilot ワークフロー。"
     },
     description: {
       en:
-        "An internal build focused on structuring repetitive request work before it hits human reviewers.",
+        "This project is designed for teams that handle recurring internal requests and lose too much time before useful review can even begin. It turns intake, context assembly, drafting, and review into a staged operational workflow instead of leaving each request to manual prep.",
       "zh-Hant":
-        "一項內部建置，目標是在交給人工審查前，先把重複性的需求工作整理成有結構的流程。",
+        "這個方向面向反覆處理內部需求、卻在正式審查前就耗掉大量整理時間的團隊。它把需求接收、上下文整理、草稿生成與審查狀態整理成分階段工作流，而不是讓每一筆需求都重新手動準備。",
       ja:
-        "人のレビューに入る前の反復的な依頼処理を構造化することに焦点を当てた内部構築です。"
+        "この方向は、反復する社内依頼を扱いながら、有効なレビューに入る前の準備に多くの時間を失っているチーム向けです。受付、文脈整理、下書き生成、レビュー状態を段階的なワークフローにまとめ、各依頼を毎回手作業で整える状態から離れます。"
     },
     tags: {
-      en: ["Workflow", "Prompting", "Internal Tools"],
-      "zh-Hant": ["Workflow", "Prompting", "Internal Tools"],
-      ja: ["Workflow", "Prompting", "Internal Tools"]
+      en: ["Workflow Copilot", "Request Intake", "Review Queue", "Internal Tools"],
+      "zh-Hant": ["Workflow Copilot", "需求接收", "審查佇列", "內部工具"],
+      ja: ["Workflow Copilot", "依頼受付", "レビューキュー", "内部ツール"]
     },
     status: "Internal" as const,
     track: {
-      en: "Internal Build",
-      "zh-Hant": "內部建置",
-      ja: "内部構築"
+      en: "Operational Workflow",
+      "zh-Hant": "營運工作流",
+      ja: "運用ワークフロー"
     },
     featured: true,
     outcome: {
       en:
-        "Defined a usable internal pattern for triage and draft generation without claiming a public product launch.",
+        "Established a usable internal pattern for intake triage, context assembly, draft support, and reviewer handoff without pretending it is a public autonomous agent product.",
       "zh-Hant":
-        "在不宣稱公開產品的前提下，整理出一套可用於分流與草稿生成的內部模式。",
+        "在不把它包裝成公開自主代理產品的前提下，這個方向已整理出可用於需求分流、上下文整理、草稿輔助與審查交接的內部模式。",
       ja:
-        "公開プロダクトを名乗ることなく、トリアージと下書き生成に使える内部パターンを定義しました。"
+        "公開向けの自律エージェント製品を装うことなく、受付の振り分け、文脈整理、下書き支援、レビューへの引き渡しに使える内部パターンを整えています。"
     },
     disclosure: {
       en:
-        "Internal operating build, shown here as a capability direction rather than a client case study.",
+        "Internal operating build. It is shown as a practical capability direction, not as a public launch or a client case study.",
       "zh-Hant": "這是內部運營建置，列出的是能力方向，而不是客戶案例。",
       ja:
-        "内部運用向けの構築であり、ここでは顧客事例ではなく能力方向として掲載しています。"
+        "内部運用向けの構築です。ここでは公開ローンチや顧客事例ではなく、実務的な能力方向として掲載しています。"
     },
     detail: {
       problem: {
         en:
-          "Teams receive recurring requests with thin context, inconsistent formatting, and too much manual preparation work.",
+          "The real drag is not the request itself. It is the repeated manual work around every request: incomplete intake, mixed formatting, missing context, and too much prep before a reviewer can even start making decisions.",
         "zh-Hant":
-          "團隊常收到上下文不足、格式不一且需要大量人工前置處理的重複型需求。",
+          "真正拖慢效率的，往往不是需求本身，而是每筆需求周邊反覆出現的人工整理：接收資訊不完整、格式混亂、上下文缺漏，以及在審查者真正開始判斷之前就耗掉太多前置時間。",
         ja:
-          "チームには、文脈が薄く、形式がばらつき、事前準備に手作業が多い依頼が繰り返し届きます。"
+          "遅さの原因は依頼そのものではなく、その周囲で繰り返される手作業です。受付情報の不足、形式のばらつき、文脈の欠落、そしてレビュー担当者が判断を始める前に必要な前処理が重くなりすぎています。"
       },
       system: {
         en:
-          "Bento AIII maps intake, context assembly, drafting, and review into a staged internal workflow.",
+          "The system turns intake, task typing, context gathering, draft generation, review ownership, and approval checkpoints into one visible internal workflow.",
         "zh-Hant":
-          "Bento AIII 將接收、上下文整理、草稿生成與審查流程整理為分階段的內部工作流。",
+          "系統把需求接收、任務分類、上下文整理、草稿生成、審查責任與核准節點整合成一套可視化的內部工作流。",
         ja:
-          "Bento AIII は、受付、文脈整理、下書き生成、レビューを段階的な内部ワークフローとして整理します。"
+          "このシステムは、受付、タスク分類、文脈収集、下書き生成、レビュー責任、承認ポイントを、一つの見える内部ワークフローにまとめます。"
       },
       architecture: {
         en: [
-          "Request intake layer with structured fields and task typing",
-          "Draft generation block with editable prompt and source inputs",
-          "Review queue with status, owner, and approval checkpoints"
+          "Structured intake layer with typed request fields, request states, and operator-visible status",
+          "Context assembly block that gathers the inputs a reviewer would otherwise compile manually",
+          "Draft support layer with editable prompts, reference inputs, and controllable output states",
+          "Review queue with ownership, approval checkpoints, and handoff visibility across the workflow"
         ],
         "zh-Hant": [
-          "具結構化欄位與任務分類的需求接收層",
-          "可編輯提示與來源輸入的草稿生成模組",
-          "帶有狀態、負責人與審批節點的審查佇列"
+          "具結構化欄位、任務分類與狀態管理的需求接收層",
+          "能把審查者原本要手動整理的資料先整理好的上下文組裝模組",
+          "帶有可編輯提示、參考輸入與可控輸出狀態的草稿輔助層",
+          "具負責人、核准節點與交接可視性的審查佇列"
         ],
         ja: [
-          "構造化フィールドとタスク分類を持つ受付レイヤー",
-          "編集可能なプロンプトと入力ソースを持つ下書き生成ブロック",
-          "状態、担当者、承認ポイントを持つレビューキュー"
+          "構造化フィールド、タスク分類、状態管理を備えた受付レイヤー",
+          "レビュー担当者が手で集めていた材料を先に揃える文脈組み立てブロック",
+          "編集可能なプロンプト、参照入力、制御可能な出力状態を持つ下書き支援レイヤー",
+          "担当者、承認ポイント、引き継ぎ可視化を備えたレビューキュー"
         ]
       },
       currentFocus: {
         en:
-          "Reduce manual triage time while keeping reviewer control visible in the interface.",
+          "Tighten routing rules, improve draft usefulness, and keep reviewer control explicit so the workflow reduces prep labor without hiding responsibility.",
         "zh-Hant": "在保留審查控制權可見的前提下，降低人工分流時間。",
         ja: "レビュー担当者の制御を画面上で見えるように保ちながら、手作業のトリアージ時間を減らしています。"
       },
       stage: {
-        en: "Internal build used to refine workflow shape before any public release.",
-        "zh-Hant": "目前作為內部建置使用，用來在對外前持續調整流程形態。",
-        ja: "公開化の前にワークフロー形状を磨くための内部構築です。"
+        en: "Internal workflow build under active refinement. It is used to prove a bounded operating pattern before any broader external packaging.",
+        "zh-Hant": "目前仍是持續收斂中的內部工作流建置，用來先證明一套有邊界、可運作的模式，再決定是否對外延伸。",
+        ja: "現在も調整を続けている内部ワークフロー構築です。まずは境界のある実用パターンを成立させ、その後に外向け展開を検討する段階です。"
       }
     }
   },
