@@ -55,22 +55,22 @@ const teamMemberDefinitions = {
     id: "ryan-z",
     name: "Ryan Z.",
     role: {
-      en: "AI / Web3 / Cybersecurity",
-      "zh-Hant": "AI / Web3 / Cybersecurity",
-      ja: "AI / Web3 / Cybersecurity"
+      en: "Cybersecurity",
+      "zh-Hant": "網路安全",
+      ja: "サイバーセキュリティ"
     },
     bio: {
       en:
         "Ryan Z. holds a Master's degree in Cybersecurity and focuses on applied AI delivery, Web3 development, and system-level product building. His technical work spans intelligent workflows, frontend-backend integration, mobile development, and data security, with an emphasis on turning complex capabilities into executable, deployable, and iteratively maintainable systems.",
       "zh-Hant":
-        "Ryan Z. 具备网络安全硕士背景，专注于 AI 应用落地、Web3 开发与系统级产品构建。技术方向涵盖智能工作流、前后端集成、移动端开发与数据安全，擅长将复杂技术能力整理为可执行、可部署、可持续迭代的产品系统。",
+        "Ryan Z. 具備網路安全碩士背景，專注於 AI 應用落地、Web3 開發與系統級產品構建。技術方向涵蓋智慧工作流、前後端整合、行動端開發與資料安全，擅長將複雜技術能力整理為可執行、可部署、可持續迭代的產品系統。",
       ja:
-        "Ryan Z. はサイバーセキュリティ修士の背景を持ち、AI の実装、Web3 開発、システムレベルのプロダクト構築に取り組んでいます。技術領域はインテリジェントなワークフロー、フロントエンドとバックエンドの統合、モバイル開発、データセキュリティにまたがり、複雑な技術を実行可能でデプロイ可能、かつ継続的に改善できるシステムへ整理することを得意としています。"
+        "Ryan Z. はサイバーセキュリティ修士の背景を持ち、AI の実装、Web3 開発、システムレベルのプロダクト構築に取り組んでいます。技術領域はインテリジェントワークフロー、フロントエンドとバックエンドの統合、モバイル開発、データセキュリティにまたがり、複雑な技術能力を実行可能でデプロイ可能、継続的に改善できるプロダクトシステムへ整理することを得意としています。"
     },
     tags: {
       en: ["AI Systems", "Web3 Development", "Cybersecurity", "iOS / Full Stack"],
-      "zh-Hant": ["AI Systems", "Web3 Development", "Cybersecurity", "iOS / Full Stack"],
-      ja: ["AI Systems", "Web3 Development", "Cybersecurity", "iOS / Full Stack"]
+      "zh-Hant": ["AI 系統", "Web3 開發", "網路安全", "iOS / 全端"],
+      ja: ["AI システム", "Web3 開発", "サイバーセキュリティ", "iOS / フルスタック"]
     }
   },
   "randy-j": {
