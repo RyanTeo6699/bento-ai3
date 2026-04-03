@@ -16,6 +16,8 @@ type CommercialProject = Project & {
   };
 };
 
+type CommercialDefinition = CommercialProject["commercial"];
+
 function pick<T>(value: Record<Locale, T>, locale: Locale): T {
   return value[locale];
 }
@@ -135,13 +137,15 @@ const commercialDefinitions = {
   }
 } as const satisfies Record<
   string,
-  {
-    idealUsers: LocalizedText;
-    operationalProblem: LocalizedText;
-    deliveryScope: LocalizedText;
-    valueCase: LocalizedText;
-  }
+  Record<keyof CommercialDefinition, LocalizedText>
 >;
+
+// Use a widened lookup type here so project.slug can safely index the map
+// without forcing the rest of the object to lose its literal validation.
+const commercialDefinitionsBySlug: Record<
+  string,
+  Record<keyof CommercialDefinition, LocalizedText>
+> = commercialDefinitions;
 
 const projectPresentationCopy = {
   en: {
@@ -176,7 +180,7 @@ export function getProjectPresentationCopy(locale: Locale) {
 
 export function getProjects(locale: Locale): CommercialProjectView[] {
   return getBaseProjects(locale).map((project) => {
-    const commercial = commercialDefinitions[project.slug];
+    const commercial = commercialDefinitionsBySlug[project.slug];
 
     return {
       ...project,
