@@ -1,7 +1,8 @@
-node_modules
-.next
-.vercel
 .DS_Store
-__MACOSX
+node_modules/
+.next/
+dist/
+build/
 .env
 .env.local
+*.log
