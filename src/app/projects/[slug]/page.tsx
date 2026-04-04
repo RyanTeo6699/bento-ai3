@@ -47,7 +47,7 @@ export function generateMetadata({ params }: ProjectDetailPageProps): Metadata {
   return createPageMetadata({
     locale,
     title: project.name,
-    description: project.summary,
+    description: project.positioning,
     path: `/projects/${params.slug}`
   });
 }
@@ -56,7 +56,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
   const sharedCtas = getSharedCtas(locale);
-  const projectPresentationCopy = getProjectPresentationCopy(locale);
+  const projectCopy = getProjectPresentationCopy(locale);
   const projects = getProjects(locale);
   const project = getProjectBySlug(locale, params.slug);
 
@@ -80,17 +80,14 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
           <Reveal className="mt-8 max-w-4xl space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <StatusBadge
-                status={project.status}
-                label={dictionary.common.statusLabels[project.status]}
-              />
-              <span className="neo-microcopy">{project.track}</span>
+              <StatusBadge status={project.status} label={project.statusLabel} />
+              <span className="neo-microcopy">{project.platform}</span>
             </div>
 
             <h1 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
               {project.name}
             </h1>
-            <p className="text-lg leading-8 text-slate-300">{project.summary}</p>
+            <p className="text-lg leading-8 text-slate-200">{project.positioning}</p>
             <p className="max-w-3xl text-base leading-8 text-slate-400">
               {project.description}
             </p>
@@ -110,99 +107,131 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
       </section>
 
       <section className="py-24">
-        <div className="shell grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="shell grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <Reveal className="surface pixel-corner p-8">
-            <span className="section-kicker">{projectPresentationCopy.keyOutcome}</span>
-            <p className="mt-4 text-lg leading-8 text-slate-200">{project.outcome}</p>
+            <span className="section-kicker">{projectCopy.whatItDoes}</span>
+            <div className="mt-5 space-y-4">
+              {project.detail.whatItDoes.map((paragraph) => (
+                <p key={paragraph} className="text-base leading-8 text-slate-300">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.06} className="surface pixel-corner p-8">
+            <span className="section-kicker">{projectCopy.whyItMatters}</span>
+            <p className="mt-5 text-base leading-8 text-slate-300">
+              {project.detail.whyItMatters}
+            </p>
 
             <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="neo-microcopy">{projectPresentationCopy.idealUsers}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                {project.commercial.idealUsers}
-              </p>
+              <p className="neo-microcopy">{projectCopy.platformLabel}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-300">{project.platform}</p>
             </div>
 
             <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="neo-microcopy">{projectPresentationCopy.deliveryScope}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                {project.commercial.deliveryScope}
-              </p>
-            </div>
-
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="neo-microcopy">{projectPresentationCopy.valueCase}</p>
+              <p className="neo-microcopy">{projectCopy.valueCase}</p>
               <p className="mt-3 text-sm leading-7 text-slate-400">
                 {project.commercial.valueCase}
               </p>
             </div>
-
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="neo-microcopy">{dictionary.common.stage}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                {project.detail.stage}
-              </p>
-            </div>
-
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="neo-microcopy">{dictionary.common.disclosure}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-500">
-                {project.disclosure}
-              </p>
-            </div>
           </Reveal>
-
-          <div className="grid gap-6">
-            <Reveal delay={0.05} className="surface pixel-corner p-8">
-              <span className="section-kicker">{projectPresentationCopy.operationalProblem}</span>
-              <p className="mt-4 text-base leading-8 text-slate-300">
-                {project.commercial.operationalProblem}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.1} className="surface pixel-corner p-8">
-              <span className="section-kicker">{dictionary.common.problem}</span>
-              <p className="mt-4 text-base leading-8 text-slate-300">
-                {project.detail.problem}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.15} className="surface pixel-corner p-8">
-              <span className="section-kicker">{dictionary.common.system}</span>
-              <p className="mt-4 text-base leading-8 text-slate-300">
-                {project.detail.system}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.2} className="surface pixel-corner p-8">
-              <span className="section-kicker">{dictionary.common.currentFocus}</span>
-              <p className="mt-4 text-base leading-8 text-slate-300">
-                {project.detail.currentFocus}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.25} className="surface pixel-corner p-8">
-              <span className="section-kicker">{dictionary.common.architecture}</span>
-              <div className="mt-5 space-y-4">
-                {project.detail.architecture.map((item) => (
-                  <div
-                    key={item}
-                    className="border-t border-white/10 pt-4 first:border-t-0 first:pt-0"
-                  >
-                    <p className="text-sm leading-7 text-slate-400">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
         </div>
       </section>
 
       <section className="border-y border-white/10 py-24">
         <div className="shell">
           <Reveal className="max-w-3xl">
+            <span className="section-kicker">{projectCopy.systemHighlights}</span>
+            <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
+              {project.name}
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+            {project.detail.highlights.map((item, index) => (
+              <Reveal
+                key={item.title}
+                delay={0.05 * index}
+                className="surface pixel-corner p-6"
+              >
+                <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-400">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="shell">
+          <Reveal className="max-w-3xl">
+            <span className="section-kicker">{projectCopy.howItWorks}</span>
+            <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
+              {project.positioning}
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+            {project.detail.flowSteps.map((step, index) => (
+              <Reveal
+                key={step.title}
+                delay={0.05 * index}
+                className="surface pixel-corner p-6"
+              >
+                <p className="font-pixel text-[0.68rem] uppercase tracking-[0.18em] text-accent">
+                  0{index + 1}
+                </p>
+                <h3 className="mt-4 text-2xl font-semibold text-white">{step.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-400">{step.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 py-24">
+        <div className="shell grid gap-6 lg:grid-cols-2">
+          <Reveal className="surface pixel-corner p-8">
+            <span className="section-kicker">{projectCopy.systemLayer}</span>
+            <p className="mt-5 text-base leading-8 text-slate-300">
+              {project.detail.systemLayer}
+            </p>
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <p className="neo-microcopy">{projectCopy.deliveryScope}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-400">
+                {project.commercial.deliveryScope}
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08} className="surface pixel-corner p-8">
+            <span className="section-kicker">{projectCopy.statusNext}</span>
+            <p className="mt-5 text-base leading-8 text-slate-300">{project.detail.stage}</p>
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <p className="neo-microcopy">{dictionary.common.nextStep}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                {project.detail.nextStep}
+              </p>
+            </div>
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <p className="neo-microcopy">{dictionary.common.disclosure}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-500">{project.disclosure}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="shell">
+          <Reveal className="max-w-3xl">
             <span className="section-kicker">{dictionary.common.relatedWork}</span>
             <h2 className="mt-4 text-3xl font-semibold text-white">
-              {dictionary.common.moreProjectDirections}
+              {projectCopy.relatedTitle}
             </h2>
           </Reveal>
 
@@ -212,12 +241,15 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 <ProjectCard
                   locale={locale}
                   project={entry}
+                  variant={entry.comingSoon ? "emerging" : "default"}
                   copy={{
-                    viewDetail: dictionary.common.viewDetail,
-                    idealUsers: projectPresentationCopy.idealUsers,
-                    deliveryScope: projectPresentationCopy.deliveryScope,
-                    keyOutcome: projectPresentationCopy.keyOutcome,
-                    valueCase: projectPresentationCopy.valueCase,
+                    viewDetail: projectCopy.viewProject,
+                    learnMore: projectCopy.learnMore,
+                    idealUsers: projectCopy.idealUsers,
+                    deliveryScope: projectCopy.deliveryScope,
+                    keyOutcome: projectCopy.keyOutcome,
+                    valueCase: projectCopy.valueCase,
+                    platformLabel: projectCopy.platformLabel,
                     statusLabels: dictionary.common.statusLabels
                   }}
                 />

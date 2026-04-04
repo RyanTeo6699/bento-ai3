@@ -13,16 +13,16 @@ import {
   getProjectPresentationCopy,
   getProjects as getCommercialProjects
 } from "@/lib/project-commercial";
-import { getCompanyProfile } from "@/lib/site-data";
 
 export function generateMetadata(): Metadata {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
+  const projectCopy = getProjectPresentationCopy(locale);
 
   return createPageMetadata({
     locale,
     title: dictionary.nav.find((item) => item.href === "/projects")?.label ?? "Projects",
-    description: dictionary.projects.hero.description,
+    description: projectCopy.heroDescription,
     path: "/projects"
   });
 }
@@ -31,115 +31,104 @@ export default function ProjectsPage() {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
   const sharedCtas = getSharedCtas(locale);
-  const projectPresentationCopy = getProjectPresentationCopy(locale);
-  const companyProfile = getCompanyProfile(locale);
+  const projectCopy = getProjectPresentationCopy(locale);
   const projects = getCommercialProjects(locale);
-
-  const stageSummary = [
-    {
-      label: dictionary.common.statusLabels.Prototype,
-      value: `${projects.filter((project) => project.status === "Prototype").length} ${dictionary.projects.stageUnit}`
-    },
-    {
-      label: dictionary.common.statusLabels.Internal,
-      value: `${projects.filter((project) => project.status === "Internal").length} ${dictionary.projects.stageUnit}`
-    },
-    {
-      label: dictionary.common.statusLabels.Concept,
-      value: `${projects.filter((project) => project.status === "Concept").length} ${dictionary.projects.stageUnit}`
-    }
-  ];
+  const featuredProjects = projects.filter((project) => project.featured);
+  const emergingProjects = projects.filter((project) => project.comingSoon);
 
   return (
     <>
       <PageHero
-        eyebrow={dictionary.projects.hero.eyebrow}
-        title={dictionary.projects.hero.title}
-        description={dictionary.projects.hero.description}
+        eyebrow={projectCopy.heroEyebrow}
+        title={projectCopy.heroTitle}
+        description={projectCopy.heroDescription}
         metrics={[
           {
-            label: dictionary.projects.hero.metrics[0].label,
-            value: `${projects.length} ${dictionary.projects.hero.metrics[0].value}`
+            label: projectCopy.metrics.published,
+            value: `${projects.length}`
           },
-          dictionary.projects.hero.metrics[1],
-          dictionary.projects.hero.metrics[2]
+          {
+            label: projectCopy.metrics.featured,
+            value: `${featuredProjects.length}`
+          },
+          {
+            label: projectCopy.metrics.emerging,
+            value: `${emergingProjects.length}`
+          }
         ]}
       />
 
       <section className="py-24">
         <div className="shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow={dictionary.projects.portfolio.eyebrow}
-              title={dictionary.projects.portfolio.title}
-              description={dictionary.projects.portfolio.description}
-            />
-          </Reveal>
-
-          <Reveal delay={0.05} className="mt-8 surface pixel-corner p-6">
-            <p className="section-kicker text-[0.58rem]">
-              {dictionary.projects.readAsIntended.kicker}
-            </p>
+          <Reveal className="surface pixel-corner p-6">
+            <p className="section-kicker text-[0.58rem]">{projectCopy.noteKicker}</p>
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
-              {companyProfile.disclosure}
+              {projectCopy.noteBody}
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {stageSummary.map((item, index) => (
-              <Reveal
-                key={item.label}
-                delay={0.06 * index}
-                className="surface pixel-corner p-6"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
-                  {item.label}
-                </p>
-                <p className="mt-3 text-xl font-semibold text-white">{item.value}</p>
-              </Reveal>
-            ))}
-          </div>
+          <div className="mt-14">
+            <Reveal>
+              <SectionHeading
+                eyebrow={projectCopy.featuredEyebrow}
+                title={projectCopy.featuredTitle}
+                description={projectCopy.featuredDescription}
+              />
+            </Reveal>
 
-          <div className="mt-12 grid gap-6 xl:grid-cols-3">
-            {projects.map((project, index) => (
-              <Reveal key={project.slug} delay={0.04 * index}>
-                <ProjectCard
-                  locale={locale}
-                  project={project}
-                  copy={{
-                    viewDetail: dictionary.common.viewDetail,
-                    idealUsers: projectPresentationCopy.idealUsers,
-                    deliveryScope: projectPresentationCopy.deliveryScope,
-                    keyOutcome: projectPresentationCopy.keyOutcome,
-                    valueCase: projectPresentationCopy.valueCase,
-                    statusLabels: dictionary.common.statusLabels
-                  }}
-                />
-              </Reveal>
-            ))}
+            <div className="mt-12 grid gap-6 xl:grid-cols-3">
+              {featuredProjects.map((project, index) => (
+                <Reveal key={project.slug} delay={0.05 * index}>
+                  <ProjectCard
+                    locale={locale}
+                    project={project}
+                    variant="featured"
+                    copy={{
+                      viewDetail: projectCopy.viewProject,
+                      learnMore: projectCopy.learnMore,
+                      idealUsers: projectCopy.idealUsers,
+                      deliveryScope: projectCopy.deliveryScope,
+                      keyOutcome: projectCopy.keyOutcome,
+                      valueCase: projectCopy.valueCase,
+                      platformLabel: projectCopy.platformLabel,
+                      statusLabels: dictionary.common.statusLabels
+                    }}
+                  />
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 py-24">
+      <section className="border-t border-white/10 py-24">
         <div className="shell">
           <Reveal>
             <SectionHeading
-              eyebrow={dictionary.projects.howToRead.eyebrow}
-              title={dictionary.projects.howToRead.title}
-              description={dictionary.projects.howToRead.description}
+              eyebrow={projectCopy.emergingEyebrow}
+              title={projectCopy.emergingTitle}
+              description={projectCopy.emergingDescription}
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {dictionary.projects.howToRead.cards.map((item, index) => (
-              <Reveal
-                key={item.title}
-                delay={0.06 * index}
-                className="surface pixel-corner p-6"
-              >
-                <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-400">{item.copy}</p>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {emergingProjects.map((project, index) => (
+              <Reveal key={project.slug} delay={0.06 * index}>
+                <ProjectCard
+                  locale={locale}
+                  project={project}
+                  variant="emerging"
+                  copy={{
+                    viewDetail: projectCopy.viewProject,
+                    learnMore: projectCopy.learnMore,
+                    idealUsers: projectCopy.idealUsers,
+                    deliveryScope: projectCopy.deliveryScope,
+                    keyOutcome: projectCopy.keyOutcome,
+                    valueCase: projectCopy.valueCase,
+                    platformLabel: projectCopy.platformLabel,
+                    statusLabels: dictionary.common.statusLabels
+                  }}
+                />
               </Reveal>
             ))}
           </div>

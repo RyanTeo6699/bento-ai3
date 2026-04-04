@@ -1,4 +1,4 @@
-import type { ProjectStatus } from "@/lib/site-data";
+import type { ProjectStatus } from "@/lib/project-commercial";
 import { cn } from "@/lib/utils";
 
 const statusStyles: Record<ProjectStatus, string> = {

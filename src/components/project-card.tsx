@@ -4,34 +4,58 @@ import { StatusBadge } from "@/components/status-badge";
 import type { Locale } from "@/lib/i18n";
 import { buildLocalizedPath } from "@/lib/locale-routing";
 import type { CommercialProjectView } from "@/lib/project-commercial";
+import { cn } from "@/lib/utils";
 
 type ProjectCardProps = {
   locale: Locale;
   project: CommercialProjectView;
   copy: {
     viewDetail: string;
+    learnMore?: string;
     idealUsers: string;
     deliveryScope: string;
     keyOutcome: string;
     valueCase: string;
+    platformLabel?: string;
     statusLabels: Record<string, string>;
   };
+  variant?: "default" | "featured" | "emerging";
 };
 
-export function ProjectCard({ locale, project, copy }: ProjectCardProps) {
+export function ProjectCard({
+  locale,
+  project,
+  copy,
+  variant = "default"
+}: ProjectCardProps) {
+  const actionLabel = variant === "emerging" ? copy.learnMore ?? copy.viewDetail : copy.viewDetail;
+
   return (
-    <article className="surface pixel-corner flex h-full flex-col p-6">
-      <div className="flex items-start justify-between gap-4">
-        <StatusBadge status={project.status} label={copy.statusLabels[project.status]} />
-        <span className="neo-microcopy text-right">{project.track}</span>
+    <article
+      className={cn(
+        "surface pixel-corner flex h-full flex-col",
+        variant === "featured" ? "p-8" : variant === "emerging" ? "p-5" : "p-6"
+      )}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <StatusBadge
+          status={project.status}
+          label={project.statusLabel ?? copy.statusLabels[project.status]}
+        />
+        <span className="neo-microcopy text-right">{project.platform}</span>
       </div>
 
-      <div className="mt-6 space-y-4">
-        <h3 className="text-2xl font-semibold text-white">{project.name}</h3>
-        <p className="text-sm leading-7 text-slate-300">{project.summary}</p>
-        <p className="text-sm leading-7 text-slate-400">
-          {project.commercial.operationalProblem}
-        </p>
+      <div className={cn("space-y-3", variant === "emerging" ? "mt-5" : "mt-6")}>
+        <h3
+          className={cn(
+            "font-semibold text-white",
+            variant === "featured" ? "text-3xl leading-tight" : "text-2xl"
+          )}
+        >
+          {project.name}
+        </h3>
+        <p className="text-sm leading-7 text-slate-200">{project.positioning}</p>
+        <p className="text-sm leading-7 text-slate-400">{project.summary}</p>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
@@ -45,38 +69,48 @@ export function ProjectCard({ locale, project, copy }: ProjectCardProps) {
         ))}
       </div>
 
-      <div className="mt-6 space-y-4 border-t border-white/10 pt-5">
-        <div>
-          <p className="neo-microcopy">{copy.idealUsers}</p>
-          <p className="mt-2 text-sm leading-7 text-slate-300">
-            {project.commercial.idealUsers}
-          </p>
+      {variant === "emerging" ? (
+        <div className="mt-6 border-t border-white/10 pt-5">
+          <p className="text-sm leading-7 text-slate-500">{project.disclosure}</p>
         </div>
-        <div className="border-t border-white/10 pt-4">
-          <p className="neo-microcopy">{copy.deliveryScope}</p>
-          <p className="mt-2 text-sm leading-7 text-slate-400">
-            {project.commercial.deliveryScope}
-          </p>
+      ) : (
+        <div className="mt-6 space-y-4 border-t border-white/10 pt-5">
+          {copy.platformLabel ? (
+            <div>
+              <p className="neo-microcopy">{copy.platformLabel}</p>
+              <p className="mt-2 text-sm leading-7 text-slate-300">{project.platform}</p>
+            </div>
+          ) : null}
+
+          <div className={cn(copy.platformLabel && "border-t border-white/10 pt-4")}>
+            <p className="neo-microcopy">{copy.valueCase}</p>
+            <p className="mt-2 text-sm leading-7 text-slate-300">
+              {project.commercial.valueCase}
+            </p>
+          </div>
+
+          <div className="border-t border-white/10 pt-4">
+            <p className="neo-microcopy">{copy.keyOutcome}</p>
+            <p className="mt-2 text-sm leading-7 text-slate-400">{project.outcome}</p>
+          </div>
+
+          {variant === "featured" ? (
+            <div className="border-t border-white/10 pt-4">
+              <p className="neo-microcopy">{copy.deliveryScope}</p>
+              <p className="mt-2 text-sm leading-7 text-slate-400">
+                {project.commercial.deliveryScope}
+              </p>
+            </div>
+          ) : null}
         </div>
-        <div className="border-t border-white/10 pt-4">
-          <p className="neo-microcopy">{copy.keyOutcome}</p>
-          <p className="mt-2 text-sm leading-7 text-slate-400">{project.outcome}</p>
-        </div>
-        <div className="border-t border-white/10 pt-4">
-          <p className="neo-microcopy">{copy.valueCase}</p>
-          <p className="mt-2 text-sm leading-7 text-slate-400">
-            {project.commercial.valueCase}
-          </p>
-        </div>
-        <p className="mt-4 text-xs leading-6 text-slate-500">{project.disclosure}</p>
-      </div>
+      )}
 
       <div className="mt-auto pt-8">
         <Link
           href={buildLocalizedPath(locale, `/projects/${project.slug}`)}
           className="button-secondary"
         >
-          {copy.viewDetail}
+          {actionLabel}
         </Link>
       </div>
     </article>
