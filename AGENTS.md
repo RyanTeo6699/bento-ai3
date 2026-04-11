@@ -4,111 +4,102 @@
 
 This repository is the official website for **Bento AIII**.
 
-Bento AIII is a technology company focused on:
+Bento AIII is not being presented as a generic AI studio, a chatbot company, or a collection of disconnected demos.
 
-- AI applications
-- large language model systems
-- workflow-oriented software
-- practical digital product delivery
+The website must now present Bento AIII as a company building:
 
-This website is **not** a generic SaaS landing page, not a game website, not an NFT-style cyber site, and not a fake startup showcase.
+- AI core systems
+- modular decision-and-execution infrastructure
+- workflow intelligence layers
+- adaptive platform operating systems
+- domain-deployable system cores for complex service environments
 
-The website must present Bento AIII as a **credible, design-aware, technically disciplined AI company**.
-
----
-
-## Core Objective
-
-The goal of this website is to communicate, clearly and convincingly:
-
-1. who Bento AIII is
-2. what Bento AIII builds
-3. what kind of projects the company focuses on
-4. how the team is structured
-5. how someone can contact the company
-
-This is a **company website first**, not a marketing gimmick.
+This is a **company website first**, a **system architecture narrative second**, and a **project showcase third**.
 
 ---
 
-## Strategic Rules
+## Strategic Positioning
 
-### 1. Trustworthiness is mandatory
-Do not invent fake credibility.
+The website must communicate that Bento AIII is building a core operating layer for environments where:
 
-Never fabricate:
-- fake team members
-- fake client logos
-- fake case studies
-- fake metrics
-- fake media mentions
-- fake customer testimonials
-- fake social links
+- demand is fragmented or vague
+- supply is inconsistent or overstated
+- matching is unreliable
+- workflows often break after handoff
+- responsibility is hard to track
+- outcomes are not captured as reusable intelligence
 
-If real information is unavailable, use a restrained and transparent presentation.
+The company should be positioned as building a system that combines:
 
-Preferred alternatives:
-- role-based team presentation
-- project stage labels such as `Prototype`, `Internal`, `Concept`
-- clearly structured capability descriptions
-- honest company language
+- structured intake
+- constraint-aware routing
+- dual-side evaluation
+- workflow execution
+- trust and behavior signals
+- outcome-based learning
 
----
-
-### 2. Corporate Tech first, Pixel Neo second
-The visual direction is:
-
-**Pixel Neo Corporate Tech**
-
-Interpretation:
-- modern and professional base
-- restrained futuristic UI language
-- pixel elements used as accents only
-- high readability and clean structure
-- strong visual identity without visual chaos
-
-Do **not** turn the site into:
-- an indie game site
-- a crypto/NFT landing page
-- an over-stylized cyberpunk demo
-- a noisy retro pixel art website
-
-Pixel is a brand accent, not the whole system.
+The homepage should clearly communicate that Bento AIII is building a platform core that can support multiple industries through modular domain adaptation.
 
 ---
 
-### 3. Real operations, not AI hype
-The company voice must stay grounded.
+## Non-Negotiable Messaging Rules
 
-Preferred themes:
-- applied AI
-- LLM systems
-- workflow software
-- structured delivery
-- product discipline
-- practical system design
-- deployment-minded thinking
+### The system IS
+- a system core
+- an execution engine
+- a workflow intelligence layer
+- a platform operating system
+- a decision-and-execution infrastructure
+- a modular adaptive core for service platforms
 
-Avoid empty hype phrases such as:
-- redefine the future
-- revolutionize everything
-- next-gen disruption
-- world-changing AI
-- limitless possibilities
-- leading the future of intelligence
+### The system IS NOT
+Do not describe Bento AIII or its core system as:
+- a chatbot
+- a generic AI assistant
+- a recommendation engine
+- a smart search product
+- a normal SaaS dashboard
+- a generic marketplace UI
+- a soft “AI copilot for everything”
 
-Language should feel:
-- sharp
-- modern
-- restrained
-- credible
-- technical but readable
+### Core narrative
+Preferred narrative:
+- Most AI products generate answers. This system generates operational memory.
+- Most platforms stop at matching. This system continues into execution, traceability, and learning.
+- The system turns selection into execution, execution into operational memory, and operational memory into better future decisions.
+
+Do not dilute this narrative with startup clichés.
+
+---
+
+## Company Voice
+
+The voice must feel:
+
+- serious
+- precise
+- architectural
+- tactical
+- modular
+- system-oriented
+- controlled
+- premium
+
+Avoid:
+- fluffy startup language
+- generic “future of AI” copy
+- exaggerated visionary language
+- consumer app tone
+- playful or meme-driven copy
+- vague motivational lines
+
+The company should sound like it is describing infrastructure, not hype.
 
 ---
 
 ## Information Architecture
 
-The website should maintain these core pages:
+The website should maintain these primary pages:
 
 - Home
 - About
@@ -118,146 +109,259 @@ The website should maintain these core pages:
 
 ### Home
 Purpose:
-- define Bento AIII immediately
-- establish brand tone
-- preview capabilities
-- preview projects
-- preview team structure
-- direct visitors toward action
+- define Bento AIII’s new system-level direction
+- present the AI core system as the company’s primary operating thesis
+- explain why the system matters
+- show modular system architecture
+- communicate possible domain deployments
+- direct visitors toward architecture review or business inquiry
 
 ### About
 Purpose:
-- explain company identity
-- explain mission and positioning
-- explain why Bento AIII exists
-- show technical and product orientation
+- explain who Bento AIII is
+- explain what the company focuses on
+- explain how the company works
+- explain why its approach is infrastructure-first and system-oriented
 
 ### Projects
 Purpose:
-- show project directions and tracks
-- present work honestly
-- distinguish project stages clearly
-- emphasize systems, workflows, and delivery
+- show actual project directions and deployments
+- keep existing project structure credible
+- support the narrative that Bento AIII builds real systems, not just interface concepts
 
 ### Team
 Purpose:
-- show operating roles and expertise
-- prioritize credibility over decoration
-- use real profiles if available
-- otherwise prefer role-based presentation
+- show real team structure and operational roles
+- keep credibility high
+- avoid roleplay, gimmicks, or invented prestige
 
 ### Contact
 Purpose:
-- provide a real conversion path
-- allow business inquiry
-- make the company feel reachable and operational
+- provide a real inquiry path
+- support serious project or deployment discussions
+- reinforce company credibility
 
 ---
 
-## Content Rules
+## Homepage Content Direction
 
-### Company content
-All company copy must be specific and credible.
+The Home page is now the most important page in the repo.
 
-Good:
-- focused on AI applications and language model systems
-- building practical workflow software
-- translating model capability into usable products
-- small team with product and engineering discipline
+It must position Bento AIII around a platform-level AI core system.
 
-Bad:
-- changing the world with AI
-- disrupting all industries
-- redefining digital intelligence
-- building the future of everything
+The homepage must clearly contain these conceptual layers:
 
----
+1. HERO / SYSTEM ENTRY
+2. CORE STATEMENT
+3. PROBLEM FIELD
+4. SYSTEM MODULE MAP
+5. EXECUTION LOOP
+6. WHY IT MATTERS
+7. DOMAIN ADAPTATION
+8. CLOSING / CTA
 
-### Project content
-Projects must not be exaggerated.
+These do not need to appear as literal boring section titles, but the meaning must be present.
 
-Every project should include:
-- name
-- short description
-- stage/status
-- tags or technical focus
-- real or realistic scope
+### Required homepage messages
 
-Use explicit status markers where needed:
-- Live
-- Prototype
-- Internal
-- Concept
+#### Hero message
+This is an adaptive decision-and-execution operating system for complex service networks.
 
-If something is not publicly launched, do not imply that it is.
+#### Secondary message
+It structures demand, evaluates supply, routes complexity, runs workflows, and learns from real outcomes.
+
+#### Main differentiation
+Most AI products generate answers.  
+This system generates operational memory.
+
+Most platforms stop at matching.  
+This system continues into execution, traceability, and learning.
 
 ---
 
-### Team content
-Do not create fictional humans.
+## System Module Model
 
-Allowed:
-- real people with real links
-- role-based cards such as:
-  - Product Systems
-  - AI Engineering
-  - Full Stack Delivery
-  - Operations & Research
+The homepage and system visuals should revolve around these six conceptual modules:
 
-Not allowed:
-- fake names
-- fake biographies
-- fake external profiles
+1. INPUT_STRUCTURING
+2. CONSTRAINT_ROUTING
+3. DUAL_SIDE_EVALUATION
+4. WORKFLOW_EXECUTION
+5. OUTCOME_MEMORY
+6. DOMAIN_ADAPTATION
+
+These must feel like actual operating modules, not marketing feature cards.
 
 ---
 
-## Design System Rules
+## Domain Adaptation Guidance
 
-### Overall tone
+The homepage may reference example deployment directions such as:
+
+- immigration workflow platforms
+- condo / HOA management systems
+- legal service coordination platforms
+- healthcare workflow systems
+- multi-party operational marketplaces
+- high-friction service delivery environments
+
+Important:
+These are not separate homepage products.
+They are examples of domain deployment possibilities for the same system core.
+
+---
+
+## Design Direction
+
+The visual system must be redesigned around:
+
+### Style definition
+**Dark / Futuristic / Tactical / System-Interface / Architecture-Console**
+
+The website must NOT look like:
+- a traditional SaaS landing page
+- a soft gradient startup page
+- a consumer-friendly onboarding website
+- a playful product marketing page
+
+The website SHOULD look like:
+- a live operating interface
+- a strategic blueprint dashboard
+- a system control panel
+- an intelligence map
+- a modular architecture console
+- a mission control interface
+- a live telemetry environment
+
+### Mood
 The site should feel:
-- dark
-- precise
-- polished
-- technical
-- intentional
+- tactical
+- intelligent
+- cold
+- live
+- systemized
+- modular
+- high-control
+- high-signal
 
-### Visual language
-Allowed:
-- grid textures
-- subtle glow
-- HUD-like dividers
-- pixel-corner accents
-- terminal-inspired labels
-- restrained motion
-- modular layout blocks
+### Visual characteristics
+Use:
+- black / near-black background
+- low-brightness dark surfaces
+- neon green as primary signal color
+- cyan / electric blue as secondary signal color
+- thin borders
+- grid overlays
+- telemetry lines
+- signal connectors
+- architecture-map style layout
+- modular panels
+- terminal / command-center feeling
 
 Avoid:
-- excessive neon
-- full-screen visual noise
-- too many glowing borders
-- unreadable pixel fonts
-- overly playful retro styling
+- oversized rounded blob shapes
+- pastel gradients
+- soft SaaS cards
+- generic AI marketing visuals
+- friendly consumer startup design
+- cartoon illustrations
+- toy packaging style
+- comic sticker style
+- playful board-game or RPG interface language
 
 ### Typography
-Rules:
-- body text must remain highly readable
-- pixel fonts may be used only for accents, labels, tiny headings, or logo treatment
-- never use pixel fonts for long paragraphs
-- preserve hierarchy and spacing discipline
+Typography should feel like:
+- design system meets terminal UI
+- architectural and technical
+- strong uppercase labels
+- condensed or geometric display font for headings
+- clean technical sans-serif for body text
+
+Suggested direction:
+- headline font: Space Grotesk or similar
+- body font: Manrope / Inter / similar
+- labels: system metadata style
 
 ### Motion
-Motion should be minimal and intentional.
+Motion should feel like system activity, not app delight.
 
-Allowed:
-- soft entrance animations
-- slight hover transitions
-- subtle panel shifts
-- controlled hero animation
+Use:
+- subtle pulse effects
+- hover glow
+- telemetry flicker
+- signal path highlighting
+- panel expansion
+- low-key transitions
 
 Avoid:
-- constant motion
-- decorative motion without meaning
-- anything that makes the site feel like a game UI
+- bouncy motion
+- playful easing
+- cartoon-like interactions
+
+---
+
+## Layout Rules
+
+The homepage should adopt a multi-panel interface structure.
+
+Preferred layout logic:
+
+1. Top system bar
+2. Left-side navigation rail
+3. Main central architecture canvas
+4. Right-side telemetry panel
+5. Bottom terminal-style footer
+
+This should still work as a responsive website, not as an unusable mock dashboard.
+
+### Responsive principle
+- Desktop may fully express the multi-panel architecture
+- Tablet should preserve structure but reduce density
+- Mobile should collapse panels logically while preserving the tactical system tone
+
+Do not simply shrink everything. Recompose intelligently.
+
+---
+
+## Content Presentation Rules
+
+Copy should be integrated visually as system language.
+
+Preferred text styles:
+- uppercase short labels
+- concise tactical headlines
+- architectural subtext
+- command-like phrases
+- system-state terminology
+
+Good examples:
+- SYSTEM_CORE
+- INPUT_LAYER
+- ROUTING_ENGINE
+- EXECUTION_TRACE
+- OUTCOME_MEMORY
+- DOMAIN_PACKS
+- TRUST_SIGNAL_MAP
+
+But do not overdo this to the point of unreadability.  
+The site still needs to function as a real company website.
+
+---
+
+## Existing Project / Team / Contact Constraints
+
+### Projects
+Do not destroy the existing Projects structure unless explicitly required.
+The homepage is the main target of this redesign.
+Projects may need visual alignment, but the core objective is not to rebuild every project detail page from scratch unless necessary.
+
+### Team
+Do not turn the Team page into a themed fantasy interface.
+Keep team presentation credible and restrained.
+
+### Contact
+Do not make Contact playful or abstract.
+Keep it usable, clear, and serious.
 
 ---
 
@@ -265,189 +369,64 @@ Avoid:
 
 When modifying this repo, always follow this order:
 
-### Priority 1: Build integrity
+### Priority 1 — Build integrity
 The project must build successfully at all times.
 
-Before aesthetic refinement, ensure:
+Before visual ambition, ensure:
 - `npm run build` passes
-- no invalid Tailwind classes
 - no broken imports
-- no dead links that break routing
-- no unsafe environment variable assumptions
+- no broken routes
+- no invalid Tailwind classes
+- no hydration issues
+- no layout logic that breaks responsiveness
 
-No design work is more important than build success.
+### Priority 2 — Layout stability
+- strong container rules
+- clear panel hierarchy
+- consistent spacing
+- responsive behavior that does not collapse under real widths
 
----
+### Priority 3 — Message hierarchy
+- homepage must communicate the system clearly
+- architecture must not overwhelm clarity
 
-### Priority 2: Information clarity
-Every page must be understandable before being impressive.
-
-Check:
-- can a visitor understand what Bento AIII is within seconds?
-- are headlines too vague?
-- is the hierarchy clear?
-- is the CTA obvious?
-
----
-
-### Priority 3: Brand consistency
-After build stability and clarity, refine:
-- Hero
-- section headers
-- card styling
-- header and footer coherence
-- pixel neo accents
+### Priority 4 — Visual polish
+Only after structure and messaging are stable:
+- signal glows
+- telemetry motion
+- grid overlays
+- node connectors
+- visual system refinement
 
 ---
 
-### Priority 4: Progressive enhancement
-Only after the above is stable:
-- richer animation
-- more visual detail
-- secondary interactions
-- deeper polish
+## Trustworthiness Rules
 
----
+Do not invent:
+- fake deployments
+- fake customer logos
+- fake metrics
+- fake technical claims
+- fake press mentions
+- fake partner names
+- fake enterprise usage
 
-## Technical Rules
-
-### Stack
-The site should remain aligned with:
-- Next.js
-- TypeScript
-- Tailwind CSS
-
-Additional libraries should be introduced only when justified.
-
-### Fonts
-Avoid fragile external font dependencies when possible.
-Prefer:
-- local fonts
-- reliable fallbacks
-- build-safe font strategies
-
-### Forms
-The contact form must be treated as real product surface, not decoration.
-
-Requirements:
-- client-side validation
-- server-side validation
-- loading state
-- success state
-- error state
-- graceful handling when env vars are missing
-- defensive anti-spam basics
-
-### Tailwind discipline
-Do not use unsupported utility patterns that break builds.
-
-Examples of unacceptable behavior:
-- introducing invalid opacity suffixes
-- adding arbitrary classes without validating build support
-- mixing too many one-off styles without system logic
-
----
-
-## Header and Footer Rules
-
-### Header
-The header is not just navigation.
-It must function as a brand frame.
-
-Requirements:
-- clear Bento AIII identity
-- stable navigation
-- restrained but visible CTA
-- strong visual consistency with the site
-
-### Footer
-The footer should feel intentional, not generic.
-
-Requirements:
-- concise company framing
-- clear navigation or contact utility
-- visual closure
-- no bloated template footer sections
-
----
-
-## Homepage Rules
-
-The homepage is the highest priority page in this repo.
-
-It must not read like a generic explanation page.
-It must act as a brand-defining entry point.
-
-The hero section should:
-- define the company quickly
-- avoid empty hype
-- feel stronger than a normal SaaS template
-- preserve professional restraint
-- support a memorable Bento AIII identity
-
-If forced to choose, prefer:
-- stronger headline clarity
-over
-- decorative visual complexity
-
----
-
-## Editing Rules for Agents
-
-When making changes:
-
-1. do not make the site noisier just to make it look more “designed”
-2. do not invent content to fill empty areas
-3. do not add sections unless they strengthen clarity or trust
-4. do not over-polish weak messaging
-5. do not prioritize motion over structure
-6. do not change the project into a startup cliché website
-
-When in doubt, choose:
-- clarity over novelty
-- trust over hype
-- structure over decoration
-- build stability over visual ambition
-
----
-
-## Acceptance Standard
-
-A change is acceptable only if it improves at least one of these without damaging the others:
-
-- build stability
-- credibility
-- clarity
-- brand consistency
-- conversion readiness
-
-A change is not acceptable if it:
-- breaks build
-- adds fake signals of trust
-- weakens readability
-- makes the site feel like a game/NFT page
-- pushes the brand into generic AI hype language
-
----
-
-## Current Non-Negotiables
-
-These constraints must always be respected:
-
-- Bento AIII must feel like a real AI company
-- the site must stay credible
-- Pixel Neo is an accent system, not the whole design
-- the website must not drift into generic hype-SaaS language
-- the build must remain healthy
-- project and team information must remain honest
+Example verticals are acceptable as domain adaptation examples, but they must not be presented as confirmed clients unless explicitly supported by real data in the repository.
 
 ---
 
 ## Final Instruction to All Agents
 
-Do not optimize for “more”.
-Optimize for **truer, sharper, cleaner, and more build-safe**.
+Do not optimize for “more style.”  
+Optimize for:
 
-This website should feel like:
-**a disciplined AI company with taste**
-—not a template, not a fantasy, and not a gimmick.
+- stronger system framing
+- clearer operational hierarchy
+- better structural precision
+- more credible infrastructure positioning
+- stable responsive execution
+- premium tactical coherence
+
+The website should feel like:
+**a live blueprint of an adaptive decision-and-execution system**
+—not a brochure, not a toy, and not a generic AI landing page.

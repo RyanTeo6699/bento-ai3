@@ -47,22 +47,22 @@ export function LanguageSwitcher({
     <div
       className={cn(
         "inline-flex max-w-full shrink-0 items-center gap-2.5 whitespace-nowrap",
-        stacked && "w-full max-w-[20rem] flex-col items-start gap-3 whitespace-normal",
+        stacked && "w-full flex-col items-start gap-3 whitespace-normal",
         className
       )}
     >
       <span
         className={cn(
-          "label-caps shrink-0 whitespace-nowrap leading-none text-[0.62rem] text-[rgb(var(--ink-muted))]",
-          stacked && "pl-1 text-[0.68rem]"
+          "label-caps shrink-0 whitespace-nowrap leading-none text-[0.62rem]",
+          stacked && "pl-0.5 text-[0.66rem]"
         )}
       >
         {label}
       </span>
       <div
         className={cn(
-          "grid h-14 w-[14.75rem] max-w-full shrink-0 grid-cols-3 items-center gap-1 overflow-hidden rounded-full border-[3px] border-[rgb(var(--ink))] bg-white p-1 shadow-[4px_4px_0_0_rgb(var(--shadow))] lg:w-[15.5rem]",
-          stacked && "w-full max-w-[16rem]"
+          "grid h-12 w-[13.4rem] max-w-full shrink-0 grid-cols-3 items-center gap-1 rounded-full border border-[rgb(var(--outline-strong))] bg-[rgb(var(--surface-container-low))] p-1",
+          stacked && "w-full max-w-[15rem]"
         )}
       >
         {localeOptions.map((option, index) => {
@@ -74,11 +74,11 @@ export function LanguageSwitcher({
               type="button"
               onClick={() => handleLocaleChange(option.value)}
               className={cn(
-                "inline-flex h-10 min-w-0 items-center justify-center whitespace-nowrap rounded-full px-2.5 font-[var(--font-label)] text-[0.82rem] font-black leading-none tracking-[0.04em] transition",
+                "inline-flex h-9 min-w-0 items-center justify-center whitespace-nowrap rounded-full px-2 font-[var(--font-label)] text-[0.75rem] font-extrabold leading-none tracking-[0.08em] transition",
                 active
-                  ? "border-[2px] border-[rgb(var(--ink))] bg-[rgb(var(--secondary-container))] text-[rgb(var(--ink))] shadow-[3px_3px_0_0_rgb(var(--shadow))]"
-                  : "text-[rgb(var(--ink-muted))] hover:-translate-y-0.5 hover:rotate-[-1deg] hover:bg-[rgb(var(--surface-container-low))] hover:text-[rgb(var(--ink))]",
-                !active && index === 1 && "hover:rotate-[1deg]"
+                  ? "border border-[rgb(var(--primary))] bg-[rgb(var(--primary-veil))] text-[rgb(var(--primary))] shadow-[0_0_18px_rgba(111,255,176,0.12)]"
+                  : "text-[rgb(var(--ink-muted))] hover:border hover:border-[rgb(var(--secondary))] hover:bg-[rgb(var(--surface-container))] hover:text-[rgb(var(--ink))]",
+                !active && index === 1 && "hover:text-[rgb(var(--secondary))]"
               )}
               aria-pressed={active}
             >

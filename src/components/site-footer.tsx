@@ -30,50 +30,42 @@ export function SiteFooter({
   emailHref,
   emailValue
 }: SiteFooterProps) {
-  const footerBadges =
-    locale === "zh-Hant"
-      ? ["AI 系統", "工作流交付"]
-      : locale === "ja"
-        ? ["AI システム", "ワークフローデリバリー"]
-        : ["AI Systems", "Workflow Delivery"];
-
   return (
-    <footer className="pb-12 pt-8">
+    <footer className="pb-10 pt-8">
       <div className="shell">
-        <div className="surface px-6 py-8 md:px-8 md:py-10">
-          <div className="grid gap-10 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)_minmax(0,0.85fr)]">
-            <div className="min-w-0 space-y-6">
+        <div className="boxed-section px-6 py-8 md:px-8 md:py-9">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)_minmax(0,0.9fr)]">
+            <div className="min-w-0 space-y-5">
               <div className="flex items-center gap-4">
-                <span className="brand-mark sticker-rotate-3">
+                <span className="brand-mark">
                   <span className="brand-grid">
-                    <span className="bg-[rgb(var(--primary-container))]" />
-                    <span className="bg-[rgb(var(--secondary-container))]" />
-                    <span className="bg-white" />
+                    <span className="bg-[rgb(var(--primary-veil))]" />
+                    <span className="bg-[rgb(var(--secondary-veil))]" />
+                    <span className="bg-[rgb(var(--surface-container-high))]" />
                     <span className="bg-[rgb(var(--tertiary-container))]" />
                   </span>
                 </span>
-                <div>
-                  <p className="font-[var(--font-headline)] text-3xl font-black uppercase tracking-[-0.05em] text-[rgb(var(--ink))]">
+                <div className="min-w-0">
+                  <p className="font-[var(--font-headline)] text-3xl font-bold uppercase tracking-[-0.06em] text-[rgb(var(--ink))]">
                     Bento AIII
                   </p>
-                  <p className="label-caps mt-1">{copy.tagline}</p>
+                  <p className="label-caps mt-1 text-[rgb(var(--primary))]">{copy.tagline}</p>
                 </div>
               </div>
 
-              <div className="max-w-lg space-y-4">
+              <div className="max-w-2xl space-y-4">
                 <div className="hero-marquee">
-                  <span className="sticker-badge bg-[rgb(var(--secondary-container))] text-[rgb(var(--ink))] sticker-rotate-1">
-                    {footerBadges[0]}
-                  </span>
-                  <span className="sticker-badge bg-[rgb(var(--tertiary-container))] text-[rgb(var(--ink))] sticker-rotate-3">
-                    {footerBadges[1]}
-                  </span>
+                  <span className="section-kicker">SYSTEM_CORE</span>
+                  <span className="sticker-badge">OUTCOME_MEMORY</span>
                 </div>
-                <h2 className="text-4xl font-black leading-[0.98] tracking-[-0.05em] text-[rgb(var(--ink))]">
+                <h2 className="max-w-3xl text-4xl font-bold leading-[1] tracking-[-0.06em] text-[rgb(var(--ink))]">
                   {copy.title}
                 </h2>
-                <p className="max-w-md text-base leading-8 text-[rgb(var(--ink-soft))]">
+                <p className="max-w-2xl text-base leading-8 text-[rgb(var(--ink-soft))]">
                   {companyDescription}
+                </p>
+                <p className="max-w-2xl text-sm leading-7 text-[rgb(var(--ink-muted))]">
+                  {copy.policy}
                 </p>
                 <Link
                   href={buildLocalizedPath(locale, "/contact")}
@@ -84,16 +76,14 @@ export function SiteFooter({
               </div>
             </div>
 
-            <div className="min-w-0 rounded-[1.6rem] border-[3px] border-[rgb(var(--ink))] bg-[rgb(var(--surface-container-low))] p-6 shadow-[5px_5px_0_0_rgb(var(--shadow))]">
-              <h3 className="label-caps mb-5">{copy.navTitle}</h3>
+            <div className="terminal-panel p-6">
+              <h3 className="label-caps mb-5 text-[rgb(var(--secondary))]">{copy.navTitle}</h3>
               <div className="space-y-3">
-                {navItems.map((item, index) => (
+                {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={buildLocalizedPath(locale, item.href)}
-                    className={`block w-fit rounded-full px-1 py-1 text-sm font-semibold text-[rgb(var(--ink))] transition hover:-translate-y-0.5 hover:underline ${
-                      index % 2 === 0 ? "hover:rotate-[-1deg]" : "hover:rotate-[1deg]"
-                    }`}
+                    className="block w-fit rounded-full border border-transparent px-2 py-1 text-sm font-semibold text-[rgb(var(--ink-soft))] transition hover:border-[rgb(var(--secondary))] hover:text-[rgb(var(--ink))]"
                   >
                     {item.label}
                   </Link>
@@ -101,8 +91,8 @@ export function SiteFooter({
               </div>
             </div>
 
-            <div className="min-w-0 rounded-[1.6rem] border-[3px] border-[rgb(var(--ink))] bg-white p-6 shadow-[5px_5px_0_0_rgb(var(--shadow))]">
-              <h3 className="label-caps mb-5">{copy.contactTitle}</h3>
+            <div className="terminal-panel p-6">
+              <h3 className="label-caps mb-5 text-[rgb(var(--primary))]">{copy.contactTitle}</h3>
               <div className="space-y-4 break-words text-sm leading-7 text-[rgb(var(--ink-soft))]">
                 <a
                   href={emailHref}
@@ -111,14 +101,15 @@ export function SiteFooter({
                   {emailValue}
                 </a>
                 <p>{copy.location}</p>
-                <p className="text-[rgb(var(--ink-muted))]">{copy.policy}</p>
+                <p className="text-[rgb(var(--ink-muted))]">{copy.closingLine}</p>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-4 border-t-[3px] border-dashed border-[rgb(var(--outline))] pt-6 md:flex-row md:items-center md:justify-between">
-            <p className="label-caps">{copy.closingKicker}</p>
-            <p className="text-sm text-[rgb(var(--ink-muted))]">{copy.closingLine}</p>
+          <div className="terminal-strip">
+            <div className="terminal-line">{copy.closingKicker}</div>
+            <div className="terminal-line">{copy.closingLine}</div>
+            <div className="terminal-line">PUBLIC_SITE=architecture_direction / build-safe</div>
           </div>
         </div>
       </div>

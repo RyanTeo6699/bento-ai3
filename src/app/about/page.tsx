@@ -8,12 +8,13 @@ import { getSharedCtas } from "@/lib/cta";
 import { getCurrentLocale } from "@/lib/get-locale";
 import { getDictionary } from "@/lib/i18n";
 import { createPageMetadata } from "@/lib/metadata";
-import { getCapabilityPillars, getCompanyProfile, getRoadmap, getValues } from "@/lib/site-data";
+import { getCapabilityPillars, getRoadmap, getValues } from "@/lib/site-data";
+import { getSystemCompanyProfile } from "@/lib/system-site-copy";
 
 export function generateMetadata(): Metadata {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
-  const companyProfile = getCompanyProfile(locale);
+  const companyProfile = getSystemCompanyProfile(locale);
 
   return createPageMetadata({
     locale,
@@ -27,7 +28,7 @@ export default function AboutPage() {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
   const sharedCtas = getSharedCtas(locale);
-  const companyProfile = getCompanyProfile(locale);
+  const companyProfile = getSystemCompanyProfile(locale);
   const capabilityPillars = getCapabilityPillars(locale);
   const values = getValues(locale);
   const roadmap = getRoadmap(locale);

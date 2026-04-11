@@ -1,168 +1,145 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 
-type HeroSceneCopy = {
-  kicker: string;
-  chip: string;
-  lanesLabel: string;
-  activeLabel: string;
-  lanes: Array<{ label: string; value: string }>;
-  productSurfaceLabel: string;
-  productSurfaceText: string;
-  systemLayerLabel: string;
-  systemLayerText: string;
-  brandFrameLabel: string;
-  brandDescription: string;
-  brandPrinciples: string[];
-  signalPanelLabel: string;
-  signals: Array<{ label: string; value: string }>;
-  runtimeLogLabel: string;
-  runtimeLog: string[];
+type SystemModuleNode = {
+  id: string;
+  title: string;
+  summary: string;
+  bullets: string[];
 };
 
-export function HeroScene({ copy }: { copy: HeroSceneCopy }) {
-  const featuredLanes = copy.lanes.slice(0, 3);
+const desktopNodeLayout = [
+  { top: "7%", left: "4%" },
+  { top: "7%", right: "4%" },
+  { top: "34%", left: "0%" },
+  { top: "34%", right: "0%" },
+  { bottom: "7%", left: "8%" },
+  { bottom: "7%", right: "8%" }
+] as const;
+
+export function HeroScene({
+  modules,
+  coreTitle,
+  coreSummary
+}: {
+  modules: SystemModuleNode[];
+  coreTitle: string;
+  coreSummary: string;
+}) {
+  const featuredModules = modules.slice(0, 6);
 
   return (
-    <div className="boxed-section relative flex h-full min-h-[30rem] w-full flex-col overflow-hidden px-4 py-4 md:px-5 md:py-5 lg:min-h-[35rem]">
-      <div className="absolute inset-0 outline-grid opacity-35" />
+    <div className="terminal-panel relative min-h-[24rem] overflow-hidden p-4 md:p-5 lg:min-h-[38rem]">
+      <div className="absolute inset-0 outline-grid opacity-40" />
+      <div
+        className="absolute inset-x-0 top-0 h-24"
+        style={{
+          background:
+            "radial-gradient(circle at top, rgba(80, 212, 255, 0.14), transparent 68%)"
+        }}
+      />
 
-      <div className="relative flex items-center justify-between gap-3 border-b-[3px] border-[rgb(var(--ink))] pb-4">
-        <span className="section-kicker sticker-rotate-3 text-[0.66rem]">{copy.kicker}</span>
-        <span className="sticker-badge bg-[rgb(var(--secondary-container))] text-[rgb(var(--ink))]">
-          {copy.chip}
-        </span>
+      <div className="relative lg:hidden">
+        <div className="system-node system-node-core">
+          <p className="label-caps text-[rgb(var(--primary))]">SYSTEM_CORE</p>
+          <h3 className="mt-3 text-2xl font-bold tracking-[-0.05em] text-[rgb(var(--ink))]">
+            {coreTitle}
+          </h3>
+          <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">
+            {coreSummary}
+          </p>
+        </div>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {featuredModules.map((module) => (
+            <div key={module.id} className="system-node">
+              <p className="label-caps text-[rgb(var(--secondary))]">{module.title}</p>
+              <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">{module.summary}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="relative mt-4 grid flex-1 gap-4 lg:grid-cols-[minmax(0,1.04fr)_minmax(15rem,0.96fr)]">
-        <div className="terminal-panel relative flex flex-col overflow-hidden p-5">
+      <div className="relative hidden h-[35rem] lg:block">
+        <svg
+          className="absolute inset-0 h-full w-full"
+          viewBox="0 0 1000 760"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="system-path" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stopColor="rgba(80,212,255,0.55)" />
+              <stop offset="100%" stopColor="rgba(111,255,176,0.75)" />
+            </linearGradient>
+          </defs>
+
+          <path d="M500 380 L245 145" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+          <path d="M500 380 L755 145" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+          <path d="M500 380 L205 315" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+          <path d="M500 380 L795 315" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+          <path d="M500 380 L275 595" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+          <path d="M500 380 L725 595" stroke="url(#system-path)" strokeWidth="2" strokeDasharray="8 10" />
+
+          <circle cx="500" cy="380" r="7" fill="rgb(var(--primary))" />
+          <circle cx="245" cy="145" r="5" fill="rgb(var(--secondary))" />
+          <circle cx="755" cy="145" r="5" fill="rgb(var(--secondary))" />
+          <circle cx="205" cy="315" r="5" fill="rgb(var(--primary))" />
+          <circle cx="795" cy="315" r="5" fill="rgb(var(--primary))" />
+          <circle cx="275" cy="595" r="5" fill="rgb(var(--secondary))" />
+          <circle cx="725" cy="595" r="5" fill="rgb(var(--secondary))" />
+        </svg>
+
+        <motion.div
+          className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgb(var(--primary))]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(111, 255, 176, 0.14), rgba(17, 33, 25, 0.1) 55%, transparent 70%)"
+          }}
+          animate={{ scale: [0.96, 1.02, 0.96], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="absolute left-1/2 top-1/2 w-[18.5rem] -translate-x-1/2 -translate-y-1/2">
+          <div className="system-node system-node-core p-5">
+            <p className="label-caps text-[rgb(var(--primary))]">SYSTEM_CORE</p>
+            <h3 className="mt-3 text-[1.9rem] font-bold tracking-[-0.06em] text-[rgb(var(--ink))]">
+              {coreTitle}
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">
+              {coreSummary}
+            </p>
+          </div>
+        </div>
+
+        {featuredModules.map((module, index) => (
           <motion.div
-            className="absolute left-3 right-3 top-3 h-12 rounded-[1rem] bg-[linear-gradient(90deg,rgba(255,113,153,0.22),rgba(38,230,255,0.18),transparent)]"
-            animate={{ x: [-16, 18, -16] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          <div className="relative flex items-center justify-between gap-4">
-            <p className="neo-microcopy">{copy.lanesLabel}</p>
-            <span className="project-chip bg-[rgb(var(--surface-container-high))]">
-              {copy.activeLabel}
-            </span>
-          </div>
-
-          <div className="relative mt-5 grid gap-3">
-            {featuredLanes.map((lane, index) => (
-              <div
-                key={lane.label}
-                className="rounded-[1.2rem] border-[2px] border-[rgb(var(--ink))] bg-white/85 p-4"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <span className="label-caps text-[rgb(var(--ink))]">
-                    0{index + 1} {lane.label}
+            key={module.id}
+            className="absolute w-[13.75rem]"
+            style={desktopNodeLayout[index] as CSSProperties}
+            animate={{ y: [0, -4, 0] }}
+            transition={{
+              duration: 4.8,
+              repeat: Infinity,
+              delay: index * 0.28,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="system-node">
+              <p className="label-caps text-[rgb(var(--secondary))]">{module.title}</p>
+              <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">{module.summary}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {module.bullets.map((item) => (
+                  <span key={item} className="project-chip">
+                    {item}
                   </span>
-                </div>
-
-                <div className="mt-3 h-3 overflow-hidden rounded-full border-[2px] border-[rgb(var(--ink))] bg-white">
-                  <motion.div
-                    className="h-full rounded-full bg-[linear-gradient(90deg,rgb(var(--primary-container)),rgb(var(--secondary-container)),rgb(var(--tertiary-container)))]"
-                    initial={{ width: "42%" }}
-                    animate={{ width: ["42%", "88%", "64%"] }}
-                    transition={{
-                      duration: 5.8,
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                      delay: index * 0.34,
-                      ease: "easeInOut"
-                    }}
-                  />
-                </div>
-
-                <p className="mt-3 text-sm leading-6 text-[rgb(var(--ink-soft))]">{lane.value}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="relative mt-auto grid gap-3 pt-4 sm:grid-cols-2">
-            <div className="rounded-[1.15rem] border-[2px] border-[rgb(var(--ink))] bg-white/85 p-4">
-              <p className="neo-microcopy">{copy.productSurfaceLabel}</p>
-              <p className="mt-3 text-sm font-semibold leading-6 text-[rgb(var(--ink))]">
-                {copy.productSurfaceText}
-              </p>
-            </div>
-            <div className="rounded-[1.15rem] border-[2px] border-[rgb(var(--ink))] bg-white/85 p-4">
-              <p className="neo-microcopy">{copy.systemLayerLabel}</p>
-              <p className="mt-3 text-sm font-semibold leading-6 text-[rgb(var(--ink))]">
-                {copy.systemLayerText}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-4">
-          <div className="terminal-panel flex flex-col justify-between p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-3">
-                <p className="neo-microcopy">{copy.brandFrameLabel}</p>
-                <h3 className="text-[2.4rem] font-black leading-none tracking-[-0.06em] text-[rgb(var(--ink))]">
-                  Bento AIII
-                </h3>
-                <p className="max-w-[18rem] text-sm leading-7 text-[rgb(var(--ink-soft))]">
-                  {copy.brandDescription}
-                </p>
-              </div>
-
-              <div className="brand-mark h-12 w-12 shrink-0 sticker-rotate-2 md:h-[3.2rem] md:w-[3.2rem]">
-                <span className="brand-grid">
-                  <span className="bg-[rgb(var(--primary-container))]" />
-                  <span className="bg-[rgb(var(--secondary-container))]" />
-                  <span className="bg-white" />
-                  <span className="bg-[rgb(var(--tertiary-container))]" />
-                </span>
+                ))}
               </div>
             </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {copy.brandPrinciples.map((item, index) => (
-                <span
-                  key={item}
-                  className={`signal-chip ${
-                    index === 1
-                      ? "bg-[rgb(var(--secondary-container))]"
-                      : index === 2
-                        ? "bg-[rgb(var(--tertiary-container))]"
-                        : ""
-                  }`}
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="terminal-panel p-5">
-            <p className="neo-microcopy">{copy.signalPanelLabel}</p>
-            <div className="mt-4 grid gap-3">
-              {copy.signals.map((signal, index) => (
-                <motion.div
-                  key={signal.label}
-                  className="flex items-center justify-between gap-4 rounded-[1rem] border-[2px] border-[rgb(var(--ink))] bg-white/85 px-4 py-3"
-                  animate={{ y: [0, -2, 0] }}
-                  transition={{
-                    duration: 4.8,
-                    repeat: Infinity,
-                    delay: index * 0.45,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <span className="label-caps text-[rgb(var(--ink))]">{signal.label}</span>
-                  <span className="text-sm font-semibold text-[rgb(var(--ink-soft))]">
-                    {signal.value}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
