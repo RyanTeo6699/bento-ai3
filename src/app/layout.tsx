@@ -82,8 +82,8 @@ export default function RootLayout({
             closingLine: systemCopy.footer.closingLine
           }}
           companyDescription={systemCopy.footer.description}
-          emailHref={emailChannel?.href ?? "mailto:hello@bentoaiii.com"}
-          emailValue={emailChannel?.value ?? "hello@bentoaiii.com"}
+          emailHref={emailChannel?.href ?? "mailto:ryanteo0628@gmail.com"}
+          emailValue={emailChannel?.value ?? "ryanteo0628@gmail.com"}
         />
       </body>
     </html>

@@ -44,7 +44,7 @@ const en = {
     cta: "Start scoped inquiry",
     navTitle: "Navigate",
     contactTitle: "Contact",
-    location: "Edmonton, Alberta / remote",
+    location: "Calgary / Vancouver",
     policy:
       "Public material on the site is intentionally limited to information Bento AIII can reasonably stand behind.",
     closingKicker: "build the layer around the model",
@@ -73,7 +73,7 @@ const en = {
   home: {
     hero: {
       kicker: "Bento AIII / AI systems company",
-      location: "Edmonton / Remote",
+      location: "Calgary / Vancouver",
       title: "Bento AIII",
       subtitle: "builds the layer around the model.",
       lead:
@@ -371,9 +371,9 @@ const en = {
       description:
         "Bento AIII is best engaged on practical AI product work, language model systems, internal tooling, and delivery partnerships.",
       metrics: [
-        { label: "General", value: "hello@bentoaiii.com" },
+        { label: "General", value: "ryanteo0628@gmail.com" },
         { label: "Response", value: "Usually within 1-2 business days" },
-        { label: "Base", value: "Edmonton, Alberta / remote" }
+        { label: "Base", value: "Calgary / Vancouver" }
       ]
     },
     reachOut: {
@@ -413,10 +413,10 @@ const en = {
         "Please correct the highlighted fields and submit again.",
       submitting: "Submitting inquiry...",
       fallbackError:
-        "The form could not reach the site backend. Please try again or email hello@bentoaiii.com.",
+        "The form could not reach the site backend. Please try again or email ryanteo0628@gmail.com.",
       reference: "Reference",
       successFollowUpPrefix: "If the request is time-sensitive, send the same reference to",
-      successFollowUpLink: "hello@bentoaiii.com"
+      successFollowUpLink: "ryanteo0628@gmail.com"
     },
     labels: {
       name: "Name",
@@ -466,9 +466,9 @@ const en = {
         "Too many inquiries from this connection. Please wait a few minutes and try again.",
       validationFailed: "Validation failed.",
       loggedOnly:
-        "Inquiry reached the site backend. Email forwarding is not configured yet, so also email hello@bentoaiii.com if the request is time-sensitive.",
+        "Inquiry reached the site backend. Email forwarding is not configured yet, so also email ryanteo0628@gmail.com if the request is time-sensitive.",
       forwardFailed:
-        "Inquiry reached the site backend, but email forwarding is not configured correctly. Please email hello@bentoaiii.com if this continues.",
+        "Inquiry reached the site backend, but email forwarding is not configured correctly. Please email ryanteo0628@gmail.com if this continues.",
       success: "Inquiry received. Bento AIII will review it and follow up by email.",
       name: "Name must be at least 2 characters.",
       company: "Company or team field is too long.",
@@ -509,7 +509,7 @@ const dictionaries: Record<Locale, typeof en> = {
       cta: "開始洽詢",
       navTitle: "導覽",
       contactTitle: "聯絡方式",
-      location: "加拿大亞伯達省愛德蒙頓 / 遠端協作",
+      location: "卡爾加里 / 溫哥華",
       policy: "網站公開內容僅保留 Bento AIII 目前可以負責任對外說明的資訊。",
       closingKicker: "build the layer around the model",
       closingLine: "Bento AIII。以產品紀律落地實用 AI。"
@@ -537,7 +537,7 @@ const dictionaries: Record<Locale, typeof en> = {
     home: {
       hero: {
         kicker: "Bento AIII / AI 系統公司",
-        location: "Edmonton / Remote",
+        location: "Calgary / Vancouver",
         title: "Bento AIII",
         subtitle: "打造模型之外真正可用的一層。",
         lead:
@@ -818,9 +818,9 @@ const dictionaries: Record<Locale, typeof en> = {
         description:
           "Bento AIII 最適合參與實際 AI 產品、語言模型系統、內部工具與交付合作相關的討論。",
         metrics: [
-          { label: "一般聯絡", value: "hello@bentoaiii.com" },
+          { label: "一般聯絡", value: "ryanteo0628@gmail.com" },
           { label: "回覆時間", value: "通常 1 至 2 個工作天" },
-          { label: "據點", value: "加拿大亞伯達省愛德蒙頓 / 遠端" }
+          { label: "據點", value: "卡爾加里 / 溫哥華" }
         ]
       },
       reachOut: {
@@ -854,10 +854,10 @@ const dictionaries: Record<Locale, typeof en> = {
       statuses: {
         clientValidationError: "請先修正標示欄位後再提交。",
         submitting: "正在送出洽詢...",
-        fallbackError: "表單無法連線到網站後端。請稍後再試，或直接寄信到 hello@bentoaiii.com。",
+        fallbackError: "表單無法連線到網站後端。請稍後再試，或直接寄信到 ryanteo0628@gmail.com。",
         reference: "編號",
         successFollowUpPrefix: "如果此需求較急，請將相同編號一併寄到",
-        successFollowUpLink: "hello@bentoaiii.com"
+        successFollowUpLink: "ryanteo0628@gmail.com"
       },
       labels: {
         name: "姓名",
@@ -903,9 +903,9 @@ const dictionaries: Record<Locale, typeof en> = {
         rateLimited: "此連線的提交次數過多，請稍後幾分鐘再試。",
         validationFailed: "欄位驗證失敗。",
         loggedOnly:
-          "網站後端已收到洽詢，但尚未設定郵件轉寄。如果需求較急，也請同步寄信到 hello@bentoaiii.com。",
+          "網站後端已收到洽詢，但尚未設定郵件轉寄。如果需求較急，也請同步寄信到 ryanteo0628@gmail.com。",
         forwardFailed:
-          "網站後端已收到洽詢，但郵件轉寄設定異常。若此問題持續，請直接寄信到 hello@bentoaiii.com。",
+          "網站後端已收到洽詢，但郵件轉寄設定異常。若此問題持續，請直接寄信到 ryanteo0628@gmail.com。",
         success: "已收到洽詢。Bento AIII 會先行檢視，再透過 Email 回覆。",
         name: "姓名至少需要 2 個字元。",
         company: "公司或團隊欄位過長。",
@@ -942,7 +942,7 @@ const dictionaries: Record<Locale, typeof en> = {
       cta: "相談を始める",
       navTitle: "ナビゲーション",
       contactTitle: "連絡先",
-      location: "エドモントン / リモート",
+      location: "カルガリー / バンクーバー",
       policy:
         "公開情報は、Bento AIII が現時点で責任を持って説明できる内容に限定しています。",
       closingKicker: "build the layer around the model",
@@ -971,7 +971,7 @@ const dictionaries: Record<Locale, typeof en> = {
     home: {
       hero: {
         kicker: "Bento AIII / AI systems company",
-        location: "Edmonton / Remote",
+        location: "Calgary / Vancouver",
         title: "Bento AIII",
         subtitle: "モデルの外側に必要なレイヤーをつくる。",
         lead:
@@ -1259,9 +1259,9 @@ const dictionaries: Record<Locale, typeof en> = {
         description:
           "Bento AIII は、実務的な AI プロダクト、言語モデルシステム、内部ツール、デリバリーパートナーシップの相談に向いています。",
         metrics: [
-          { label: "一般窓口", value: "hello@bentoaiii.com" },
+          { label: "一般窓口", value: "ryanteo0628@gmail.com" },
           { label: "返信目安", value: "通常 1〜2 営業日" },
-          { label: "拠点", value: "エドモントン / リモート" }
+          { label: "拠点", value: "カルガリー / バンクーバー" }
         ]
       },
       reachOut: {
@@ -1299,10 +1299,10 @@ const dictionaries: Record<Locale, typeof en> = {
         clientValidationError: "強調表示された項目を修正してから再送信してください。",
         submitting: "問い合わせを送信中...",
         fallbackError:
-          "サイトのバックエンドに接続できませんでした。時間をおいて再試行するか、hello@bentoaiii.com へ直接メールしてください。",
+          "サイトのバックエンドに接続できませんでした。時間をおいて再試行するか、ryanteo0628@gmail.com へ直接メールしてください。",
         reference: "受付番号",
         successFollowUpPrefix: "急ぎの案件であれば、同じ受付番号を",
-        successFollowUpLink: "hello@bentoaiii.com"
+        successFollowUpLink: "ryanteo0628@gmail.com"
       },
       labels: {
         name: "お名前",
@@ -1351,9 +1351,9 @@ const dictionaries: Record<Locale, typeof en> = {
           "この接続からの送信回数が多すぎます。数分待ってから再試行してください。",
         validationFailed: "入力内容の検証に失敗しました。",
         loggedOnly:
-          "サイトのバックエンドには届きましたが、メール転送はまだ設定されていません。急ぎの場合は hello@bentoaiii.com にも送ってください。",
+          "サイトのバックエンドには届きましたが、メール転送はまだ設定されていません。急ぎの場合は ryanteo0628@gmail.com にも送ってください。",
         forwardFailed:
-          "サイトのバックエンドには届きましたが、メール転送設定に問題があります。問題が続く場合は hello@bentoaiii.com に直接ご連絡ください。",
+          "サイトのバックエンドには届きましたが、メール転送設定に問題があります。問題が続く場合は ryanteo0628@gmail.com に直接ご連絡ください。",
         success: "お問い合わせを受け付けました。Bento AIII が確認のうえ、メールでご連絡します。",
         name: "お名前は 2 文字以上必要です。",
         company: "会社名またはチーム名が長すぎます。",

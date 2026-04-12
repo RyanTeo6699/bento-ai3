@@ -237,7 +237,7 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
             <p className="mt-2 text-xs leading-6 text-[rgb(var(--ink-soft))]">
               {copy.statuses.successFollowUpPrefix}{" "}
               <a
-                href="mailto:hello@bentoaiii.com"
+                href="mailto:ryanteo0628@gmail.com"
                 className="break-all underline underline-offset-4"
               >
                 {copy.statuses.successFollowUpLink}

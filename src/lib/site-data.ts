@@ -788,8 +788,8 @@ const contactChannelDefinitions = [
       "zh-Hant": "一般 Email",
       ja: "一般窓口"
     },
-    value: same("hello@bentoaiii.com"),
-    href: "mailto:hello@bentoaiii.com",
+    value: same("ryanteo0628@gmail.com"),
+    href: "mailto:ryanteo0628@gmail.com",
     note: {
       en: "General inquiries, project introductions, and first-contact conversations",
       "zh-Hant": "一般洽詢、項目介紹與初步對話",
@@ -820,9 +820,9 @@ const contactChannelDefinitions = [
       ja: "拠点"
     },
     value: {
-      en: "Edmonton, Alberta / remote",
-      "zh-Hant": "加拿大亞伯達省愛德蒙頓 / 遠端",
-      ja: "エドモントン / リモート"
+      en: "Calgary / Vancouver",
+      "zh-Hant": "卡爾加里 / 溫哥華",
+      ja: "カルガリー / バンクーバー"
     },
     note: {
       en: "Distributed delivery across product, engineering, and AI systems work",
