@@ -14,6 +14,14 @@ import { createPageMetadata } from "@/lib/metadata";
 import { getProjectPresentationCopy, getProjects as getCommercialProjects } from "@/lib/project-commercial";
 import { getSystemSiteCopy } from "@/lib/system-site-copy";
 
+function formatModuleTitle(value: string) {
+  return value
+    .toLowerCase()
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export function generateMetadata(): Metadata {
   const locale = getCurrentLocale();
   const systemCopy = getSystemSiteCopy(locale);
@@ -40,169 +48,120 @@ export default function HomePage() {
   const featuredProjects = getCommercialProjects(locale).filter((project) => project.featured);
   const aboutLabel = dictionary.nav.find((item) => item.href === "/about")?.label ?? "About";
   const teamLabel = dictionary.nav.find((item) => item.href === "/team")?.label ?? "Team";
+  const heroNotes = [
+    systemCopy.home.hero.terminalContext,
+    systemCopy.home.hero.terminalStatus,
+    systemCopy.home.hero.terminalNote
+  ];
 
   return (
     <>
       <section className="site-hero-section">
         <div className="shell">
-          <div className="boxed-section site-hero-frame">
-            <div className="system-shell-bar">
-              <span className="system-shell-chip">{systemCopy.home.shellBar.entry}</span>
-              <span className="system-shell-chip">{systemCopy.home.shellBar.mode}</span>
-              <span className="system-shell-chip">{systemCopy.home.shellBar.railState}</span>
-              <span className="system-shell-chip">{systemCopy.home.shellBar.trace}</span>
-            </div>
+          <div className="home-hero">
+            <div className="home-hero-layout">
+              <Reveal className="home-hero-copy">
+                <span className="section-kicker">{systemCopy.home.hero.eyebrow}</span>
 
-            <div className="mt-6 grid gap-5 xl:grid-cols-[14rem_minmax(0,1fr)_18rem]">
-              <Reveal className="hidden xl:block">
-                <aside className="system-rail h-full">
-                  <p className="label-caps text-[rgb(var(--secondary))]">
-                    {systemCopy.home.hero.railTitle}
+                <div className="home-hero-copy-stack">
+                  <h1 className="headline-display max-w-[11.5ch]">{systemCopy.home.hero.title}</h1>
+                  <p className="max-w-3xl text-lg leading-8 text-[rgb(var(--ink))] md:text-[1.42rem] md:leading-8">
+                    {systemCopy.home.hero.lead}
                   </p>
-                  <div className="space-y-2">
+                  <p className="max-w-3xl text-[0.98rem] leading-7 text-[rgb(var(--ink-soft))] md:text-[1.02rem] md:leading-8">
+                    {systemCopy.home.hero.summary}
+                  </p>
+                </div>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link href={buildLocalizedPath(locale, "/contact")} className="home-action-primary">
+                    {systemCopy.home.hero.primaryLabel}
+                  </Link>
+                  <Link href={buildLocalizedPath(locale, "/projects")} className="home-action-secondary">
+                    {systemCopy.home.hero.secondaryLabel}
+                  </Link>
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  <Link href={buildLocalizedPath(locale, "/about")} className="home-chip-action">
+                    {aboutLabel}
+                  </Link>
+                  <Link href={buildLocalizedPath(locale, "/team")} className="home-chip-action">
+                    {teamLabel}
+                  </Link>
+                  <Link href={buildLocalizedPath(locale, "/projects")} className="home-chip-action">
+                    {sharedCtas.viewProjects}
+                  </Link>
+                </div>
+              </Reveal>
+
+              <div className="home-hero-sidebar">
+                <Reveal delay={0.06} className="home-info-card">
+                  <p className="home-meta-label">{systemCopy.home.hero.railTitle}</p>
+                  <div className="home-capability-list">
                     {systemCopy.home.hero.railModules.map((item, index) => (
-                      <div key={item} className="system-rail-item">
-                        <span>{item}</span>
+                      <div key={item} className="home-capability-item">
+                        <span>{formatModuleTitle(item)}</span>
                         <span className="text-[rgb(var(--ink-muted))]">0{index + 1}</span>
                       </div>
                     ))}
                   </div>
-                </aside>
-              </Reveal>
+                </Reveal>
 
-              <div className="min-w-0 space-y-5">
-                <Reveal className="surface p-6 md:p-7">
-                  <span className="section-kicker">{systemCopy.home.hero.eyebrow}</span>
-
-                  <div className="mt-5 max-w-3xl space-y-4">
-                    <h1 className="headline-display max-w-[11.5ch]">{systemCopy.home.hero.title}</h1>
-                    <p className="max-w-3xl text-lg leading-8 text-[rgb(var(--ink))] md:text-[1.42rem] md:leading-8">
-                      {systemCopy.home.hero.lead}
-                    </p>
-                    <p className="max-w-3xl text-[0.98rem] leading-7 text-[rgb(var(--ink-soft))] md:text-[1.02rem] md:leading-8">
-                      {systemCopy.home.hero.summary}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 grid gap-3 lg:grid-cols-2">
-                    {systemCopy.home.hero.differentiation.map((item, index) => (
-                      <div
-                        key={item}
-                        className={`terminal-panel p-4 ${index === 1 ? "border-[rgb(var(--secondary))]" : "border-[rgb(var(--primary))]"}`}
-                      >
-                        <p className="text-[0.84rem] leading-6 text-[rgb(var(--ink-soft))] md:text-[0.88rem]">
-                          {item}
-                        </p>
+                <Reveal delay={0.12} className="home-info-card">
+                  <p className="home-meta-label">{systemCopy.home.hero.telemetryTitle}</p>
+                  <div className="home-proof-list">
+                    {systemCopy.home.hero.telemetryItems.map((item) => (
+                      <div key={item.label} className="home-proof-row">
+                        <span className="neo-microcopy">{item.label}</span>
+                        <span className="home-proof-value">{item.value}</span>
                       </div>
                     ))}
                   </div>
-
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    <Link
-                      href={buildLocalizedPath(locale, "/contact")}
-                      className="home-action-primary"
-                    >
-                      {systemCopy.home.hero.primaryLabel}
-                    </Link>
-                    <Link
-                      href={buildLocalizedPath(locale, "/projects")}
-                      className="home-action-secondary"
-                    >
-                      {systemCopy.home.hero.secondaryLabel}
-                    </Link>
-                  </div>
-
-                  <div className="mt-4 flex flex-wrap gap-2.5">
-                    <Link href={buildLocalizedPath(locale, "/about")} className="home-chip-action">
-                      {aboutLabel}
-                    </Link>
-                    <Link href={buildLocalizedPath(locale, "/team")} className="home-chip-action">
-                      {teamLabel}
-                    </Link>
-                    <Link href={buildLocalizedPath(locale, "/projects")} className="home-chip-action">
-                      {sharedCtas.viewProjects}
-                    </Link>
-                  </div>
-                </Reveal>
-
-                <Reveal delay={0.08}>
-                  <HeroScene
-                    modules={systemCopy.home.modules.items}
-                    coreTitle={systemCopy.company.positioning}
-                    coreSummary={systemCopy.company.description}
-                  />
-                </Reveal>
-
-                <Reveal delay={0.12} className="xl:hidden">
-                  <div className="system-rail">
-                    <p className="label-caps text-[rgb(var(--secondary))]">
-                      {systemCopy.home.hero.railTitle}
-                    </p>
-                    <div className="grid gap-2 sm:grid-cols-2">
-                      {systemCopy.home.hero.railModules.map((item, index) => (
-                        <div key={item} className="system-rail-item">
-                          <span>{item}</span>
-                          <span className="text-[rgb(var(--ink-muted))]">0{index + 1}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </Reveal>
               </div>
+            </div>
 
-              <Reveal delay={0.12}>
-                <aside className="system-rail h-full">
-                  <div>
-                    <p className="label-caps text-[rgb(var(--primary))]">
-                      {systemCopy.home.hero.telemetryTitle}
-                    </p>
-                    <div className="mt-4 space-y-4">
-                      {systemCopy.home.hero.telemetryItems.map((item) => (
-                        <div key={item.label} className="system-telemetry-row">
-                          <span className="label-caps">{item.label}</span>
-                          <span className="text-sm font-semibold text-[rgb(var(--ink-soft))]">
-                            {item.value}
-                          </span>
+            <div className="home-hero-support">
+              {systemCopy.home.hero.differentiation.map((item, index) => (
+                <Reveal key={item} delay={0.08 + index * 0.04}>
+                  <div className="home-note-card">
+                    <p className="home-meta-label">0{index + 1}</p>
+                    <p className="mt-3 text-[0.92rem] leading-7 text-[rgb(var(--ink-soft))]">{item}</p>
+                  </div>
+                </Reveal>
+              ))}
+
+              <Reveal delay={0.16} className="lg:col-span-2">
+                <div className="home-note-card home-note-card-wide">
+                  <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="max-w-2xl">
+                      <p className="home-meta-label">{systemCopy.home.hero.telemetryTraceTitle}</p>
+                      <ul className="home-bullet-list mt-4">
+                        {systemCopy.home.hero.telemetryTrace.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="home-context-list">
+                      {heroNotes.map((note) => (
+                        <div key={note} className="home-context-item">
+                          {note}
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  <div className="border-t border-[rgb(var(--outline))] pt-4">
-                    <p className="label-caps text-[rgb(var(--secondary))]">
-                      {systemCopy.home.hero.telemetryTraceTitle}
-                    </p>
-                    <ul className="trace-log mt-4">
-                      {systemCopy.home.hero.telemetryTrace.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-4 flex flex-wrap gap-2 border-t border-[rgb(var(--outline))] pt-4">
-                      <Link href={buildLocalizedPath(locale, "/about")} className="home-utility-action">
-                        {aboutLabel}
-                      </Link>
-                      <Link href={buildLocalizedPath(locale, "/projects")} className="home-utility-action">
-                        {sharedCtas.viewProjects}
-                      </Link>
-                    </div>
-                  </div>
-                </aside>
+                </div>
               </Reveal>
-            </div>
-
-            <div className="terminal-strip">
-              <div className="terminal-line">{systemCopy.home.hero.terminalContext}</div>
-              <div className="terminal-line">{systemCopy.home.hero.terminalStatus}</div>
-              <div className="terminal-line">{systemCopy.home.hero.terminalNote}</div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="site-section-tight">
-        <div className="shell grid gap-6 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-          <Reveal className="surface p-6 md:p-8">
+        <div className="shell home-split-layout">
+          <Reveal className="home-section-intro">
             <SectionHeading
               eyebrow={systemCopy.home.coreStatement.eyebrow}
               title={systemCopy.home.coreStatement.title}
@@ -211,16 +170,16 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <Reveal delay={0.06} className="surface p-6 md:p-8">
-            <div className="grid gap-4 sm:grid-cols-2">
-              {systemCopy.home.coreStatement.items.map((item) => (
-                <div key={item.label} className="terminal-panel p-4">
-                  <p className="neo-microcopy text-[rgb(var(--secondary))]">{item.label}</p>
+          <div className="home-value-grid">
+            {systemCopy.home.coreStatement.items.map((item, index) => (
+              <Reveal key={item.label} delay={0.05 * index}>
+                <div className="home-value-card">
+                  <p className="neo-microcopy text-[rgb(var(--ink-muted))]">{item.label}</p>
                   <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">{item.value}</p>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -262,14 +221,22 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-5 xl:grid-cols-2">
+          <Reveal delay={0.08} className="mt-12">
+            <HeroScene
+              modules={systemCopy.home.modules.items}
+              title={systemCopy.home.modules.title}
+              summary={systemCopy.company.description}
+            />
+          </Reveal>
+
+          <div className="mt-8 grid gap-5 xl:grid-cols-2">
             {systemCopy.home.modules.items.map((module, index) => (
               <Reveal key={module.id} delay={0.05 * index}>
-                <div className="pack-card p-6 md:p-7">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="section-kicker">{module.title}</p>
-                    <span className="project-chip">RUNTIME</span>
-                  </div>
+                <div className="home-module-card">
+                  <p className="neo-microcopy text-[rgb(var(--ink-muted))]">{module.title}</p>
+                  <h3 className="mt-3 text-[1.28rem] font-semibold tracking-[-0.045em] text-[rgb(var(--ink))] md:text-[1.45rem]">
+                    {formatModuleTitle(module.title)}
+                  </h3>
                   <p className="mt-4 text-[0.95rem] leading-7 text-[rgb(var(--ink-soft))]">
                     {module.summary}
                   </p>
@@ -288,62 +255,70 @@ export default function HomePage() {
       </section>
 
       <section className="site-section-tight">
-        <div className="shell grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
-          <Reveal className="surface p-6 md:p-8">
-            <SectionHeading
-              eyebrow={systemCopy.home.executionLoop.eyebrow}
-              title={systemCopy.home.executionLoop.title}
-              description={systemCopy.home.executionLoop.description}
-              compact
-            />
+        <div className="shell home-split-layout home-split-layout-wide">
+          <div>
+            <Reveal>
+              <SectionHeading
+                eyebrow={systemCopy.home.executionLoop.eyebrow}
+                title={systemCopy.home.executionLoop.title}
+                description={systemCopy.home.executionLoop.description}
+                compact
+              />
+            </Reveal>
 
             <div className="mt-10 grid gap-4">
               {systemCopy.home.executionLoop.steps.map((step, index) => (
-                <div key={step.label} className="terminal-panel p-4 md:p-5">
-                  <div className="flex items-center gap-3">
-                    <span className="sticker-badge">{step.label}</span>
-                    <span className="hud-line" />
-                    <span className="label-caps text-[rgb(var(--primary))]">0{index + 1}</span>
+                <Reveal key={step.label} delay={0.05 * index}>
+                  <div className="home-process-card">
+                    <div className="flex items-center gap-3">
+                      <span className="sticker-badge">{step.label}</span>
+                      <span className="hud-line" />
+                      <span className="label-caps">0{index + 1}</span>
+                    </div>
+                    <h3 className="mt-4 text-[1.35rem] font-bold tracking-[-0.045em] text-[rgb(var(--ink))] md:text-[1.55rem]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">{step.body}</p>
                   </div>
-                  <h3 className="mt-4 text-[1.35rem] font-bold tracking-[-0.045em] text-[rgb(var(--ink))] md:text-[1.55rem]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[rgb(var(--ink-soft))]">{step.body}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.08} className="surface p-6 md:p-8">
-            <SectionHeading
-              eyebrow={systemCopy.home.whyItMatters.eyebrow}
-              title={systemCopy.home.whyItMatters.title}
-              description={systemCopy.home.whyItMatters.description}
-              compact
-            />
+          <div>
+            <Reveal delay={0.08}>
+              <SectionHeading
+                eyebrow={systemCopy.home.whyItMatters.eyebrow}
+                title={systemCopy.home.whyItMatters.title}
+                description={systemCopy.home.whyItMatters.description}
+                compact
+              />
+            </Reveal>
 
             <div className="mt-10 grid gap-4">
-              {systemCopy.home.whyItMatters.contrasts.map((item) => (
-                <div key={item.label} className="terminal-panel p-5">
-                  <p className="neo-microcopy text-[rgb(var(--secondary))]">{item.label}</p>
-                  <div className="mt-4 space-y-4">
-                    <div>
-                      <p className="label-caps">BEFORE</p>
-                      <p className="mt-2 text-sm leading-7 text-[rgb(var(--ink-muted))]">
-                        {item.before}
-                      </p>
-                    </div>
-                    <div className="border-t border-[rgb(var(--outline))] pt-4">
-                      <p className="label-caps text-[rgb(var(--primary))]">AFTER</p>
-                      <p className="mt-2 text-sm leading-7 text-[rgb(var(--ink-soft))]">
-                        {item.after}
-                      </p>
+              {systemCopy.home.whyItMatters.contrasts.map((item, index) => (
+                <Reveal key={item.label} delay={0.05 * index}>
+                  <div className="home-contrast-card">
+                    <p className="neo-microcopy text-[rgb(var(--ink-muted))]">{item.label}</p>
+                    <div className="mt-4 space-y-4">
+                      <div>
+                        <p className="label-caps">Before</p>
+                        <p className="mt-2 text-sm leading-7 text-[rgb(var(--ink-muted))]">
+                          {item.before}
+                        </p>
+                      </div>
+                      <div className="border-t border-[rgb(var(--outline))] pt-4">
+                        <p className="label-caps text-[rgb(var(--ink-soft))]">After</p>
+                        <p className="mt-2 text-sm leading-7 text-[rgb(var(--ink-soft))]">
+                          {item.after}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 

@@ -6,21 +6,22 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-type SystemModuleNode = {
+type CapabilityModule = {
   id: string;
   title: string;
   summary: string;
   bullets: string[];
 };
 
-type ModuleTone = "primary" | "secondary" | "tertiary";
+type CapabilityTone = "primary" | "secondary" | "tertiary";
 
-type LiveModuleNode = SystemModuleNode & {
+type CapabilityNode = CapabilityModule & {
+  displayTitle: string;
   headline: string;
-  state: string;
-  signal: string;
-  trace: string;
-  tone: ModuleTone;
+  descriptor: string;
+  focus: string;
+  flow: string;
+  tone: CapabilityTone;
   top?: string;
   left?: string;
   right?: string;
@@ -31,7 +32,7 @@ type LiveModuleNode = SystemModuleNode & {
   tilt: string;
 };
 
-const desktopNodeLayout = [
+const orbitLayout = [
   {
     top: "5%",
     left: "2.5%",
@@ -82,139 +83,144 @@ const desktopNodeLayout = [
   }
 ] as const;
 
-const moduleMeta: Record<
+const capabilityMeta: Record<
   string,
   {
     headline: string;
-    state: string;
-    signal: string;
-    trace: string;
-    tone: ModuleTone;
+    descriptor: string;
+    focus: string;
+    flow: string;
+    tone: CapabilityTone;
   }
 > = {
   INPUT_STRUCTURING: {
-    headline: "Normalize raw demand into executable cases.",
-    state: "SCHEMA PASS / LIVE",
-    signal: "missing-field detection + intake normalization active",
-    trace: "raw_signal -> case_schema -> missing_field_map",
+    headline: "Normalize raw demand into an executable case.",
+    descriptor: "Foundational capability",
+    focus: "Turns fragmented intake into a usable operating case before the platform starts deciding.",
+    flow: "Raw demand -> structured case -> missing-field map",
     tone: "secondary"
   },
   CONSTRAINT_ROUTING: {
-    headline: "Apply policy and risk before any route is allowed.",
-    state: "RULE GATES / ACTIVE",
-    signal: "policy threshold checks + path qualification active",
-    trace: "constraint_layer -> risk_gate -> valid_path_set",
+    headline: "Apply policy and risk before any route is chosen.",
+    descriptor: "Routing and policy",
+    focus: "Protects downstream execution by narrowing the path set before handoff begins.",
+    flow: "Constraint layer -> risk gate -> qualified path set",
     tone: "primary"
   },
   DUAL_SIDE_EVALUATION: {
-    headline: "Score demand and supply as one operating decision.",
-    state: "FIT MATRIX / ACTIVE",
-    signal: "compatibility, trust, capacity, and history in sync",
-    trace: "demand_fit + supply_fit -> trust_weighted score",
+    headline: "Evaluate demand and supply as one operating decision.",
+    descriptor: "Decision quality",
+    focus: "Scores fit, trust, capacity, and behavioral history on both sides of the exchange.",
+    flow: "Demand fit + supply fit -> trust-weighted decision",
     tone: "secondary"
   },
   WORKFLOW_EXECUTION: {
-    headline: "Keep execution inside one traceable control surface.",
-    state: "TASK FLOW / ACTIVE",
-    signal: "state transitions, ownership, and escalation in control",
-    trace: "assignment -> owner_state -> evidence -> escalation",
+    headline: "Keep execution inside one traceable operating surface.",
+    descriptor: "Execution continuity",
+    focus: "Maintains ownership, next actions, and escalation rules after a match has been made.",
+    flow: "Assignment -> owner state -> evidence -> escalation",
     tone: "primary"
   },
   OUTCOME_MEMORY: {
     headline: "Convert outcomes into reusable operational memory.",
-    state: "MEMORY LOOP / WARM",
-    signal: "failures, delays, disputes, and completions retained",
-    trace: "outcome_capture -> learning_weights -> future routing",
+    descriptor: "Learning layer",
+    focus: "Captures what actually happened so routing and evaluation improve over time.",
+    flow: "Outcome capture -> learning weights -> future routing",
     tone: "primary"
   },
   DOMAIN_ADAPTATION: {
-    headline: "Swap domain packs without replacing the system core.",
-    state: "PACK SWITCH / READY",
-    signal: "schema overlays and policy packs remain modular",
-    trace: "domain_pack -> schema_overlay -> workflow variant",
+    headline: "Deploy the same core across different service environments.",
+    descriptor: "Deployment layer",
+    focus: "Allows domain packs, policies, and workflows to change without replacing the underlying core.",
+    flow: "Domain pack -> schema overlay -> workflow variant",
     tone: "tertiary"
   }
 };
 
 const toneClasses: Record<
-  ModuleTone,
+  CapabilityTone,
   {
     badge: string;
     dot: string;
     activeRing: string;
     activeBorder: string;
-    activeGlow: string;
-    activeText: string;
+    activeLabel: string;
     pathStroke: string;
     panelGlow: CSSProperties;
   }
 > = {
   primary: {
-    badge: "border-[rgb(var(--primary))] bg-[rgb(var(--primary-veil))] text-[rgb(var(--primary))]",
+    badge: "border-[rgb(var(--primary))] bg-[rgba(31,36,48,0.06)] text-[rgb(var(--ink))]",
     dot: "bg-[rgb(var(--primary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(111,255,176,0.28),0_0_30px_rgba(111,255,176,0.16)]",
+    activeRing: "shadow-[0_0_0_1px_rgba(31,36,48,0.12),0_22px_42px_rgba(31,36,48,0.12)]",
     activeBorder: "border-[rgb(var(--primary))]",
-    activeGlow: "text-[rgb(var(--primary))]",
-    activeText: "text-[rgb(var(--ink))]",
-    pathStroke: "rgb(var(--primary))",
+    activeLabel: "text-[rgb(var(--ink))]",
+    pathStroke: "rgba(31, 36, 48, 0.48)",
     panelGlow: {
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(111,255,176,0.16), 0 0 34px rgba(111,255,176,0.16), 0 26px 56px rgba(0,0,0,0.36)"
+        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.09), 0 0 0 1px rgba(31,36,48,0.08)"
     }
   },
   secondary: {
-    badge: "border-[rgb(var(--secondary))] bg-[rgb(var(--secondary-veil))] text-[rgb(var(--secondary))]",
+    badge: "border-[rgb(var(--secondary))] bg-[rgba(109,120,141,0.08)] text-[rgb(var(--ink-soft))]",
     dot: "bg-[rgb(var(--secondary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(80,212,255,0.24),0_0_30px_rgba(80,212,255,0.14)]",
+    activeRing: "shadow-[0_0_0_1px_rgba(109,120,141,0.18),0_20px_40px_rgba(109,120,141,0.1)]",
     activeBorder: "border-[rgb(var(--secondary))]",
-    activeGlow: "text-[rgb(var(--secondary))]",
-    activeText: "text-[rgb(var(--ink))]",
-    pathStroke: "rgb(var(--secondary))",
+    activeLabel: "text-[rgb(var(--ink-soft))]",
+    pathStroke: "rgba(109, 120, 141, 0.52)",
     panelGlow: {
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(80,212,255,0.15), 0 0 34px rgba(80,212,255,0.14), 0 26px 56px rgba(0,0,0,0.36)"
+        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.08), 0 0 0 1px rgba(109,120,141,0.1)"
     }
   },
   tertiary: {
-    badge: "border-[rgb(var(--tertiary))] bg-[rgb(var(--tertiary-container))] text-[rgb(var(--ink))]",
+    badge: "border-[rgb(var(--tertiary))] bg-[rgba(147,123,93,0.08)] text-[rgb(var(--ink-soft))]",
     dot: "bg-[rgb(var(--tertiary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(144,166,255,0.24),0_0_28px_rgba(144,166,255,0.14)]",
+    activeRing: "shadow-[0_0_0_1px_rgba(147,123,93,0.18),0_20px_40px_rgba(147,123,93,0.1)]",
     activeBorder: "border-[rgb(var(--tertiary))]",
-    activeGlow: "text-[rgb(var(--ink))]",
-    activeText: "text-[rgb(var(--ink))]",
-    pathStroke: "rgb(var(--tertiary))",
+    activeLabel: "text-[rgb(var(--ink-soft))]",
+    pathStroke: "rgba(147, 123, 93, 0.54)",
     panelGlow: {
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(144,166,255,0.14), 0 0 30px rgba(144,166,255,0.12), 0 26px 56px rgba(0,0,0,0.36)"
+        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.08), 0 0 0 1px rgba(147,123,93,0.1)"
     }
   }
 };
 
-function buildLiveModule(module: SystemModuleNode, index: number): LiveModuleNode {
-  const layout = desktopNodeLayout[index];
-  const meta = moduleMeta[module.id] ?? {
-    headline: module.title,
-    state: "NODE / ACTIVE",
-    signal: module.summary,
-    trace: module.bullets.join(" -> "),
+function formatModuleTitle(value: string) {
+  return value
+    .toLowerCase()
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function buildCapabilityNode(module: CapabilityModule, index: number): CapabilityNode {
+  const layout = orbitLayout[index];
+  const meta = capabilityMeta[module.id] ?? {
+    headline: formatModuleTitle(module.title),
+    descriptor: "Core capability",
+    focus: module.summary,
+    flow: module.bullets.join(" -> "),
     tone: "secondary" as const
   };
 
   return {
     ...module,
     ...meta,
-    ...layout
+    ...layout,
+    displayTitle: formatModuleTitle(module.title)
   };
 }
 
-function ModuleSelector({
+function CapabilitySelector({
   module,
   index,
   active,
   onSelect,
   compact = false
 }: {
-  module: LiveModuleNode;
+  module: CapabilityNode;
   index: number;
   active: boolean;
   onSelect: () => void;
@@ -228,22 +234,22 @@ function ModuleSelector({
       onClick={onSelect}
       aria-pressed={active}
       className={cn(
-        "system-node system-node-button w-full text-left",
+        "capability-node capability-node-button w-full text-left",
         compact ? "p-4" : "p-4 xl:p-[0.95rem]",
         active ? cn("z-20", tone.activeBorder, tone.activeRing) : "z-10 opacity-70"
       )}
       animate={{
-        y: active ? [0, -6, 0] : [0, -2, 0],
-        scale: active ? 1.03 : 0.97,
-        opacity: active ? 1 : 0.7
+        y: active ? [0, -5, 0] : [0, -2, 0],
+        scale: active ? 1.02 : 0.975,
+        opacity: active ? 1 : 0.72
       }}
       whileHover={{
-        y: active ? -6 : -4,
-        scale: active ? 1.04 : 0.99,
+        y: active ? -5 : -3,
+        scale: active ? 1.03 : 0.99,
         opacity: 1
       }}
       transition={{
-        duration: active ? 4.2 : 5.2,
+        duration: active ? 4.4 : 5.4,
         repeat: Infinity,
         ease: "easeInOut",
         delay: index * 0.16
@@ -252,11 +258,11 @@ function ModuleSelector({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1.5">
-          <p className={cn("label-caps", active ? tone.activeGlow : "text-[rgb(var(--ink-muted))]")}>
+          <p className={cn("label-caps", active ? tone.activeLabel : "text-[rgb(var(--ink-muted))]")}>
             {module.title}
           </p>
-          <p className="text-[0.63rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-muted))]">
-            Node 0{index + 1}
+          <p className="text-[0.76rem] font-semibold tracking-[-0.02em] text-[rgb(var(--ink))]">
+            {module.displayTitle}
           </p>
         </div>
         <span
@@ -269,17 +275,15 @@ function ModuleSelector({
 
       <p
         className={cn(
-          "system-node-summary mt-3",
-          compact ? "text-[0.8rem] leading-6" : "text-[0.78rem] leading-6 xl:text-[0.82rem]"
+          "capability-node-summary mt-3",
+          compact ? "text-[0.82rem] leading-6" : "text-[0.8rem] leading-6 xl:text-[0.84rem]"
         )}
       >
         {module.summary}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
-        <span className={cn("project-chip", active ? tone.badge : "")}>
-          {module.bullets[0]}
-        </span>
+        <span className={cn("project-chip", active ? tone.badge : "")}>{module.bullets[0]}</span>
       </div>
     </motion.button>
   );
@@ -287,16 +291,16 @@ function ModuleSelector({
 
 export function HeroScene({
   modules,
-  coreTitle,
-  coreSummary
+  title,
+  summary
 }: {
-  modules: SystemModuleNode[];
-  coreTitle: string;
-  coreSummary: string;
+  modules: CapabilityModule[];
+  title: string;
+  summary: string;
 }) {
-  const liveModules = modules.slice(0, 6).map(buildLiveModule);
-  const [activeId, setActiveId] = useState(liveModules[0]?.id ?? "");
-  const activeModule = liveModules.find((module) => module.id === activeId) ?? liveModules[0];
+  const capabilityNodes = modules.slice(0, 6).map(buildCapabilityNode);
+  const [activeId, setActiveId] = useState(capabilityNodes[0]?.id ?? "");
+  const activeModule = capabilityNodes.find((module) => module.id === activeId) ?? capabilityNodes[0];
 
   if (!activeModule) {
     return null;
@@ -305,30 +309,15 @@ export function HeroScene({
   const activeTone = toneClasses[activeModule.tone];
 
   return (
-    <div
-      className="terminal-panel relative min-h-[24rem] overflow-hidden p-4 md:p-5 lg:min-h-[39rem]"
-      aria-label={`${coreTitle} live module map`}
-    >
-      <div className="absolute inset-0 outline-grid opacity-40" />
-      <div
-        className="absolute inset-x-0 top-0 h-24"
-        style={{
-          background:
-            "radial-gradient(circle at top, rgba(80, 212, 255, 0.14), transparent 68%)"
-        }}
-      />
-
+    <div className="capability-map-shell" aria-label={`${title} capability map`}>
       <div className="relative space-y-4 lg:hidden">
-        <div className="system-node system-node-core system-core-console p-5" style={activeTone.panelGlow}>
+        <div className="capability-center-card p-5" style={activeTone.panelGlow}>
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-2">
-              <p className="label-caps text-[rgb(var(--primary))]">ACTIVE_MODULE</p>
+              <p className="label-caps">{title}</p>
               <span className={cn("sticker-badge", activeTone.badge)}>{activeModule.title}</span>
             </div>
-            <div className="system-focus-indicator">
-              <span className={cn("h-2.5 w-2.5 rounded-full", activeTone.dot)} />
-              <span className="label-caps text-[0.6rem]">{activeModule.state}</span>
-            </div>
+            <div className="capability-focus-chip">{activeModule.descriptor}</div>
           </div>
 
           <AnimatePresence mode="wait" initial={false}>
@@ -346,6 +335,7 @@ export function HeroScene({
               <p className="max-w-[34ch] text-[0.9rem] leading-6 text-[rgb(var(--ink-soft))] md:text-[0.94rem] md:leading-7">
                 {activeModule.summary}
               </p>
+
               <div className="flex flex-wrap gap-2">
                 {activeModule.bullets.map((item) => (
                   <span key={item} className={cn("project-chip", activeTone.badge)}>
@@ -353,17 +343,18 @@ export function HeroScene({
                   </span>
                 ))}
               </div>
-              <div className="system-focus-readout">
-                <div className="system-focus-readout-panel">
-                  <p className="label-caps">SIGNAL_STATE</p>
-                  <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-soft))]">
-                    {activeModule.signal}
+
+              <div className="capability-detail-grid">
+                <div className="capability-detail-card">
+                  <p className="label-caps">Primary role</p>
+                  <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-soft))]">
+                    {activeModule.focus}
                   </p>
                 </div>
-                <div className="system-focus-readout-panel">
-                  <p className="label-caps">TRACE_PATH</p>
-                  <p className="mt-2 text-[0.78rem] leading-6 text-[rgb(var(--ink-muted))]">
-                    {activeModule.trace}
+                <div className="capability-detail-card">
+                  <p className="label-caps">Platform flow</p>
+                  <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">
+                    {activeModule.flow}
                   </p>
                 </div>
               </div>
@@ -371,14 +362,14 @@ export function HeroScene({
           </AnimatePresence>
 
           <div className="mt-5 border-t border-[rgb(var(--outline))] pt-4">
-            <p className="label-caps">OPERATING_CONTEXT</p>
-            <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">{coreSummary}</p>
+            <p className="label-caps">Platform context</p>
+            <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-muted))]">{summary}</p>
           </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2">
-          {liveModules.map((module, index) => (
-            <ModuleSelector
+          {capabilityNodes.map((module, index) => (
+            <CapabilitySelector
               key={module.id}
               module={module}
               index={index}
@@ -391,20 +382,14 @@ export function HeroScene({
       </div>
 
       <div className="relative hidden h-[35rem] lg:block xl:h-[37rem]">
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox="0 0 1000 760"
-          fill="none"
-          aria-hidden="true"
-        >
-          {liveModules.map((module) => (
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 760" fill="none" aria-hidden="true">
+          {capabilityNodes.map((module) => (
             <path
               key={`${module.id}-base`}
               d={module.path}
-              stroke="rgb(var(--outline-strong))"
-              strokeOpacity="0.3"
-              strokeWidth="1.4"
-              strokeDasharray="7 11"
+              stroke="rgba(198, 192, 181, 0.46)"
+              strokeWidth="1.25"
+              strokeDasharray="8 12"
             />
           ))}
 
@@ -412,20 +397,20 @@ export function HeroScene({
             key={`${activeModule.id}-active-path`}
             d={activeModule.path}
             stroke={activeTone.pathStroke}
-            strokeWidth="2.35"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray="10 10"
             animate={{
-              opacity: [0.45, 0.95, 0.45],
+              opacity: [0.35, 0.8, 0.35],
               strokeDashoffset: [0, -18]
             }}
             transition={{
               opacity: { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
-              strokeDashoffset: { duration: 2.4, repeat: Infinity, ease: "linear" }
+              strokeDashoffset: { duration: 2.6, repeat: Infinity, ease: "linear" }
             }}
           />
 
-          {liveModules.map((module) => {
+          {capabilityNodes.map((module) => {
             const tone = toneClasses[module.tone];
             const isActive = module.id === activeModule.id;
 
@@ -434,9 +419,8 @@ export function HeroScene({
                 key={`${module.id}-dot`}
                 cx={module.dotX}
                 cy={module.dotY}
-                r={isActive ? 6 : 4.5}
-                fill={isActive ? tone.pathStroke : "rgb(var(--outline-strong))"}
-                fillOpacity={isActive ? "1" : "0.75"}
+                r={isActive ? 5.5 : 4}
+                fill={isActive ? tone.pathStroke : "rgba(198, 192, 181, 0.9)"}
               />
             );
           })}
@@ -449,43 +433,28 @@ export function HeroScene({
             fill="none"
             stroke={activeTone.pathStroke}
             strokeOpacity="0.45"
-            animate={{ r: [6, 10, 6], opacity: [0.3, 0.7, 0.3] }}
+            animate={{ r: [6, 10, 6], opacity: [0.22, 0.52, 0.22] }}
             transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
           />
-
-          <circle cx="500" cy="380" r="7" fill="rgb(var(--primary))" />
         </svg>
 
-        <div
-          className="absolute left-1/2 top-1/2 h-[19rem] w-[19rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
-          style={{ borderColor: "rgb(var(--outline) / 0.44)" }}
-        />
-        <div
-          className="absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
-          style={{ borderColor: "rgb(var(--grid) / 0.48)" }}
-        />
+        <div className="capability-map-ring capability-map-ring-inner" />
+        <div className="capability-map-ring capability-map-ring-outer" />
 
         <motion.div
-          className="absolute left-1/2 top-1/2 h-[11rem] w-[11rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgb(var(--primary))]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(111, 255, 176, 0.14), rgba(17, 33, 25, 0.1) 55%, transparent 70%)"
-          }}
-          animate={{ scale: [0.96, 1.02, 0.96], opacity: [0.68, 1, 0.68] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="capability-map-halo"
+          animate={{ scale: [0.98, 1.02, 0.98], opacity: [0.5, 0.82, 0.5] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="absolute left-1/2 top-1/2 z-20 w-[22rem] -translate-x-1/2 -translate-y-1/2 xl:w-[23rem]">
-          <div className="system-node system-node-core system-core-console px-5 py-5 xl:px-6 xl:py-6" style={activeTone.panelGlow}>
+          <div className="capability-center-card px-5 py-5 xl:px-6 xl:py-6" style={activeTone.panelGlow}>
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-2">
-                <p className="label-caps text-[rgb(var(--primary))]">ACTIVE_MODULE</p>
+                <p className="label-caps">{title}</p>
                 <span className={cn("sticker-badge", activeTone.badge)}>{activeModule.title}</span>
               </div>
-              <div className="system-focus-indicator">
-                <span className={cn("h-2.5 w-2.5 rounded-full", activeTone.dot)} />
-                <span className="label-caps text-[0.6rem]">{activeModule.state}</span>
-              </div>
+              <div className="capability-focus-chip">{activeModule.descriptor}</div>
             </div>
 
             <AnimatePresence mode="wait" initial={false}>
@@ -512,17 +481,17 @@ export function HeroScene({
                   ))}
                 </div>
 
-                <div className="system-focus-readout">
-                  <div className="system-focus-readout-panel">
-                    <p className="label-caps">SIGNAL_STATE</p>
-                    <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-soft))]">
-                      {activeModule.signal}
+                <div className="capability-detail-grid">
+                  <div className="capability-detail-card">
+                    <p className="label-caps">Primary role</p>
+                    <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-soft))]">
+                      {activeModule.focus}
                     </p>
                   </div>
-                  <div className="system-focus-readout-panel">
-                    <p className="label-caps">TRACE_PATH</p>
-                    <p className="mt-2 text-[0.78rem] leading-6 text-[rgb(var(--ink-muted))]">
-                      {activeModule.trace}
+                  <div className="capability-detail-card">
+                    <p className="label-caps">Platform flow</p>
+                    <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">
+                      {activeModule.flow}
                     </p>
                   </div>
                 </div>
@@ -530,13 +499,13 @@ export function HeroScene({
             </AnimatePresence>
 
             <div className="mt-5 border-t border-[rgb(var(--outline))] pt-4">
-              <p className="label-caps">OPERATING_CONTEXT</p>
-              <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">{coreSummary}</p>
+              <p className="label-caps">Platform context</p>
+              <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-muted))]">{summary}</p>
             </div>
           </div>
         </div>
 
-        {liveModules.map((module, index) => (
+        {capabilityNodes.map((module, index) => (
           <motion.div
             key={module.id}
             className={cn("absolute w-[10.85rem] xl:w-[11.5rem]", module.tilt)}
@@ -547,7 +516,7 @@ export function HeroScene({
               bottom: module.bottom
             }}
           >
-            <ModuleSelector
+            <CapabilitySelector
               module={module}
               index={index}
               active={module.id === activeModule.id}
