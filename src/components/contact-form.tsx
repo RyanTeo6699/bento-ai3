@@ -3,11 +3,7 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
-import {
-  PUBLIC_CONTACT_EMAIL,
-  PUBLIC_CONTACT_EMAIL_HREF,
-  replaceLegacyContactEmail
-} from "@/lib/contact-details";
+import { hasDirectContactDetail, replaceLegacyContactEmail } from "@/lib/contact-details";
 import type { Locale } from "@/lib/i18n";
 
 type FieldName = "name" | "company" | "email" | "projectType" | "message";
@@ -77,8 +73,42 @@ function readField(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function normalizeStatusMessage(value: string) {
-  return replaceLegacyContactEmail(value);
+function getSanitizedStatusMessage(locale: Locale, variant: "default" | "error") {
+  if (variant === "error") {
+    if (locale === "zh-Hant") {
+      return "表單目前無法完成送出。請稍後再試，或使用本頁聯絡圖示直接跟進。";
+    }
+
+    if (locale === "ja") {
+      return "フォームは現在送信を完了できません。少し時間をおいて再試行するか、このページの連絡アイコンから直接進めてください。";
+    }
+
+    return "The form could not complete submission. Retry shortly, or use the contact icons on this page for direct follow-up.";
+  }
+
+  if (locale === "zh-Hant") {
+    return "系統已收到此請求。如需直接跟進，請使用本頁聯絡圖示。";
+  }
+
+  if (locale === "ja") {
+    return "リクエストは受信されています。直接のフォローが必要な場合は、このページの連絡アイコンを利用してください。";
+  }
+
+  return "The request has been received. Use the contact icons on this page if direct follow-up is needed.";
+}
+
+function normalizeStatusMessage(
+  value: string,
+  locale: Locale,
+  variant: "default" | "error" = "default"
+) {
+  const normalized = replaceLegacyContactEmail(value);
+
+  if (!hasDirectContactDetail(normalized)) {
+    return normalized;
+  }
+
+  return getSanitizedStatusMessage(locale, variant);
 }
 
 export function ContactForm({ locale, copy }: ContactFormProps) {
@@ -184,7 +214,11 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
         setFieldErrors(result.fieldErrors ?? {});
         setStatus({
           state: "error",
-          message: normalizeStatusMessage(result.error ?? copy.statuses.fallbackError),
+          message: normalizeStatusMessage(
+            result.error ?? copy.statuses.fallbackError,
+            locale,
+            "error"
+          ),
           reference: result.reference
         });
         return;
@@ -196,19 +230,22 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
         result.deliveryMode === "logged-only"
           ? {
               state: "notice",
-              message: normalizeStatusMessage(result.message ?? copy.statuses.fallbackError),
+              message: normalizeStatusMessage(
+                result.message ?? copy.statuses.fallbackError,
+                locale
+              ),
               reference: result.reference
             }
           : {
               state: "success",
-              message: normalizeStatusMessage(result.message ?? copy.statuses.submitting),
+              message: normalizeStatusMessage(result.message ?? copy.statuses.submitting, locale),
               reference: result.reference
             }
       );
     } catch {
       setStatus({
         state: "error",
-        message: normalizeStatusMessage(copy.statuses.fallbackError)
+        message: normalizeStatusMessage(copy.statuses.fallbackError, locale, "error")
       });
     }
   }
@@ -240,18 +277,6 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
           {"reference" in status && status.reference ? (
             <p className="mt-2 font-[var(--font-label)] text-[0.7rem] font-extrabold uppercase tracking-[0.16em]">
               {copy.statuses.reference}: {status.reference}
-            </p>
-          ) : null}
-          {status.state === "success" || status.state === "notice" ? (
-            <p className="mt-2 text-xs leading-6 text-[rgb(var(--ink-soft))]">
-              {copy.statuses.successFollowUpPrefix}{" "}
-              <a
-                href={PUBLIC_CONTACT_EMAIL_HREF}
-                className="break-all underline underline-offset-4"
-              >
-                {PUBLIC_CONTACT_EMAIL}
-              </a>
-              .
             </p>
           ) : null}
         </div>

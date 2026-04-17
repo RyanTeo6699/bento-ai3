@@ -92,27 +92,21 @@ export function SiteFooter({
 
             <div className="space-y-5">
               <p className="footer-heading">{copy.contactTitle}</p>
-              <div className="space-y-3">
-                {contactChannels.map((channel) => (
-                  <a
-                    key={channel.label}
-                    href={channel.href}
-                    aria-label={`${channel.label}: ${channel.value}`}
-                    className="flex items-center gap-3 rounded-[1.2rem] border border-[rgb(var(--outline)/0.76)] bg-[rgba(255,255,255,0.72)] px-3.5 py-3 transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)]"
-                    target={channel.icon === "linkedin" ? "_blank" : undefined}
-                    rel={channel.icon === "linkedin" ? "noreferrer" : undefined}
-                  >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[rgb(var(--outline)/0.8)] bg-[rgb(var(--surface-lowest))]">
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-3">
+                  {contactChannels.map((channel) => (
+                    <a
+                      key={channel.icon}
+                      href={channel.href}
+                      aria-label={channel.ariaLabel}
+                      className="grid h-12 w-12 place-items-center rounded-full border border-[rgb(var(--outline)/0.76)] bg-[rgba(255,255,255,0.72)] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)]"
+                      target={channel.external ? "_blank" : undefined}
+                      rel={channel.external ? "noreferrer" : undefined}
+                    >
                       <ContactChannelIcon kind={channel.icon} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="footer-eyebrow">{channel.label}</p>
-                      <p className="mt-1 break-all text-sm font-semibold leading-6 text-[rgb(var(--ink))]">
-                        {channel.value}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+                    </a>
+                  ))}
+                </div>
                 <p className="text-sm leading-7 text-[rgb(var(--ink-muted))]">{copy.closingLine}</p>
               </div>
             </div>

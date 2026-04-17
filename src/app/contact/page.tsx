@@ -7,11 +7,7 @@ import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { getCurrentLocale } from "@/lib/get-locale";
 import { getDictionary } from "@/lib/i18n";
-import {
-  PUBLIC_CONTACT_EMAIL,
-  getPublicContactChannels,
-  replaceLegacyContactEmail
-} from "@/lib/contact-details";
+import { getPublicContactChannels } from "@/lib/contact-details";
 import { createPageMetadata } from "@/lib/metadata";
 
 export function generateMetadata(): Metadata {
@@ -30,8 +26,8 @@ export default function ContactPage() {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
   const contactChannels = getPublicContactChannels(locale);
-  const heroMetrics = dictionary.contact.hero.metrics.map((metric) =>
-    metric.value.includes("@") ? { ...metric, value: PUBLIC_CONTACT_EMAIL } : metric
+  const heroMetrics = dictionary.contact.hero.metrics.filter(
+    (metric) => !metric.value.includes("@")
   );
 
   return (
@@ -55,30 +51,22 @@ export default function ContactPage() {
             </Reveal>
 
             <div className="grid gap-4">
-              {contactChannels.map((channel, index) => (
-                <Reveal key={channel.label} delay={0.06 * index}>
-                  <a
-                    href={channel.href}
-                    className="surface flex items-start gap-4 p-5 transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)]"
-                    aria-label={`${channel.label}: ${channel.value}`}
-                    target={channel.icon === "linkedin" ? "_blank" : undefined}
-                    rel={channel.icon === "linkedin" ? "noreferrer" : undefined}
-                  >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[rgb(var(--outline)/0.8)] bg-[rgb(var(--surface-lowest))] shadow-[0_10px_24px_rgba(15,23,42,0.05)]">
+              <Reveal delay={0.04}>
+                <div className="surface flex items-center gap-3 p-5">
+                  {contactChannels.map((channel) => (
+                    <a
+                      key={channel.icon}
+                      href={channel.href}
+                      aria-label={channel.ariaLabel}
+                      className="grid h-12 w-12 place-items-center rounded-full border border-[rgb(var(--outline)/0.76)] bg-[rgb(var(--surface-lowest))] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_14px_28px_rgba(15,23,42,0.08)]"
+                      target={channel.external ? "_blank" : undefined}
+                      rel={channel.external ? "noreferrer" : undefined}
+                    >
                       <ContactChannelIcon kind={channel.icon} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="neo-microcopy">{channel.label}</p>
-                      <p className="mt-3 break-all text-[1rem] font-semibold leading-6 tracking-[-0.03em] text-[rgb(var(--ink))]">
-                        {channel.value}
-                      </p>
-                      <p className="mt-2 text-sm leading-7 text-[rgb(var(--ink-soft))]">
-                        {replaceLegacyContactEmail(channel.note)}
-                      </p>
-                    </div>
-                  </a>
-                </Reveal>
-              ))}
+                    </a>
+                  ))}
+                </div>
+              </Reveal>
 
               <Reveal delay={0.18} className="surface p-6">
                 <p className="section-kicker sticker-rotate-3 text-[0.68rem]">
