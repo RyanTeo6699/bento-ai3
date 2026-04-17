@@ -5,10 +5,10 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getSharedCtas } from "@/lib/cta";
+import { getPublicContactChannels } from "@/lib/contact-details";
 import { getCurrentLocale } from "@/lib/get-locale";
 import { getDictionary } from "@/lib/i18n";
 import { getHtmlLang, getSiteMetadataBase } from "@/lib/metadata";
-import { getContactChannels } from "@/lib/site-data";
 import { getSystemSiteCopy } from "@/lib/system-site-copy";
 
 import "./globals.css";
@@ -50,8 +50,7 @@ export default function RootLayout({
   const dictionary = getDictionary(locale);
   const sharedCtas = getSharedCtas(locale);
   const systemCopy = getSystemSiteCopy(locale);
-  const contactChannels = getContactChannels(locale);
-  const emailChannel = contactChannels.find((item) => item.href?.startsWith("mailto:"));
+  const contactChannels = getPublicContactChannels(locale);
 
   return (
     <html lang={getHtmlLang(locale)}>
@@ -83,8 +82,7 @@ export default function RootLayout({
               closingLine: systemCopy.footer.closingLine
             }}
             companyDescription={systemCopy.footer.description}
-            emailHref={emailChannel?.href ?? "mailto:ryanteo0628@gmail.com"}
-            emailValue={emailChannel?.value ?? "ryanteo0628@gmail.com"}
+            contactChannels={contactChannels}
           />
         </div>
       </body>

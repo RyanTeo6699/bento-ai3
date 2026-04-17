@@ -3,6 +3,11 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
+import {
+  PUBLIC_CONTACT_EMAIL,
+  PUBLIC_CONTACT_EMAIL_HREF,
+  replaceLegacyContactEmail
+} from "@/lib/contact-details";
 import type { Locale } from "@/lib/i18n";
 
 type FieldName = "name" | "company" | "email" | "projectType" | "message";
@@ -70,6 +75,10 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function readField(formData: FormData, key: string) {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeStatusMessage(value: string) {
+  return replaceLegacyContactEmail(value);
 }
 
 export function ContactForm({ locale, copy }: ContactFormProps) {
@@ -175,7 +184,7 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
         setFieldErrors(result.fieldErrors ?? {});
         setStatus({
           state: "error",
-          message: result.error ?? copy.statuses.fallbackError,
+          message: normalizeStatusMessage(result.error ?? copy.statuses.fallbackError),
           reference: result.reference
         });
         return;
@@ -187,19 +196,19 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
         result.deliveryMode === "logged-only"
           ? {
               state: "notice",
-              message: result.message ?? copy.statuses.fallbackError,
+              message: normalizeStatusMessage(result.message ?? copy.statuses.fallbackError),
               reference: result.reference
             }
           : {
               state: "success",
-              message: result.message ?? copy.statuses.submitting,
+              message: normalizeStatusMessage(result.message ?? copy.statuses.submitting),
               reference: result.reference
             }
       );
     } catch {
       setStatus({
         state: "error",
-        message: copy.statuses.fallbackError
+        message: normalizeStatusMessage(copy.statuses.fallbackError)
       });
     }
   }
@@ -237,10 +246,10 @@ export function ContactForm({ locale, copy }: ContactFormProps) {
             <p className="mt-2 text-xs leading-6 text-[rgb(var(--ink-soft))]">
               {copy.statuses.successFollowUpPrefix}{" "}
               <a
-                href="mailto:ryanteo0628@gmail.com"
+                href={PUBLIC_CONTACT_EMAIL_HREF}
                 className="break-all underline underline-offset-4"
               >
-                {copy.statuses.successFollowUpLink}
+                {PUBLIC_CONTACT_EMAIL}
               </a>
               .
             </p>
