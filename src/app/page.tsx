@@ -212,44 +212,24 @@ export default function HomePage() {
 
       <section className="site-section">
         <div className="shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow={systemCopy.home.modules.eyebrow}
-              title={systemCopy.home.modules.title}
-              description={systemCopy.home.modules.description}
-              compact
-            />
-          </Reveal>
+          <div className="home-architecture-block">
+            <Reveal>
+              <SectionHeading
+                eyebrow={systemCopy.home.modules.eyebrow}
+                title={systemCopy.home.modules.title}
+                description={systemCopy.home.modules.description}
+                compact
+                className="home-architecture-heading"
+              />
+            </Reveal>
 
-          <Reveal delay={0.08} className="mt-12">
-            <HeroScene
-              modules={systemCopy.home.modules.items}
-              title={systemCopy.home.modules.title}
-              summary={systemCopy.company.description}
-            />
-          </Reveal>
-
-          <div className="mt-8 grid gap-5 xl:grid-cols-2">
-            {systemCopy.home.modules.items.map((module, index) => (
-              <Reveal key={module.id} delay={0.05 * index}>
-                <div className="home-module-card">
-                  <p className="neo-microcopy text-[rgb(var(--ink-muted))]">{module.title}</p>
-                  <h3 className="mt-3 text-[1.28rem] font-semibold tracking-[-0.045em] text-[rgb(var(--ink))] md:text-[1.45rem]">
-                    {formatModuleTitle(module.title)}
-                  </h3>
-                  <p className="mt-4 text-[0.95rem] leading-7 text-[rgb(var(--ink-soft))]">
-                    {module.summary}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {module.bullets.slice(0, 2).map((item) => (
-                      <span key={item} className="project-chip">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+            <Reveal delay={0.08} className="mt-12">
+              <HeroScene
+                modules={systemCopy.home.modules.items}
+                title={systemCopy.home.modules.title}
+                summary={systemCopy.company.description}
+              />
+            </Reveal>
           </div>
         </div>
       </section>

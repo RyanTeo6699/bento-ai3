@@ -6,22 +6,23 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-type CapabilityModule = {
+type ArchitectureModule = {
   id: string;
   title: string;
   summary: string;
   bullets: string[];
 };
 
-type CapabilityTone = "primary" | "secondary" | "tertiary";
+type ArchitectureTone = "primary" | "secondary" | "tertiary";
 
-type CapabilityNode = CapabilityModule & {
+type ArchitectureNode = ArchitectureModule & {
   displayTitle: string;
   headline: string;
   descriptor: string;
+  status: string;
   focus: string;
   flow: string;
-  tone: CapabilityTone;
+  tone: ArchitectureTone;
   top?: string;
   left?: string;
   right?: string;
@@ -34,111 +35,118 @@ type CapabilityNode = CapabilityModule & {
 
 const orbitLayout = [
   {
-    top: "5%",
-    left: "2.5%",
-    path: "M500 380 C432 304 346 214 246 144",
-    dotX: 246,
-    dotY: 144,
+    top: "6%",
+    left: "3%",
+    path: "M500 380 C430 308 346 224 248 150",
+    dotX: 248,
+    dotY: 150,
     tilt: "-rotate-2"
   },
   {
-    top: "5%",
-    right: "2.5%",
-    path: "M500 380 C568 304 654 214 754 144",
-    dotX: 754,
-    dotY: 144,
+    top: "6%",
+    right: "3%",
+    path: "M500 380 C570 308 654 224 752 150",
+    dotX: 752,
+    dotY: 150,
     tilt: "rotate-[1.5deg]"
   },
   {
-    top: "30%",
-    left: "0.75%",
-    path: "M500 380 C410 366 305 350 188 334",
-    dotX: 188,
-    dotY: 334,
+    top: "31%",
+    left: "0.5%",
+    path: "M500 380 C408 366 304 352 190 336",
+    dotX: 190,
+    dotY: 336,
     tilt: "-rotate-1"
   },
   {
-    top: "30%",
-    right: "0.75%",
-    path: "M500 380 C590 366 695 350 812 334",
-    dotX: 812,
-    dotY: 334,
+    top: "31%",
+    right: "0.5%",
+    path: "M500 380 C592 366 696 352 810 336",
+    dotX: 810,
+    dotY: 336,
     tilt: "rotate-2"
   },
   {
-    bottom: "6%",
+    bottom: "7%",
     left: "6%",
-    path: "M500 380 C440 456 368 540 286 608",
+    path: "M500 380 C438 456 366 538 286 606",
     dotX: 286,
-    dotY: 608,
+    dotY: 606,
     tilt: "rotate-1"
   },
   {
-    bottom: "6%",
+    bottom: "7%",
     right: "6%",
-    path: "M500 380 C560 456 632 540 714 608",
+    path: "M500 380 C562 456 634 538 714 606",
     dotX: 714,
-    dotY: 608,
+    dotY: 606,
     tilt: "-rotate-[1.5deg]"
   }
 ] as const;
 
-const capabilityMeta: Record<
+const moduleMeta: Record<
   string,
   {
     headline: string;
     descriptor: string;
+    status: string;
     focus: string;
     flow: string;
-    tone: CapabilityTone;
+    tone: ArchitectureTone;
   }
 > = {
   INPUT_STRUCTURING: {
-    headline: "Normalize raw demand into an executable case.",
-    descriptor: "Foundational capability",
-    focus: "Turns fragmented intake into a usable operating case before the platform starts deciding.",
-    flow: "Raw demand -> structured case -> missing-field map",
+    headline: "Normalize fragmented demand before routing begins.",
+    descriptor: "Input layer",
+    status: "LIVE INTAKE",
+    focus: "Transforms vague or incomplete requests into structured operational cases.",
+    flow: "Raw demand -> field normalization -> executable case",
     tone: "secondary"
   },
   CONSTRAINT_ROUTING: {
-    headline: "Apply policy and risk before any route is chosen.",
-    descriptor: "Routing and policy",
-    focus: "Protects downstream execution by narrowing the path set before handoff begins.",
-    flow: "Constraint layer -> risk gate -> qualified path set",
+    headline: "Apply constraints before the system commits a path.",
+    descriptor: "Policy routing",
+    status: "RULES ACTIVE",
+    focus: "Protects decisions by filtering route options through policy, risk, and operational limits.",
+    flow: "Constraint layer -> route gating -> viable path set",
     tone: "primary"
   },
   DUAL_SIDE_EVALUATION: {
-    headline: "Evaluate demand and supply as one operating decision.",
-    descriptor: "Decision quality",
-    focus: "Scores fit, trust, capacity, and behavioral history on both sides of the exchange.",
+    headline: "Score both sides of the exchange as one decision.",
+    descriptor: "Matching intelligence",
+    status: "FIT SCORING",
+    focus: "Brings demand quality and supply quality into the same evaluation loop.",
     flow: "Demand fit + supply fit -> trust-weighted decision",
     tone: "secondary"
   },
   WORKFLOW_EXECUTION: {
-    headline: "Keep execution inside one traceable operating surface.",
-    descriptor: "Execution continuity",
-    focus: "Maintains ownership, next actions, and escalation rules after a match has been made.",
+    headline: "Keep work moving after selection, not just at selection.",
+    descriptor: "Execution layer",
+    status: "FLOW IN MOTION",
+    focus: "Maintains ownership, state progression, escalation, and proof through execution.",
     flow: "Assignment -> owner state -> evidence -> escalation",
     tone: "primary"
   },
   OUTCOME_MEMORY: {
-    headline: "Convert outcomes into reusable operational memory.",
-    descriptor: "Learning layer",
-    focus: "Captures what actually happened so routing and evaluation improve over time.",
-    flow: "Outcome capture -> learning weights -> future routing",
+    headline: "Turn outcomes into reusable operational memory.",
+    descriptor: "Learning loop",
+    status: "MEMORY WARM",
+    focus: "Captures what actually happened so future routing and evaluation improve with use.",
+    flow: "Outcome capture -> learning weights -> next decision",
     tone: "primary"
   },
   DOMAIN_ADAPTATION: {
-    headline: "Deploy the same core across different service environments.",
-    descriptor: "Deployment layer",
-    focus: "Allows domain packs, policies, and workflows to change without replacing the underlying core.",
+    headline: "Deploy one core across different service environments.",
+    descriptor: "Domain layer",
+    status: "PACK READY",
+    focus: "Allows workflows, schemas, and policies to adapt without replacing the underlying core.",
     flow: "Domain pack -> schema overlay -> workflow variant",
     tone: "tertiary"
   }
 };
 
 const toneClasses: Record<
-  CapabilityTone,
+  ArchitectureTone,
   {
     badge: string;
     dot: string;
@@ -150,39 +158,39 @@ const toneClasses: Record<
   }
 > = {
   primary: {
-    badge: "border-[rgb(var(--primary))] bg-[rgba(31,36,48,0.06)] text-[rgb(var(--ink))]",
-    dot: "bg-[rgb(var(--primary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(31,36,48,0.12),0_22px_42px_rgba(31,36,48,0.12)]",
-    activeBorder: "border-[rgb(var(--primary))]",
-    activeLabel: "text-[rgb(var(--ink))]",
-    pathStroke: "rgba(31, 36, 48, 0.48)",
+    badge: "border-[rgba(111,255,176,0.42)] bg-[rgba(111,255,176,0.08)] text-[rgb(var(--architecture-primary))]",
+    dot: "bg-[rgb(var(--architecture-primary))]",
+    activeRing: "shadow-[0_0_0_1px_rgba(111,255,176,0.18),0_0_28px_rgba(111,255,176,0.14),0_22px_42px_rgba(0,0,0,0.35)]",
+    activeBorder: "border-[rgba(111,255,176,0.5)]",
+    activeLabel: "text-[rgb(var(--architecture-primary))]",
+    pathStroke: "rgba(111, 255, 176, 0.78)",
     panelGlow: {
       boxShadow:
-        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.09), 0 0 0 1px rgba(31,36,48,0.08)"
+        "0 0 0 1px rgba(111,255,176,0.12), 0 0 34px rgba(111,255,176,0.12), 0 26px 56px rgba(0,0,0,0.42)"
     }
   },
   secondary: {
-    badge: "border-[rgb(var(--secondary))] bg-[rgba(109,120,141,0.08)] text-[rgb(var(--ink-soft))]",
-    dot: "bg-[rgb(var(--secondary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(109,120,141,0.18),0_20px_40px_rgba(109,120,141,0.1)]",
-    activeBorder: "border-[rgb(var(--secondary))]",
-    activeLabel: "text-[rgb(var(--ink-soft))]",
-    pathStroke: "rgba(109, 120, 141, 0.52)",
+    badge: "border-[rgba(80,212,255,0.4)] bg-[rgba(80,212,255,0.08)] text-[rgb(var(--architecture-secondary))]",
+    dot: "bg-[rgb(var(--architecture-secondary))]",
+    activeRing: "shadow-[0_0_0_1px_rgba(80,212,255,0.18),0_0_28px_rgba(80,212,255,0.12),0_22px_42px_rgba(0,0,0,0.35)]",
+    activeBorder: "border-[rgba(80,212,255,0.48)]",
+    activeLabel: "text-[rgb(var(--architecture-secondary))]",
+    pathStroke: "rgba(80, 212, 255, 0.78)",
     panelGlow: {
       boxShadow:
-        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.08), 0 0 0 1px rgba(109,120,141,0.1)"
+        "0 0 0 1px rgba(80,212,255,0.12), 0 0 34px rgba(80,212,255,0.12), 0 26px 56px rgba(0,0,0,0.42)"
     }
   },
   tertiary: {
-    badge: "border-[rgb(var(--tertiary))] bg-[rgba(147,123,93,0.08)] text-[rgb(var(--ink-soft))]",
-    dot: "bg-[rgb(var(--tertiary))]",
-    activeRing: "shadow-[0_0_0_1px_rgba(147,123,93,0.18),0_20px_40px_rgba(147,123,93,0.1)]",
-    activeBorder: "border-[rgb(var(--tertiary))]",
-    activeLabel: "text-[rgb(var(--ink-soft))]",
-    pathStroke: "rgba(147, 123, 93, 0.54)",
+    badge: "border-[rgba(150,173,255,0.34)] bg-[rgba(150,173,255,0.08)] text-[rgb(var(--architecture-ink))]",
+    dot: "bg-[rgb(var(--architecture-tertiary))]",
+    activeRing: "shadow-[0_0_0_1px_rgba(150,173,255,0.16),0_0_24px_rgba(150,173,255,0.1),0_22px_42px_rgba(0,0,0,0.35)]",
+    activeBorder: "border-[rgba(150,173,255,0.42)]",
+    activeLabel: "text-[rgb(var(--architecture-ink))]",
+    pathStroke: "rgba(150, 173, 255, 0.72)",
     panelGlow: {
       boxShadow:
-        "0 1px 2px rgba(15,23,42,0.04), 0 24px 52px rgba(15,23,42,0.08), 0 0 0 1px rgba(147,123,93,0.1)"
+        "0 0 0 1px rgba(150,173,255,0.1), 0 0 30px rgba(150,173,255,0.08), 0 26px 56px rgba(0,0,0,0.42)"
     }
   }
 };
@@ -195,11 +203,12 @@ function formatModuleTitle(value: string) {
     .join(" ");
 }
 
-function buildCapabilityNode(module: CapabilityModule, index: number): CapabilityNode {
+function buildArchitectureNode(module: ArchitectureModule, index: number): ArchitectureNode {
   const layout = orbitLayout[index];
-  const meta = capabilityMeta[module.id] ?? {
+  const meta = moduleMeta[module.id] ?? {
     headline: formatModuleTitle(module.title),
     descriptor: "Core capability",
+    status: "LIVE",
     focus: module.summary,
     flow: module.bullets.join(" -> "),
     tone: "secondary" as const
@@ -213,14 +222,14 @@ function buildCapabilityNode(module: CapabilityModule, index: number): Capabilit
   };
 }
 
-function CapabilitySelector({
+function OrbitNode({
   module,
   index,
   active,
   onSelect,
   compact = false
 }: {
-  module: CapabilityNode;
+  module: ArchitectureNode;
   index: number;
   active: boolean;
   onSelect: () => void;
@@ -234,56 +243,42 @@ function CapabilitySelector({
       onClick={onSelect}
       aria-pressed={active}
       className={cn(
-        "capability-node capability-node-button w-full text-left",
-        compact ? "p-4" : "p-4 xl:p-[0.95rem]",
-        active ? cn("z-20", tone.activeBorder, tone.activeRing) : "z-10 opacity-70"
+        "architecture-node architecture-node-button w-full text-left",
+        compact ? "p-3.5" : "p-3.5 xl:p-4",
+        active ? cn("z-20", tone.activeBorder, tone.activeRing) : "z-10 opacity-65"
       )}
       animate={{
-        y: active ? [0, -5, 0] : [0, -2, 0],
-        scale: active ? 1.02 : 0.975,
-        opacity: active ? 1 : 0.72
+        y: active ? [0, -4, 0] : [0, -2, 0],
+        scale: active ? 1.01 : 0.965,
+        opacity: active ? 1 : 0.65
       }}
       whileHover={{
-        y: active ? -5 : -3,
-        scale: active ? 1.03 : 0.99,
+        y: active ? -4 : -3,
+        scale: active ? 1.02 : 0.985,
         opacity: 1
       }}
       transition={{
-        duration: active ? 4.4 : 5.4,
+        duration: active ? 4 : 5.2,
         repeat: Infinity,
         ease: "easeInOut",
-        delay: index * 0.16
+        delay: index * 0.18
       }}
       style={active ? tone.panelGlow : undefined}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="space-y-1.5">
-          <p className={cn("label-caps", active ? tone.activeLabel : "text-[rgb(var(--ink-muted))]")}>
-            {module.title}
-          </p>
-          <p className="text-[0.76rem] font-semibold tracking-[-0.02em] text-[rgb(var(--ink))]">
-            {module.displayTitle}
-          </p>
+        <div className="min-w-0">
+          <p className={cn("architecture-node-id", active ? tone.activeLabel : "")}>{module.title}</p>
+          <p className="architecture-node-name">{module.displayTitle}</p>
         </div>
-        <span
-          className={cn(
-            "mt-0.5 h-2.5 w-2.5 rounded-full",
-            active ? tone.dot : "bg-[rgb(var(--outline-strong))]"
-          )}
-        />
+        <span className={cn("architecture-node-signal", active ? tone.dot : "bg-[rgba(92,115,139,0.72)]")} />
       </div>
 
-      <p
-        className={cn(
-          "capability-node-summary mt-3",
-          compact ? "text-[0.82rem] leading-6" : "text-[0.8rem] leading-6 xl:text-[0.84rem]"
-        )}
-      >
-        {module.summary}
+      <p className={cn("architecture-node-descriptor", compact && "text-[0.72rem] leading-5")}>
+        {module.descriptor}
       </p>
 
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        <span className={cn("project-chip", active ? tone.badge : "")}>{module.bullets[0]}</span>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        <span className={cn("architecture-node-chip", active && tone.badge)}>{module.bullets[0]}</span>
       </div>
     </motion.button>
   );
@@ -294,13 +289,14 @@ export function HeroScene({
   title,
   summary
 }: {
-  modules: CapabilityModule[];
+  modules: ArchitectureModule[];
   title: string;
   summary: string;
 }) {
-  const capabilityNodes = modules.slice(0, 6).map(buildCapabilityNode);
-  const [activeId, setActiveId] = useState(capabilityNodes[0]?.id ?? "");
-  const activeModule = capabilityNodes.find((module) => module.id === activeId) ?? capabilityNodes[0];
+  const architectureNodes = modules.slice(0, 6).map(buildArchitectureNode);
+  const [activeId, setActiveId] = useState(architectureNodes[0]?.id ?? "");
+  const activeIndex = architectureNodes.findIndex((module) => module.id === activeId);
+  const activeModule = architectureNodes[activeIndex] ?? architectureNodes[0];
 
   if (!activeModule) {
     return null;
@@ -309,15 +305,23 @@ export function HeroScene({
   const activeTone = toneClasses[activeModule.tone];
 
   return (
-    <div className="capability-map-shell" aria-label={`${title} capability map`}>
+    <div className="architecture-map-shell" aria-label={`${title} architecture map`}>
+      <div className="architecture-map-grid" />
+
       <div className="relative space-y-4 lg:hidden">
-        <div className="capability-center-card p-5" style={activeTone.panelGlow}>
-          <div className="flex items-start justify-between gap-3">
-            <div className="space-y-2">
-              <p className="label-caps">{title}</p>
-              <span className={cn("sticker-badge", activeTone.badge)}>{activeModule.title}</span>
+        <div className="architecture-core-panel p-5" style={activeTone.panelGlow}>
+          <div className="architecture-core-header">
+            <div>
+              <p className="architecture-kicker">ACTIVE MODULE</p>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className={cn("architecture-module-pill", activeTone.badge)}>{activeModule.title}</span>
+                <span className="architecture-core-index">0{activeIndex + 1}</span>
+              </div>
             </div>
-            <div className="capability-focus-chip">{activeModule.descriptor}</div>
+            <div className="architecture-state-pill">
+              <span className={cn("architecture-state-dot", activeTone.dot)} />
+              <span>{activeModule.status}</span>
+            </div>
           </div>
 
           <AnimatePresence mode="wait" initial={false}>
@@ -326,50 +330,46 @@ export function HeroScene({
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
               className="mt-5 space-y-4"
             >
-              <h3 className="max-w-[14ch] text-[1.48rem] font-bold tracking-[-0.055em] text-[rgb(var(--ink))] md:text-[1.72rem]">
-                {activeModule.headline}
-              </h3>
-              <p className="max-w-[34ch] text-[0.9rem] leading-6 text-[rgb(var(--ink-soft))] md:text-[0.94rem] md:leading-7">
-                {activeModule.summary}
-              </p>
+              <div className="space-y-2">
+                <p className="architecture-core-name">{activeModule.displayTitle}</p>
+                <h3 className="architecture-core-headline">{activeModule.headline}</h3>
+              </div>
 
-              <div className="flex flex-wrap gap-2">
+              <p className="architecture-core-summary">{activeModule.summary}</p>
+
+              <div className="architecture-core-readouts">
+                <div className="architecture-core-readout">
+                  <p className="architecture-readout-label">CURRENT ROLE</p>
+                  <p className="architecture-readout-value">{activeModule.focus}</p>
+                </div>
+                <div className="architecture-core-readout">
+                  <p className="architecture-readout-label">EXECUTION PATH</p>
+                  <p className="architecture-readout-value architecture-readout-flow">{activeModule.flow}</p>
+                </div>
+              </div>
+
+              <div className="architecture-core-functions">
                 {activeModule.bullets.map((item) => (
-                  <span key={item} className={cn("project-chip", activeTone.badge)}>
+                  <span key={item} className={cn("architecture-function-chip", activeTone.badge)}>
                     {item}
                   </span>
                 ))}
               </div>
-
-              <div className="capability-detail-grid">
-                <div className="capability-detail-card">
-                  <p className="label-caps">Primary role</p>
-                  <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-soft))]">
-                    {activeModule.focus}
-                  </p>
-                </div>
-                <div className="capability-detail-card">
-                  <p className="label-caps">Platform flow</p>
-                  <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">
-                    {activeModule.flow}
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-5 border-t border-[rgb(var(--outline))] pt-4">
-            <p className="label-caps">Platform context</p>
-            <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-muted))]">{summary}</p>
+          <div className="architecture-core-footer">
+            <p className="architecture-readout-label">SYSTEM CONTEXT</p>
+            <p className="architecture-context-copy">{summary}</p>
           </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2">
-          {capabilityNodes.map((module, index) => (
-            <CapabilitySelector
+          {architectureNodes.map((module, index) => (
+            <OrbitNode
               key={module.id}
               module={module}
               index={index}
@@ -381,14 +381,14 @@ export function HeroScene({
         </div>
       </div>
 
-      <div className="relative hidden h-[35rem] lg:block xl:h-[37rem]">
+      <div className="relative hidden h-[36rem] lg:block xl:h-[38rem]">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 760" fill="none" aria-hidden="true">
-          {capabilityNodes.map((module) => (
+          {architectureNodes.map((module) => (
             <path
               key={`${module.id}-base`}
               d={module.path}
-              stroke="rgba(198, 192, 181, 0.46)"
-              strokeWidth="1.25"
+              stroke="rgba(64, 87, 110, 0.6)"
+              strokeWidth="1.2"
               strokeDasharray="8 12"
             />
           ))}
@@ -397,20 +397,20 @@ export function HeroScene({
             key={`${activeModule.id}-active-path`}
             d={activeModule.path}
             stroke={activeTone.pathStroke}
-            strokeWidth="2"
+            strokeWidth="2.1"
             strokeLinecap="round"
             strokeDasharray="10 10"
             animate={{
-              opacity: [0.35, 0.8, 0.35],
-              strokeDashoffset: [0, -18]
+              opacity: [0.35, 0.92, 0.35],
+              strokeDashoffset: [0, -20]
             }}
             transition={{
               opacity: { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
-              strokeDashoffset: { duration: 2.6, repeat: Infinity, ease: "linear" }
+              strokeDashoffset: { duration: 2.5, repeat: Infinity, ease: "linear" }
             }}
           />
 
-          {capabilityNodes.map((module) => {
+          {architectureNodes.map((module) => {
             const tone = toneClasses[module.tone];
             const isActive = module.id === activeModule.id;
 
@@ -419,8 +419,8 @@ export function HeroScene({
                 key={`${module.id}-dot`}
                 cx={module.dotX}
                 cy={module.dotY}
-                r={isActive ? 5.5 : 4}
-                fill={isActive ? tone.pathStroke : "rgba(198, 192, 181, 0.9)"}
+                r={isActive ? 5.25 : 4}
+                fill={isActive ? tone.pathStroke : "rgba(80, 104, 128, 0.85)"}
               />
             );
           })}
@@ -432,29 +432,37 @@ export function HeroScene({
             r="7"
             fill="none"
             stroke={activeTone.pathStroke}
-            strokeOpacity="0.45"
-            animate={{ r: [6, 10, 6], opacity: [0.22, 0.52, 0.22] }}
+            strokeOpacity="0.5"
+            animate={{ r: [6, 10, 6], opacity: [0.2, 0.58, 0.2] }}
             transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
           />
+
+          <circle cx="500" cy="380" r="6.5" fill="rgb(var(--architecture-primary))" />
         </svg>
 
-        <div className="capability-map-ring capability-map-ring-inner" />
-        <div className="capability-map-ring capability-map-ring-outer" />
+        <div className="architecture-map-ring architecture-map-ring-inner" />
+        <div className="architecture-map-ring architecture-map-ring-outer" />
 
         <motion.div
-          className="capability-map-halo"
-          animate={{ scale: [0.98, 1.02, 0.98], opacity: [0.5, 0.82, 0.5] }}
-          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+          className="architecture-map-halo"
+          animate={{ scale: [0.98, 1.02, 0.98], opacity: [0.56, 0.86, 0.56] }}
+          transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="absolute left-1/2 top-1/2 z-20 w-[22rem] -translate-x-1/2 -translate-y-1/2 xl:w-[23rem]">
-          <div className="capability-center-card px-5 py-5 xl:px-6 xl:py-6" style={activeTone.panelGlow}>
-            <div className="flex items-start justify-between gap-3">
-              <div className="space-y-2">
-                <p className="label-caps">{title}</p>
-                <span className={cn("sticker-badge", activeTone.badge)}>{activeModule.title}</span>
+        <div className="absolute left-1/2 top-1/2 z-20 w-[23rem] -translate-x-1/2 -translate-y-1/2 xl:w-[24rem]">
+          <div className="architecture-core-panel px-5 py-5 xl:px-6 xl:py-6" style={activeTone.panelGlow}>
+            <div className="architecture-core-header">
+              <div>
+                <p className="architecture-kicker">ACTIVE MODULE</p>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <span className={cn("architecture-module-pill", activeTone.badge)}>{activeModule.title}</span>
+                  <span className="architecture-core-index">0{activeIndex + 1}</span>
+                </div>
               </div>
-              <div className="capability-focus-chip">{activeModule.descriptor}</div>
+              <div className="architecture-state-pill">
+                <span className={cn("architecture-state-dot", activeTone.dot)} />
+                <span>{activeModule.status}</span>
+              </div>
             </div>
 
             <AnimatePresence mode="wait" initial={false}>
@@ -463,52 +471,48 @@ export function HeroScene({
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
                 className="mt-5 space-y-4"
               >
-                <h3 className="max-w-[15ch] text-[1.5rem] font-bold tracking-[-0.055em] text-[rgb(var(--ink))] xl:text-[1.72rem]">
-                  {activeModule.headline}
-                </h3>
-                <p className="max-w-[34ch] text-[0.88rem] leading-6 text-[rgb(var(--ink-soft))] xl:text-[0.92rem] xl:leading-7">
-                  {activeModule.summary}
-                </p>
+                <div className="space-y-2">
+                  <p className="architecture-core-name">{activeModule.displayTitle}</p>
+                  <h3 className="architecture-core-headline">{activeModule.headline}</h3>
+                </div>
 
-                <div className="flex flex-wrap gap-2">
+                <p className="architecture-core-summary">{activeModule.summary}</p>
+
+                <div className="architecture-core-readouts">
+                  <div className="architecture-core-readout">
+                    <p className="architecture-readout-label">CURRENT ROLE</p>
+                    <p className="architecture-readout-value">{activeModule.focus}</p>
+                  </div>
+                  <div className="architecture-core-readout">
+                    <p className="architecture-readout-label">EXECUTION PATH</p>
+                    <p className="architecture-readout-value architecture-readout-flow">{activeModule.flow}</p>
+                  </div>
+                </div>
+
+                <div className="architecture-core-functions">
                   {activeModule.bullets.map((item) => (
-                    <span key={item} className={cn("project-chip", activeTone.badge)}>
+                    <span key={item} className={cn("architecture-function-chip", activeTone.badge)}>
                       {item}
                     </span>
                   ))}
                 </div>
-
-                <div className="capability-detail-grid">
-                  <div className="capability-detail-card">
-                    <p className="label-caps">Primary role</p>
-                    <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-soft))]">
-                      {activeModule.focus}
-                    </p>
-                  </div>
-                  <div className="capability-detail-card">
-                    <p className="label-caps">Platform flow</p>
-                    <p className="mt-2 text-[0.8rem] leading-6 text-[rgb(var(--ink-muted))]">
-                      {activeModule.flow}
-                    </p>
-                  </div>
-                </div>
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-5 border-t border-[rgb(var(--outline))] pt-4">
-              <p className="label-caps">Platform context</p>
-              <p className="mt-2 text-[0.82rem] leading-6 text-[rgb(var(--ink-muted))]">{summary}</p>
+            <div className="architecture-core-footer">
+              <p className="architecture-readout-label">SYSTEM CONTEXT</p>
+              <p className="architecture-context-copy">{summary}</p>
             </div>
           </div>
         </div>
 
-        {capabilityNodes.map((module, index) => (
+        {architectureNodes.map((module, index) => (
           <motion.div
             key={module.id}
-            className={cn("absolute w-[10.85rem] xl:w-[11.5rem]", module.tilt)}
+            className={cn("absolute w-[9.6rem] xl:w-[10.25rem]", module.tilt)}
             style={{
               top: module.top,
               left: module.left,
@@ -516,7 +520,7 @@ export function HeroScene({
               bottom: module.bottom
             }}
           >
-            <CapabilitySelector
+            <OrbitNode
               module={module}
               index={index}
               active={module.id === activeModule.id}
