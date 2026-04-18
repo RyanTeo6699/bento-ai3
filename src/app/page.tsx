@@ -111,19 +111,19 @@ const previewShellStyle: CSSProperties = {
 };
 
 const previewCoreStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-preview-core-surface) / 0.78)",
-  borderColor: "rgb(var(--theme-preview-core-border) / 0.58)",
-  boxShadow: "0 12px 24px rgb(var(--shadow) / 0.22)"
+  backgroundColor: "rgb(var(--theme-preview-core-surface) / 0.62)",
+  borderColor: "rgb(var(--theme-preview-core-border) / 0.4)",
+  boxShadow: "0 10px 18px rgb(var(--shadow) / 0.14)"
 };
 
 const previewNodeStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-preview-node-surface) / 0.58)",
-  borderColor: "rgb(var(--theme-preview-node-border) / 0.48)",
-  boxShadow: "0 8px 14px rgb(var(--shadow) / 0.16)"
+  backgroundColor: "rgb(var(--theme-preview-node-surface) / 0.38)",
+  borderColor: "rgb(var(--theme-preview-node-border) / 0.28)",
+  boxShadow: "0 6px 12px rgb(var(--shadow) / 0.1)"
 };
 
 const ambientGlowStyle: CSSProperties = {
-  backgroundImage: "radial-gradient(circle, rgb(var(--theme-preview-glow) / 0.2), rgba(0,0,0,0))"
+  backgroundImage: "radial-gradient(circle, rgb(var(--theme-preview-glow) / 0.14), rgba(0,0,0,0))"
 };
 
 const executionTrackStyle: CSSProperties = {
@@ -211,7 +211,7 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal
-                className="relative min-h-[25.5rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.76)] p-4 md:min-h-[27rem] md:p-5"
+                className="relative min-h-[24.25rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.72)] p-4 md:min-h-[25.75rem] md:p-5"
                 delay={0.08}
                 y={20}
                 style={previewShellStyle}
@@ -230,27 +230,21 @@ export default function HomePage() {
                 >
                   <path
                     d="M300 230 C246 186 196 154 130 110"
-                    stroke="rgb(var(--theme-preview-connector) / 0.24)"
+                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
                     strokeDasharray="10 12"
-                    strokeWidth="1.3"
+                    strokeWidth="1.1"
                   />
                   <path
                     d="M300 230 C354 186 404 154 470 110"
-                    stroke="rgb(var(--theme-preview-connector) / 0.24)"
+                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
                     strokeDasharray="10 12"
-                    strokeWidth="1.3"
+                    strokeWidth="1.1"
                   />
                   <path
-                    d="M300 230 C244 256 194 286 124 336"
-                    stroke="rgb(var(--theme-preview-connector) / 0.24)"
+                    d="M300 230 C300 270 300 300 300 342"
+                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
                     strokeDasharray="10 12"
-                    strokeWidth="1.3"
-                  />
-                  <path
-                    d="M300 230 C356 256 406 286 476 336"
-                    stroke="rgb(var(--theme-preview-connector) / 0.24)"
-                    strokeDasharray="10 12"
-                    strokeWidth="1.3"
+                    strokeWidth="1.1"
                   />
                 </svg>
 
@@ -264,16 +258,16 @@ export default function HomePage() {
                 />
 
                 <div
-                  className="absolute left-1/2 top-1/2 z-10 w-[min(13.5rem,calc(100%-5rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.35rem] border p-3 backdrop-blur"
+                  className="absolute left-1/2 top-1/2 z-10 w-[min(11.75rem,calc(100%-6rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.2rem] border px-3 py-2.5 backdrop-blur"
                   style={previewCoreStyle}
                 >
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[rgb(var(--ink-muted))]">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[rgb(var(--ink-muted))]">
                     {homepageCopy.hero.previewLabel}
                   </p>
-                  <h2 className="mt-2.5 max-w-[11ch] text-[0.96rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[rgb(var(--ink))]">
+                  <h2 className="mt-2 max-w-[11ch] text-[0.88rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[rgb(var(--ink))]">
                     {homepageCopy.hero.previewTitle}
                   </h2>
-                  <p className="mt-2 text-[0.7rem] leading-5 text-[rgb(var(--ink-soft))]">
+                  <p className="mt-1.5 text-[0.64rem] leading-[1.45] text-[rgb(var(--ink-soft))]">
                     {homepageCopy.hero.previewSummary}
                   </p>
                 </div>
@@ -281,14 +275,11 @@ export default function HomePage() {
                 {homepageCopy.hero.previewSignals.slice(0, 3).map((signal, index) => (
                   <div
                     key={signal.label}
-                    className={`absolute z-[1] w-[5rem] rounded-[0.8rem] border p-2 backdrop-blur ${previewNodePositions[index] ?? ""}`}
+                    className={`absolute z-[1] w-[4.3rem] rounded-[999px] border px-2 py-1.5 backdrop-blur ${previewNodePositions[index] ?? ""}`}
                     style={previewNodeStyle}
                   >
-                    <p className="text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-muted))]">
+                    <p className="text-[0.52rem] font-semibold uppercase tracking-[0.12em] text-[rgb(var(--ink-muted))]">
                       {signal.label}
-                    </p>
-                    <p className="mt-1 text-[0.58rem] font-medium leading-4 tracking-[-0.02em] text-[rgb(var(--ink-soft))]">
-                      {signal.value}
                     </p>
                   </div>
                 ))}

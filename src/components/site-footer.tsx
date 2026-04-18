@@ -92,17 +92,21 @@ export function SiteFooter({
 
             <div className="space-y-5">
               <p className="sr-only">{copy.contactTitle}</p>
-              <div className="flex flex-wrap gap-3" aria-label={copy.contactTitle} role="group">
+              <div
+                className="inline-flex items-center gap-2.5 rounded-full border border-[rgb(var(--outline)/0.62)] bg-[rgb(var(--theme-contact-dock-surface)/0.42)] p-1.5"
+                aria-label={copy.contactTitle}
+                role="group"
+              >
                 {contactChannels.map((channel) => (
                   <a
                     key={channel.icon}
                     href={channel.href}
                     aria-label={channel.ariaLabel}
-                    className="contact-icon-button h-12 w-12"
+                    className="grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--outline)/0.56)] bg-[rgb(var(--theme-contact-button-surface)/0.72)] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong)/0.84)] hover:bg-[rgb(var(--theme-contact-button-hover)/0.84)] hover:shadow-[0_12px_22px_rgb(var(--shadow)/0.12)]"
                     target={channel.external ? "_blank" : undefined}
                     rel={channel.external ? "noreferrer" : undefined}
                   >
-                    <ContactChannelIcon kind={channel.icon} />
+                    <ContactChannelIcon kind={channel.icon} className="h-[1.05rem] w-[1.05rem]" />
                   </a>
                 ))}
               </div>

@@ -540,9 +540,9 @@ const projectDefinitions = [
     status: "Prototype",
     featured: true,
     name: {
-      en: "Tideus",
-      "zh-Hant": "Tideus",
-      ja: "Tideus"
+      en: "ImmiPilot",
+      "zh-Hant": "ImmiPilot",
+      ja: "ImmiPilot"
     },
     positioning: {
       en: "A case-first AI workflow platform for Canada immigration preparation.",
@@ -560,9 +560,9 @@ const projectDefinitions = [
       ja: "一時滞在者向け申請準備を対象とし、初期は Visitor Record と Study Permit Extension に集中しています。"
     },
     description: {
-      en: "Tideus does not act like a broad chatbot. It organizes the case itself: facts, document status, missing items, risk flags, timeline pressure, and next steps.",
-      "zh-Hant": "Tideus 不是泛用聊天機器人，而是把案件本身整理清楚：事實、文件狀態、缺件、風險標記、時間壓力與下一步。",
-      ja: "Tideus は広範なチャットボットとして振る舞うのではなく、案件そのものを整理します。事実関係、書類状態、不足項目、リスクフラグ、期限圧力、次の行動を一つの流れで扱います。"
+      en: "ImmiPilot does not act like a broad chatbot. It organizes the case itself: facts, document status, missing items, risk flags, timeline pressure, and next steps.",
+      "zh-Hant": "ImmiPilot 不是泛用聊天機器人，而是把案件本身整理清楚：事實、文件狀態、缺件、風險標記、時間壓力與下一步。",
+      ja: "ImmiPilot は広範なチャットボットとして振る舞うのではなく、案件そのものを整理します。事実関係、書類状態、不足項目、リスクフラグ、期限圧力、次の行動を一つの流れで扱います。"
     },
     tags: {
       en: ["Case Workflow", "Structured Intake", "Risk Review", "Professional Handoff"],
@@ -609,22 +609,22 @@ const projectDefinitions = [
     detail: {
       whatItDoes: {
         en: [
-          "Tideus is an AI-powered immigration case workflow platform built for Canada temporary resident preparation, with an initial focus on Visitor Record and Study Permit Extension.",
+          "ImmiPilot is an AI-powered immigration case workflow platform built for Canada temporary resident preparation, with an initial focus on Visitor Record and Study Permit Extension.",
           "Instead of acting like a broad chatbot, it organizes the case itself: facts, document status, missing items, risk flags, timeline pressure, and next steps."
         ],
         "zh-Hant": [
-          "Tideus 是一套面向加拿大臨時居民申請準備的 AI 案件工作流平台，初期聚焦在 Visitor Record 與 Study Permit Extension。",
+          "ImmiPilot 是一套面向加拿大臨時居民申請準備的 AI 案件工作流平台，初期聚焦在 Visitor Record 與 Study Permit Extension。",
           "它不是泛用聊天機器人，而是把案件本身整理清楚：事實、文件狀態、缺件、風險標記、時間壓力與下一步。"
         ],
         ja: [
-          "Tideus はカナダの一時滞在者向け申請準備のための AI ケースワークフロープラットフォームで、初期は Visitor Record と Study Permit Extension に集中しています。",
+          "ImmiPilot はカナダの一時滞在者向け申請準備のための AI ケースワークフロープラットフォームで、初期は Visitor Record と Study Permit Extension に集中しています。",
           "広範なチャットボットとして振る舞うのではなく、案件そのものを整理します。事実、書類状態、不足項目、リスクフラグ、期限圧力、次の行動が対象です。"
         ]
       },
       whyItMatters: {
-        en: "Immigration preparation is high-friction because the work is not just about answers. It is about case structure, missing evidence, readiness, and timing. Tideus matters because it makes those things visible and review-ready instead of leaving them hidden inside chat threads.",
-        "zh-Hant": "移民準備的高摩擦點，不只是找答案，而是案件結構、證據缺口、準備程度與時間安排本身。Tideus 的價值在於，它讓這些東西變得可見、可審查，而不是埋在零碎對話裡。",
-        ja: "移民準備の難しさは、単に答えを得ることではありません。案件構造、証拠の不足、準備度、期限管理そのものが問題です。Tideus はそれらを見える形にし、レビュー可能にする点に価値があります。"
+        en: "Immigration preparation is high-friction because the work is not just about answers. It is about case structure, missing evidence, readiness, and timing. ImmiPilot matters because it makes those things visible and review-ready instead of leaving them hidden inside chat threads.",
+        "zh-Hant": "移民準備的高摩擦點，不只是找答案，而是案件結構、證據缺口、準備程度與時間安排本身。ImmiPilot 的價值在於，它讓這些東西變得可見、可審查，而不是埋在零碎對話裡。",
+        ja: "移民準備の難しさは、単に答えを得ることではありません。案件構造、証拠の不足、準備度、期限管理そのものが問題です。ImmiPilot はそれらを見える形にし、レビュー可能にする点に価値があります。"
       },
       highlights: {
         en: [
