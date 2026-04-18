@@ -147,12 +147,12 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal
-                className="relative min-h-[26.5rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.82)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,240,233,0.92))] p-4 shadow-[0_24px_62px_rgba(15,23,42,0.07)] md:min-h-[28rem] md:p-5"
+                className="relative min-h-[25.5rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.76)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,240,233,0.9))] p-4 shadow-[0_18px_46px_rgba(15,23,42,0.05)] md:min-h-[27rem] md:p-5"
                 delay={0.08}
                 y={20}
               >
-                <div className="pointer-events-none absolute inset-0 opacity-55" style={previewGridStyle} />
-                <div className="pointer-events-none absolute inset-x-[20%] top-[12%] h-24 rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.95),rgba(255,255,255,0))] blur-3xl" />
+                <div className="pointer-events-none absolute inset-0 opacity-[0.46]" style={previewGridStyle} />
+                <div className="pointer-events-none absolute inset-x-[22%] top-[12%] h-24 rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.92),rgba(255,255,255,0))] blur-3xl" />
 
                 <svg
                   className="pointer-events-none absolute inset-0 h-full w-full"
@@ -186,17 +186,17 @@ export default function HomePage() {
                   />
                 </svg>
 
-                <div className="pointer-events-none absolute left-1/2 top-1/2 h-[11.5rem] w-[11.5rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(165,171,180,0.24)]" />
-                <div className="pointer-events-none absolute left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(165,171,180,0.16)]" />
+                <div className="pointer-events-none absolute left-1/2 top-1/2 h-[10.5rem] w-[10.5rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(165,171,180,0.18)]" />
+                <div className="pointer-events-none absolute left-1/2 top-1/2 h-[15rem] w-[15rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(165,171,180,0.12)]" />
 
-                <div className="absolute left-1/2 top-1/2 z-10 w-[min(18.5rem,calc(100%-2.75rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.75rem] border border-[rgb(var(--outline)/0.82)] bg-[rgba(255,255,255,0.9)] p-5 shadow-[0_20px_48px_rgba(15,23,42,0.08)] backdrop-blur">
+                <div className="absolute left-1/2 top-1/2 z-10 w-[min(15.75rem,calc(100%-3.5rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.6rem] border border-[rgb(var(--outline)/0.66)] bg-[rgba(255,255,255,0.78)] p-4 shadow-[0_12px_28px_rgba(15,23,42,0.05)] backdrop-blur">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[rgb(var(--ink-muted))]">
                     {homepageCopy.hero.previewLabel}
                   </p>
-                  <h2 className="mt-4 max-w-[13ch] text-[1.28rem] font-semibold leading-[1.08] tracking-[-0.045em] text-[rgb(var(--ink))]">
+                  <h2 className="mt-3.5 max-w-[12ch] text-[1.12rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[rgb(var(--ink))]">
                     {homepageCopy.hero.previewTitle}
                   </h2>
-                  <p className="mt-3 text-[0.84rem] leading-6 text-[rgb(var(--ink-soft))]">
+                  <p className="mt-2.5 text-[0.78rem] leading-6 text-[rgb(var(--ink-soft))]">
                     {homepageCopy.hero.previewSummary}
                   </p>
                 </div>
@@ -204,12 +204,12 @@ export default function HomePage() {
                 {homepageCopy.hero.previewSignals.map((signal, index) => (
                   <div
                     key={signal.label}
-                    className={`absolute z-[1] w-[7.6rem] rounded-[1.05rem] border border-[rgb(var(--outline)/0.7)] bg-[rgba(255,255,255,0.74)] p-3.5 shadow-[0_14px_28px_rgba(15,23,42,0.05)] backdrop-blur ${previewNodePositions[index] ?? ""}`}
+                    className={`absolute z-[1] w-[6.35rem] rounded-[0.95rem] border border-[rgb(var(--outline)/0.56)] bg-[rgba(255,255,255,0.56)] p-2.5 shadow-[0_10px_18px_rgba(15,23,42,0.03)] backdrop-blur ${previewNodePositions[index] ?? ""}`}
                   >
-                    <p className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-muted))]">
+                    <p className="text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-muted))]">
                       {signal.label}
                     </p>
-                    <p className="mt-2.5 text-[0.76rem] font-medium leading-5 tracking-[-0.02em] text-[rgb(var(--ink-soft))]">
+                    <p className="mt-1.5 text-[0.68rem] font-medium leading-5 tracking-[-0.02em] text-[rgb(var(--ink-soft))]">
                       {signal.value}
                     </p>
                   </div>

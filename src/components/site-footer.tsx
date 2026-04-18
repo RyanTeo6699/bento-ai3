@@ -91,23 +91,20 @@ export function SiteFooter({
             </div>
 
             <div className="space-y-5">
-              <p className="footer-heading">{copy.contactTitle}</p>
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-3">
-                  {contactChannels.map((channel) => (
-                    <a
-                      key={channel.icon}
-                      href={channel.href}
-                      aria-label={channel.ariaLabel}
-                      className="grid h-12 w-12 place-items-center rounded-full border border-[rgb(var(--outline)/0.76)] bg-[rgba(255,255,255,0.72)] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)]"
-                      target={channel.external ? "_blank" : undefined}
-                      rel={channel.external ? "noreferrer" : undefined}
-                    >
-                      <ContactChannelIcon kind={channel.icon} />
-                    </a>
-                  ))}
-                </div>
-                <p className="text-sm leading-7 text-[rgb(var(--ink-muted))]">{copy.closingLine}</p>
+              <p className="sr-only">{copy.contactTitle}</p>
+              <div className="flex flex-wrap gap-3" aria-label={copy.contactTitle} role="group">
+                {contactChannels.map((channel) => (
+                  <a
+                    key={channel.icon}
+                    href={channel.href}
+                    aria-label={channel.ariaLabel}
+                    className="grid h-12 w-12 place-items-center rounded-full border border-[rgb(var(--outline)/0.76)] bg-[rgba(255,255,255,0.72)] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong))] hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)]"
+                    target={channel.external ? "_blank" : undefined}
+                    rel={channel.external ? "noreferrer" : undefined}
+                  >
+                    <ContactChannelIcon kind={channel.icon} />
+                  </a>
+                ))}
               </div>
             </div>
           </div>

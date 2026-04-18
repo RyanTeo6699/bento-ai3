@@ -26,9 +26,6 @@ export default function ContactPage() {
   const locale = getCurrentLocale();
   const dictionary = getDictionary(locale);
   const contactChannels = getPublicContactChannels(locale);
-  const heroMetrics = dictionary.contact.hero.metrics.filter(
-    (metric) => !metric.value.includes("@")
-  );
 
   return (
     <>
@@ -36,7 +33,6 @@ export default function ContactPage() {
         eyebrow={dictionary.contact.hero.eyebrow}
         title={dictionary.contact.hero.title}
         description={dictionary.contact.hero.description}
-        metrics={heroMetrics}
       />
 
       <section className="py-24">
