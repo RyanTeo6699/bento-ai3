@@ -50,11 +50,11 @@ export function SiteHeader({ locale, navItems, copy }: SiteHeaderProps) {
               </span>
               <div className="site-brand-lockup">
                 <span className="site-brand-name">Bento AIII</span>
-                <span className="site-brand-tagline hidden md:block">{copy.brandTagline}</span>
+                <span className="site-brand-tagline hidden min-[1400px]:block">{copy.brandTagline}</span>
               </div>
             </Link>
 
-            <nav className="site-nav hidden xl:flex">
+            <nav className="site-nav hidden xl:flex" aria-label="Primary">
               {navItems.map((item) => {
                 const active =
                   item.href === "/"
@@ -73,10 +73,17 @@ export function SiteHeader({ locale, navItems, copy }: SiteHeaderProps) {
               })}
             </nav>
 
-            <div className="hidden items-center gap-3 xl:flex">
-              <ThemeSwitcher />
-              <LanguageSwitcher locale={locale} label={copy.languageLabel} />
-              <Link href={buildLocalizedPath(locale, "/contact")} className="button-primary whitespace-nowrap">
+            <div className="site-header-utility hidden xl:flex">
+              <ThemeSwitcher className="site-header-theme-switcher" />
+              <LanguageSwitcher
+                locale={locale}
+                label={copy.languageLabel}
+                className="site-header-language-switcher"
+              />
+              <Link
+                href={buildLocalizedPath(locale, "/contact")}
+                className="button-primary site-header-cta whitespace-nowrap"
+              >
                 {copy.cta}
               </Link>
             </div>

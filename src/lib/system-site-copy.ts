@@ -414,9 +414,9 @@ const content: SystemSiteContent = {
   },
   header: {
     brandTagline: {
-      en: "ADAPTIVE DECISION-AND-EXECUTION CORE",
-      "zh-Hant": "自適應決策與執行核心",
-      ja: "適応型 DECISION-AND-EXECUTION CORE"
+      en: "Adaptive operating core",
+      "zh-Hant": "自適應營運核心",
+      ja: "適応型オペレーティングコア"
     },
     systemState: {
       en: "SYSTEM_CORE ONLINE",
