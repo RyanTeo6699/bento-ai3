@@ -93,7 +93,7 @@ export function SiteFooter({
             <div className="space-y-5">
               <p className="sr-only">{copy.contactTitle}</p>
               <div
-                className="inline-flex items-center gap-2.5 rounded-full border border-[rgb(var(--outline)/0.62)] bg-[rgb(var(--theme-contact-dock-surface)/0.42)] p-1.5"
+                className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--outline)/0.52)] bg-[rgb(var(--theme-contact-dock-surface)/0.34)] p-[0.3125rem]"
                 aria-label={copy.contactTitle}
                 role="group"
               >
@@ -102,11 +102,11 @@ export function SiteFooter({
                     key={channel.icon}
                     href={channel.href}
                     aria-label={channel.ariaLabel}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--outline)/0.56)] bg-[rgb(var(--theme-contact-button-surface)/0.72)] transition hover:-translate-y-0.5 hover:border-[rgb(var(--outline-strong)/0.84)] hover:bg-[rgb(var(--theme-contact-button-hover)/0.84)] hover:shadow-[0_12px_22px_rgb(var(--shadow)/0.12)]"
+                    className="grid h-10 w-10 place-items-center rounded-full border border-[rgb(var(--outline)/0.48)] bg-[rgb(var(--theme-contact-button-surface)/0.66)] transition duration-200 hover:border-[rgb(var(--outline-strong)/0.64)] hover:bg-[rgb(var(--theme-contact-button-hover)/0.74)] hover:shadow-[0_8px_16px_rgb(var(--shadow)/0.1)]"
                     target={channel.external ? "_blank" : undefined}
                     rel={channel.external ? "noreferrer" : undefined}
                   >
-                    <ContactChannelIcon kind={channel.icon} className="h-[1.05rem] w-[1.05rem]" />
+                    <ContactChannelIcon kind={channel.icon} className="h-[0.98rem] w-[0.98rem]" />
                   </a>
                 ))}
               </div>

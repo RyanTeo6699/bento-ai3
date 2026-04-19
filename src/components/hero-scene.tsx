@@ -99,7 +99,7 @@ const orbitLayout = [
 
 const overlayGridStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(rgb(var(--theme-system-grid) / 0.14) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--theme-system-grid) / 0.14) 1px, transparent 1px)",
+    "linear-gradient(rgb(var(--theme-system-grid) / 0.11) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--theme-system-grid) / 0.11) 1px, transparent 1px)",
   backgroundSize: "24px 24px",
   maskImage: "linear-gradient(180deg, rgba(255,255,255,0.82), transparent 92%)"
 };
@@ -112,41 +112,41 @@ const shellStyle: CSSProperties = {
 
 const activeSurfaceStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(180deg, rgb(var(--theme-system-surface-start) / 0.9), rgb(var(--theme-system-surface-end) / 0.84))",
-  boxShadow: "0 12px 24px rgb(var(--shadow) / 0.12), inset 0 1px 0 rgb(255 255 255 / 0.05)"
+    "linear-gradient(180deg, rgb(var(--theme-system-surface-start) / 0.9), rgb(var(--theme-system-surface-end) / 0.82))",
+  boxShadow: "0 10px 20px rgb(var(--shadow) / 0.1), inset 0 1px 0 rgb(255 255 255 / 0.04)"
 };
 
 const nodeInactiveStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-system-node-surface) / 0.28)"
+  backgroundColor: "rgb(var(--theme-system-node-surface) / 0.18)"
 };
 
 const nodeActiveStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-system-node-active-surface) / 0.64)",
-  boxShadow: "0 10px 18px rgb(var(--shadow) / 0.11)"
+  backgroundColor: "rgb(var(--theme-system-node-active-surface) / 0.56)",
+  boxShadow: "0 8px 16px rgb(var(--shadow) / 0.09)"
 };
 
 const orbitGlowStyle: CSSProperties = {
-  backgroundImage: "radial-gradient(circle, rgb(var(--theme-system-glow) / 0.08), rgba(0,0,0,0))"
+  backgroundImage: "radial-gradient(circle, rgb(var(--theme-system-glow) / 0.055), rgba(0,0,0,0))"
 };
 
 const orbitPulseStyle: CSSProperties = {
   backgroundImage:
-    "radial-gradient(circle, rgb(var(--theme-system-glow) / 0.1), rgb(var(--theme-system-glow) / 0.025) 46%, rgba(255,255,255,0) 76%)"
+    "radial-gradient(circle, rgb(var(--theme-system-glow) / 0.07), rgb(var(--theme-system-glow) / 0.015) 46%, rgba(255,255,255,0) 76%)"
 };
 
 const gridMuteStyle: CSSProperties = {
   backgroundImage:
-    "radial-gradient(circle at center, rgb(var(--theme-system-shell-start) / 0.54), rgb(var(--theme-system-shell-start) / 0.34) 22%, rgba(0,0,0,0) 58%)"
+    "radial-gradient(circle at center, rgb(var(--theme-system-shell-start) / 0.64), rgb(var(--theme-system-shell-start) / 0.42) 22%, rgba(0,0,0,0) 58%)"
 };
 
 const nodeRailStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-muted) / 0.06), transparent)"
+    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-muted) / 0.045), transparent)"
 };
 
 const nodeRailActiveStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-active) / 0.28), transparent)"
+    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-active) / 0.24), transparent)"
 };
 
 const nodeDotRingStyle: CSSProperties = {
@@ -155,22 +155,22 @@ const nodeDotRingStyle: CSSProperties = {
 
 const surfaceGlowInnerStyle: CSSProperties = {
   backgroundImage:
-    "radial-gradient(circle at top, rgb(var(--theme-system-glow) / 0.04), rgba(255,255,255,0) 56%)"
+    "radial-gradient(circle at top, rgb(var(--theme-system-glow) / 0.03), rgba(255,255,255,0) 54%)"
 };
 
 const surfaceTopLineStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(90deg, transparent, rgb(var(--theme-connector-active) / 0.12), transparent)"
+    "linear-gradient(90deg, transparent, rgb(var(--theme-connector-active) / 0.08), transparent)"
 };
 
 const surfaceBottomLineStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(90deg, transparent, rgb(var(--theme-connector-muted) / 0.06), transparent)"
+    "linear-gradient(90deg, transparent, rgb(var(--theme-connector-muted) / 0.04), transparent)"
 };
 
 const surfaceLeftLineStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-active) / 0.12), transparent)"
+    "linear-gradient(180deg, transparent, rgb(var(--theme-connector-active) / 0.1), transparent)"
 };
 
 const toneClasses: Record<
@@ -244,12 +244,12 @@ function OrbitNode({
         compact ? "px-2.5 py-2" : "px-2.5 py-2 xl:px-[0.6875rem] xl:py-[0.5625rem]",
         active
           ? cn(tone.nodeActiveBorder, "opacity-100")
-          : "border-[rgb(var(--outline)/0.32)] opacity-[0.62] shadow-none hover:opacity-[0.82]"
+          : "border-[rgb(var(--outline)/0.24)] opacity-[0.5] shadow-none hover:opacity-[0.72]"
       )}
       animate={{
         y: active ? [0, -0.8, 0] : [0, -0.12, 0],
         scale: active ? 1.004 : 0.986,
-        opacity: active ? 1 : 0.62
+        opacity: active ? 1 : 0.5
       }}
       whileHover={{ y: active ? -0.9 : -0.35, scale: active ? 1.004 : 0.99, opacity: 0.82 }}
       transition={{
@@ -270,13 +270,13 @@ function OrbitNode({
           <div className="min-w-0">
             <p
               className={cn(
-                "text-[0.7rem] font-semibold leading-5 tracking-[-0.03em] text-[rgb(var(--ink))]",
+                "text-[0.68rem] font-semibold leading-5 tracking-[-0.03em] text-[rgb(var(--ink-soft))]",
                 active && tone.nodeActiveText
               )}
             >
               {module.displayTitle}
             </p>
-            <p className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-[0.55rem] font-semibold uppercase tracking-[0.16em] text-[rgb(var(--ink-soft))]">
+            <p className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-[0.53rem] font-semibold uppercase tracking-[0.16em] text-[rgb(var(--ink-muted))]">
               {module.descriptor}
             </p>
           </div>
@@ -321,7 +321,7 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.992 }}
         transition={{ duration: 0.24, ease: "easeOut" }}
-        className="relative overflow-hidden rounded-[2.15rem] border border-[rgb(var(--outline)/0.42)] px-[1.125rem] py-[1.125rem] backdrop-blur-[10px] xl:px-5 xl:py-5"
+        className="relative overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.34)] px-[1.0625rem] py-[1.0625rem] backdrop-blur-[10px] xl:px-[1.1875rem] xl:py-[1.1875rem]"
         style={activeSurfaceStyle}
       >
         <div className="pointer-events-none absolute inset-0" style={surfaceGlowInnerStyle} />
@@ -344,7 +344,7 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-[rgb(var(--outline)/0.52)] bg-[rgb(var(--theme-system-node-surface)/0.72)] px-2.5 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-soft))]">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-[rgb(var(--outline)/0.42)] bg-[rgb(var(--theme-system-node-surface)/0.64)] px-2.5 py-[0.3125rem] text-[0.54rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-soft))]">
             <motion.span
               className={cn("inline-flex h-1.5 w-1.5 rounded-full", activeTone.dot)}
               animate={{ scale: [1, 1.12, 1], opacity: [0.8, 1, 0.8] }}
@@ -358,17 +358,17 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
           <h3 className="max-w-[12ch] text-[1.08rem] font-semibold leading-[1.03] tracking-[-0.05em] text-[rgb(var(--ink))] xl:text-[1.2rem]">
             {activeModule.displayTitle}
           </h3>
-          <p className="max-w-[26ch] text-[0.8rem] leading-6 text-[rgb(var(--secondary))]">
+          <p className="max-w-[25ch] text-[0.79rem] leading-6 text-[rgb(var(--ink-soft))]">
             {activeModule.focus}
           </p>
         </div>
 
-        <div className="relative mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-2 pl-3.5 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-soft))]">
+        <div className="relative mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-2 pl-3.5 text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-[rgb(var(--ink-soft))]">
           {activeSignals.map((item) => (
             <span
               key={item}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 shadow-[inset_0_1px_0_rgb(255_255_255/0.03)]",
+                "inline-flex items-center gap-1.5 rounded-full border px-2.25 py-[0.3125rem] shadow-[inset_0_1px_0_rgb(255_255_255/0.03)]",
                 activeTone.chip
               )}
             >
@@ -401,9 +401,9 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
       className="relative overflow-hidden rounded-[2.2rem] border border-[rgb(var(--outline)/0.82)] p-4 md:p-6"
       style={shellStyle}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-[0.34]" style={overlayGridStyle} />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.24]" style={overlayGridStyle} />
       <div className="pointer-events-none absolute inset-0" style={gridMuteStyle} />
-      <div className="pointer-events-none absolute inset-x-[22%] top-[6%] h-20 rounded-full blur-3xl" style={orbitGlowStyle} />
+      <div className="pointer-events-none absolute inset-x-[24%] top-[7%] h-16 rounded-full blur-3xl" style={orbitGlowStyle} />
 
       <div className="relative space-y-4 lg:hidden">
         <div className="px-1">{ActiveModuleSurface}</div>
@@ -428,7 +428,7 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
             <path
               key={`${module.id}-base`}
               d={module.path}
-              stroke="rgb(var(--theme-connector-muted) / 0.08)"
+              stroke="rgb(var(--theme-connector-muted) / 0.05)"
               strokeWidth="0.7"
               strokeDasharray="5 22"
               strokeLinecap="round"
@@ -438,7 +438,7 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
           <path
             d={activeModule.path}
             stroke={activeTone.pathStroke}
-            strokeOpacity="0.32"
+            strokeOpacity="0.4"
             strokeWidth="2.25"
             strokeLinecap="round"
           />
@@ -447,10 +447,10 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
             key={`${activeModule.id}-active-path`}
             d={activeModule.path}
             stroke={activeTone.pathStroke}
-            strokeWidth="3.35"
+            strokeWidth="3.1"
             strokeLinecap="round"
             strokeDasharray="12 18"
-            animate={{ opacity: [0.42, 1, 0.42], strokeDashoffset: [0, -18] }}
+            animate={{ opacity: [0.46, 0.96, 0.46], strokeDashoffset: [0, -18] }}
             transition={{
               opacity: { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
               strokeDashoffset: { duration: 2.2, repeat: Infinity, ease: "linear" }
@@ -488,7 +488,7 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
         </svg>
 
         <div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[24.5rem] w-[24.5rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={orbitGlowStyle}
         />
         <div
@@ -501,20 +501,20 @@ export function HeroScene({ modules, core, labels }: HeroSceneProps) {
         />
 
         <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[10.5rem] w-[10.5rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[9rem] w-[9rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={orbitPulseStyle}
-          animate={{ scale: [0.99, 1.012, 0.99], opacity: [0.34, 0.52, 0.34] }}
+          animate={{ scale: [0.992, 1.01, 0.992], opacity: [0.22, 0.34, 0.22] }}
           transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="absolute left-1/2 top-1/2 z-20 w-[16.25rem] -translate-x-1/2 -translate-y-1/2 xl:w-[16.9rem]">
+        <div className="absolute left-1/2 top-1/2 z-20 w-[15.75rem] -translate-x-1/2 -translate-y-1/2 xl:w-[16.35rem]">
           {ActiveModuleSurface}
         </div>
 
         {architectureNodes.map((module, index) => (
           <motion.div
             key={module.id}
-            className="absolute w-[7.45rem] xl:w-[7.8rem]"
+            className="absolute w-[7rem] xl:w-[7.35rem]"
             style={{
               top: module.top,
               left: module.left,

@@ -73,7 +73,7 @@ const previewNodePositions = [
 
 const previewGridStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(rgb(var(--theme-preview-grid) / 0.3) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--theme-preview-grid) / 0.3) 1px, transparent 1px)",
+    "linear-gradient(rgb(var(--theme-preview-grid) / 0.22) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--theme-preview-grid) / 0.22) 1px, transparent 1px)",
   backgroundSize: "28px 28px",
   maskImage: "linear-gradient(180deg, rgba(255,255,255,0.88), transparent 92%)"
 };
@@ -111,19 +111,19 @@ const previewShellStyle: CSSProperties = {
 };
 
 const previewCoreStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-preview-core-surface) / 0.62)",
-  borderColor: "rgb(var(--theme-preview-core-border) / 0.4)",
-  boxShadow: "0 10px 18px rgb(var(--shadow) / 0.14)"
+  backgroundColor: "rgb(var(--theme-preview-core-surface) / 0.54)",
+  borderColor: "rgb(var(--theme-preview-core-border) / 0.3)",
+  boxShadow: "0 8px 14px rgb(var(--shadow) / 0.12)"
 };
 
 const previewNodeStyle: CSSProperties = {
-  backgroundColor: "rgb(var(--theme-preview-node-surface) / 0.38)",
-  borderColor: "rgb(var(--theme-preview-node-border) / 0.28)",
-  boxShadow: "0 6px 12px rgb(var(--shadow) / 0.1)"
+  backgroundColor: "rgb(var(--theme-preview-node-surface) / 0.28)",
+  borderColor: "rgb(var(--theme-preview-node-border) / 0.22)",
+  boxShadow: "0 4px 10px rgb(var(--shadow) / 0.08)"
 };
 
 const ambientGlowStyle: CSSProperties = {
-  backgroundImage: "radial-gradient(circle, rgb(var(--theme-preview-glow) / 0.14), rgba(0,0,0,0))"
+  backgroundImage: "radial-gradient(circle, rgb(var(--theme-preview-glow) / 0.1), rgba(0,0,0,0))"
 };
 
 const executionTrackStyle: CSSProperties = {
@@ -211,7 +211,7 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal
-                className="relative min-h-[24.25rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.72)] p-4 md:min-h-[25.75rem] md:p-5"
+                className="relative min-h-[23.5rem] overflow-hidden rounded-[2rem] border border-[rgb(var(--outline)/0.66)] p-4 md:min-h-[24.75rem] md:p-5"
                 delay={0.08}
                 y={20}
                 style={previewShellStyle}
@@ -230,55 +230,49 @@ export default function HomePage() {
                 >
                   <path
                     d="M300 230 C246 186 196 154 130 110"
-                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
+                    stroke="rgb(var(--theme-preview-connector) / 0.14)"
                     strokeDasharray="10 12"
-                    strokeWidth="1.1"
+                    strokeWidth="1"
                   />
                   <path
                     d="M300 230 C354 186 404 154 470 110"
-                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
+                    stroke="rgb(var(--theme-preview-connector) / 0.14)"
                     strokeDasharray="10 12"
-                    strokeWidth="1.1"
-                  />
-                  <path
-                    d="M300 230 C300 270 300 300 300 342"
-                    stroke="rgb(var(--theme-preview-connector) / 0.18)"
-                    strokeDasharray="10 12"
-                    strokeWidth="1.1"
+                    strokeWidth="1"
                   />
                 </svg>
 
                 <div
-                  className="pointer-events-none absolute left-1/2 top-1/2 h-[10rem] w-[10rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
+                  className="pointer-events-none absolute left-1/2 top-1/2 h-[9.25rem] w-[9.25rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
                   style={{ borderColor: "rgb(var(--theme-preview-ring) / 0.18)" }}
                 />
                 <div
-                  className="pointer-events-none absolute left-1/2 top-1/2 h-[14rem] w-[14rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
+                  className="pointer-events-none absolute left-1/2 top-1/2 h-[13.25rem] w-[13.25rem] -translate-x-1/2 -translate-y-1/2 rounded-full border"
                   style={{ borderColor: "rgb(var(--theme-preview-ring) / 0.1)" }}
                 />
 
                 <div
-                  className="absolute left-1/2 top-1/2 z-10 w-[min(11.75rem,calc(100%-6rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.2rem] border px-3 py-2.5 backdrop-blur"
+                  className="absolute left-1/2 top-1/2 z-10 w-[min(10.75rem,calc(100%-7rem))] -translate-x-1/2 -translate-y-1/2 rounded-[1.05rem] border px-2.5 py-2 backdrop-blur"
                   style={previewCoreStyle}
                 >
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[rgb(var(--ink-muted))]">
+                  <p className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-[rgb(var(--ink-muted))]">
                     {homepageCopy.hero.previewLabel}
                   </p>
-                  <h2 className="mt-2 max-w-[11ch] text-[0.88rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[rgb(var(--ink))]">
+                  <h2 className="mt-1.5 max-w-[11ch] text-[0.82rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[rgb(var(--ink))]">
                     {homepageCopy.hero.previewTitle}
                   </h2>
-                  <p className="mt-1.5 text-[0.64rem] leading-[1.45] text-[rgb(var(--ink-soft))]">
+                  <p className="mt-1.5 text-[0.6rem] leading-[1.38] text-[rgb(var(--ink-soft))]">
                     {homepageCopy.hero.previewSummary}
                   </p>
                 </div>
 
-                {homepageCopy.hero.previewSignals.slice(0, 3).map((signal, index) => (
+                {homepageCopy.hero.previewSignals.slice(0, 2).map((signal, index) => (
                   <div
                     key={signal.label}
-                    className={`absolute z-[1] w-[4.3rem] rounded-[999px] border px-2 py-1.5 backdrop-blur ${previewNodePositions[index] ?? ""}`}
+                    className={`absolute z-[1] w-[3.65rem] rounded-[999px] border px-1.5 py-1.25 backdrop-blur ${previewNodePositions[index] ?? ""}`}
                     style={previewNodeStyle}
                   >
-                    <p className="text-[0.52rem] font-semibold uppercase tracking-[0.12em] text-[rgb(var(--ink-muted))]">
+                    <p className="text-[0.49rem] font-semibold uppercase tracking-[0.12em] text-[rgb(var(--ink-muted))]">
                       {signal.label}
                     </p>
                   </div>
