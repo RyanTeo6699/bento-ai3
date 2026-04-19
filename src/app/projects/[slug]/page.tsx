@@ -84,6 +84,11 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 </div>
 
                 <div className="mt-6 space-y-5">
+                  {project.alternateName ? (
+                    <p className="text-[0.82rem] font-medium tracking-[0.08em] text-[rgb(var(--ink-muted))]">
+                      {project.alternateName}
+                    </p>
+                  ) : null}
                   <h1 className="headline-page max-w-4xl">{project.name}</h1>
                   <p className="max-w-3xl text-lg leading-8 text-[rgb(var(--ink))]">
                     {project.definition}

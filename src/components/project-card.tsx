@@ -26,9 +26,16 @@ export function ProjectCard({ locale, project, copy }: ProjectCardProps) {
         </div>
 
         <div className="mt-6 max-w-3xl space-y-4">
-          <h3 className="text-[2rem] font-semibold leading-[0.96] tracking-[-0.06em] text-[rgb(var(--ink))] md:text-[2.4rem]">
-            {project.name}
-          </h3>
+          <div className="space-y-1.5">
+            {project.alternateName ? (
+              <p className="text-[0.78rem] font-medium tracking-[0.08em] text-[rgb(var(--ink-muted))]">
+                {project.alternateName}
+              </p>
+            ) : null}
+            <h3 className="text-[2rem] font-semibold leading-[0.96] tracking-[-0.06em] text-[rgb(var(--ink))] md:text-[2.4rem]">
+              {project.name}
+            </h3>
+          </div>
           <p className="text-[1rem] leading-8 text-[rgb(var(--ink-soft))]">{project.definition}</p>
         </div>
       </div>

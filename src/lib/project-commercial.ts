@@ -30,6 +30,7 @@ export type ProjectVisualLink = {
 export type CommercialProjectView = {
   slug: string;
   name: string;
+  alternateName?: string;
   definition: string;
   heroLead: string;
   category: string;
@@ -69,6 +70,7 @@ type LocalizedProjectDefinition = {
   status: ProjectStatus;
   featured: boolean;
   name: Localized<string>;
+  alternateName?: Localized<string>;
   definition: Localized<string>;
   heroLead: Localized<string>;
   category: Localized<string>;
@@ -110,9 +112,9 @@ const sharedPresentation = {
   heroDescription:
     "Bento AIII’s projects reflect different application surfaces built on the same broader logic: structured decisions, workflow progression, and compounding operational memory.",
   sharedLogicEyebrow: "Shared operating logic",
-  sharedLogicTitle: "Three application surfaces. One broader capability.",
+  sharedLogicTitle: "Four application surfaces. One broader capability.",
   sharedLogicDescription:
-    "Each project addresses a different workflow environment, but all three show the same deeper system pattern: decision framing, execution progression, and retained operational memory.",
+    "Each project addresses a different workflow environment, but all four show the same deeper system pattern: decision framing, execution progression, and retained operational memory.",
   sharedLogic: [
     {
       title: "Decision",
@@ -128,9 +130,9 @@ const sharedPresentation = {
     }
   ],
   portfolioEyebrow: "Project portfolio",
-  portfolioTitle: "Three product implementations under one company frame.",
+  portfolioTitle: "Four product implementations under one company frame.",
   portfolioDescription:
-    "These are not separate startup identities. They are three product surfaces that show how Bento AIII turns fragmented input into structured progression across different domains.",
+    "These are not separate startup identities. They are four product surfaces that show how Bento AIII turns fragmented input into structured progression across different domains.",
   stageLabel: "Stage",
   viewProject: "View Project",
   problemEyebrow: "Problem",
@@ -276,6 +278,127 @@ const projectDefinitions: LocalizedProjectDefinition[] = [
     },
     closingCta: localize(
       "See how ImmiPilot turns immigration questions into structured case progression."
+    )
+  },
+  {
+    slug: "daigou-helper",
+    status: "Prototype",
+    featured: true,
+    name: localize("Daigou Helper"),
+    alternateName: localize("代购神奇"),
+    definition: localize(
+      "A cross-border daigou operations platform for individual resellers and small teams, designed to manage products, inventory, orders, suppliers, and multi-warehouse workflows in one system."
+    ),
+    heroLead: localize(
+      "Daigou Helper is built for resale operators who have outgrown spreadsheets, chat-based order handling, and manual warehouse coordination, but still need a workflow that matches how daigou businesses actually run."
+    ),
+    category: localize("Cross-border operations platform"),
+    problem: localize(
+      "Daigou operations usually run on fragmented tools: chat for customer requests, spreadsheets for stock and orders, memory for SKU details, and ad hoc coordination for suppliers and shipping. This leads to stock mismatch, duplicated records, overselling, slow fulfillment, and weak team control. The problem matters more now because cross-border resale is becoming more operationally complex, not less. Catalogs are larger, customer expectations are faster, and margin pressure is tighter. Once volume grows, manual workflows stop being inconvenient and start becoming destructive."
+    ),
+    whatItDoes: localize(
+      "Daigou Helper works as a cross-border operations system, not a generic commerce dashboard. It connects intake, catalog structure, inventory states, supplier flow, and fulfillment execution into one operating loop built for daigou realities."
+    ),
+    coreWorkflow: localize([
+      "Start from incoming customer demand, supplier links, spreadsheets, chat text, or receipts",
+      "Import and structure the input into products, SKU records, and orders",
+      "Route inventory impact into the correct warehouse context",
+      "Manage purchasing, stock movement, supplier coordination, and warehouse actions",
+      "Execute fulfillment with barcode and shipment operations",
+      "Keep orders, stock, suppliers, and shipment status synchronized in one backend"
+    ]),
+    coreFeatures: localize([
+      {
+        title: "Smart Order Intake",
+        body: "Supports Excel import, text-based order parsing, and receipt OCR."
+      },
+      {
+        title: "Product Center with SPU / SKU Structure",
+        body: "Handles products through a two-layer structure with SKU-level control for size, color, UPC, pricing, and supplier linkage."
+      },
+      {
+        title: "Multi-Warehouse Inventory Management",
+        body: "Tracks overseas stock, domestic stock, and in-transit goods with real-time linkage."
+      },
+      {
+        title: "Supplier and Purchasing Workflow",
+        body: "Supports purchase orders, supplier records, and procurement actions."
+      },
+      {
+        title: "Barcode and Fulfillment Operations",
+        body: "Enables barcode-based warehouse actions, shipment batching, and tracking updates."
+      },
+      {
+        title: "Multi-Tenant and Role-Based Access",
+        body: "Separates team data, supports permissions, and improves auditability."
+      }
+    ]),
+    differentiation: {
+      not: localize([
+        "a normal shopping app",
+        "a simple order form",
+        "a standalone warehouse screen",
+        "a generic ERP pretending to fit daigou use cases",
+        "a product catalog tool with admin pages"
+      ]),
+      value: localize(
+        "Its value comes from coordinating the real operating loop of daigou teams: messy intake sources, SKU-heavy catalogs, multi-location inventory, supplier relationships, and fulfillment execution. Normal tools store information. This system coordinates operations."
+      )
+    },
+    bentoAngle: {
+      summary: localize(
+        "Daigou Helper demonstrates Bento AIII’s ability to convert fragmented real-world business behavior into structured operational software."
+      ),
+      layers: localize([
+        {
+          title: "Execution logic",
+          body: "moving order handling, stock movement, procurement, and fulfillment into one controlled workflow"
+        },
+        {
+          title: "Memory logic",
+          body: "persistent product, supplier, and inventory records"
+        },
+        {
+          title: "Decision logic",
+          body: "secondary but present through stock visibility, purchasing timing, and operational prioritization"
+        }
+      ]),
+      conclusion: localize(
+        "It is more than an application-layer admin tool. Underneath, it reveals deeper system logic in structured intake, entity relationships, warehouse state transitions, role isolation, and workflow coordination."
+      )
+    },
+    currentStatus: {
+      stage: localize("Functional product prototype / early operational system"),
+      alreadyLabel: localize("Already Built"),
+      already: localize([
+        "working backend / admin interface",
+        "dashboard metrics",
+        "product management",
+        "SKU structure",
+        "inventory views",
+        "order handling",
+        "operational management screens",
+        "product materials describing OCR intake, text parsing, multi-warehouse logic, supplier flow, and tenant isolation"
+      ]),
+      nextLabel: localize("Next"),
+      next: localize([
+        "harden intake automation",
+        "tighten procurement-to-fulfillment linkage",
+        "improve reporting",
+        "prove support for live daigou teams at higher volume"
+      ])
+    },
+    visual: {
+      availableMaterials: localize([
+        "backend / admin screenshots",
+        "pitch deck PDF / PPT",
+        "product overview PDF",
+        "dashboard, inventory, product, and order management screens"
+      ]),
+      publicDemo: localize("None provided yet")
+    },
+    closingCta: localize(
+      "Request a demo to see how Daigou Helper replaces Excel, chat-based order handling, and fragmented stock management with one operational system."
     )
   },
   {
@@ -522,6 +645,7 @@ function materializeProject(
   return {
     slug: definition.slug,
     name: pick(definition.name, locale),
+    alternateName: definition.alternateName ? pick(definition.alternateName, locale) : undefined,
     definition: pick(definition.definition, locale),
     heroLead: pick(definition.heroLead, locale),
     category: pick(definition.category, locale),
@@ -562,7 +686,11 @@ export function getProjectPresentationCopy(locale: Locale) {
 }
 
 export function getProjects(locale: Locale): CommercialProjectView[] {
-  return projectDefinitions.map((project) => materializeProject(project, locale));
+  const projectOrder = ["immipilot", "shiok", "you-wife-list", "daigou-helper"];
+
+  return projectDefinitions
+    .map((project) => materializeProject(project, locale))
+    .sort((left, right) => projectOrder.indexOf(left.slug) - projectOrder.indexOf(right.slug));
 }
 
 export function getProjectBySlug(locale: Locale, slug: string) {
